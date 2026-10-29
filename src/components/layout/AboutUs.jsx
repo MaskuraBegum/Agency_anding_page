@@ -35,7 +35,7 @@ const fadeUp = {
 export default function AboutUs() {
   return (
     <section id="about" className="bg-black text-white">
-      <div className="mx-auto grid max-w-[1237px] grid-cols-1 border-x border-white/20 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-[1220px] grid-cols-1 border-x border-white/20 lg:grid-cols-2">
         {/* Left: About content */}
         <motion.div
           variants={fadeUp}

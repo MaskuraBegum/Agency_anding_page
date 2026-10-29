@@ -73,14 +73,15 @@ export default function Hero() {
 
             <motion.p
               variants={item}
-              className="mt-5 max-w-[600px] text-[15px] leading-[1.45] text-white/90"
+              className="mt-5 max-w-[330px] md:max-w-[600px] text-[15px] leading-[1.45] text-white/90"
             >
               We design, develop, and optimize high-performance digital
               experiences that help ambitious businesses operate better,
               convert more customers, and scale with confidence.
             </motion.p>
 
-            <motion.div variants={item} className="mt-6 flex flex-wrap gap-3">
+            <div >
+            <motion.div variants={item} className="mt-6 flex flex-wrap w-[200px] md:w-full gap-3 flex-col md:flex-row">
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.03 }}
@@ -99,6 +100,7 @@ export default function Hero() {
                 Explore Our Work
               </motion.a>
             </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
