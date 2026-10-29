@@ -6,6 +6,8 @@ import Stats from "../layout/Stats";
 import WorkShowcase from "../layout/WorkShowcase";
 import ProblemSection from "../layout/ProblemSection";
 import ServicesSection from "../layout/ServicesSection";
+import ProcessSection from "../layout/ProcessSection";
+import LaunchSection from "../layout/LaunchSection";
 
 export default function Home() {
   return (
@@ -21,6 +23,8 @@ export default function Home() {
       <WorkShowcase></WorkShowcase>
       <ProblemSection></ProblemSection>
       <ServicesSection></ServicesSection>
+      <ProcessSection></ProcessSection>
+      <LaunchSection></LaunchSection>
     </main>
     </div>
   );

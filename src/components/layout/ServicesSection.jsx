@@ -121,6 +121,7 @@ export default function ServicesSection() {
           </motion.article>
         ))}
       </div>
+      <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
     </section>
   );
 }
