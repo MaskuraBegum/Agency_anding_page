@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* Put your Figma design tokens here */
+@theme {
+  --color-primary: #6c5ce7;
+  --color-dark: #0f0f14;
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 80px; /* so the sticky navbar doesn't cover section titles */
+}
