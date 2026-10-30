@@ -1,4 +1,3 @@
-
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 
@@ -42,7 +41,7 @@ export default function AboutUs() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="flex min-h-[600px] flex-col items-start border-b border-white/20 bg-[linear-gradient(180deg,#073b91_0%,#087da7_38%,#07566b_68%,#001014_100%)] px-6 py-10 sm:px-10 sm:py-12 lg:min-h-[858px] lg:border-b-0 lg:border-r lg:border-white/20 lg:px-10 lg:py-10"
+          className="flex min-h-[600px] flex-col items-center text-center lg:items-start lg:text-left border-b border-white/20 bg-[linear-gradient(180deg,#073b91_0%,#087da7_38%,#07566b_68%,#001014_100%)] px-6 py-10 sm:px-10 sm:py-12 lg:min-h-[858px] lg:border-b-0 lg:border-r lg:border-white/20 lg:px-10 lg:py-10"
         >
           <span className="bg-black px-1.5 py-1 text-xs uppercase leading-none">
             About Us
@@ -83,7 +82,7 @@ export default function AboutUs() {
                 delay: index * 0.12,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className={`max-w-[320px] ${
+              className={`flex flex-col items-center text-center max-w-[320px] mx-auto lg:mx-0 lg:items-start lg:text-left ${
                 index === 1 ? "lg:self-center" : ""
               } ${index === 2 ? "lg:self-start" : ""}`}
             >

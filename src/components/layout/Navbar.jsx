@@ -1,9 +1,15 @@
-
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight, Menu, X } from "lucide-react";
 
-const links = ["Home", "About", "Services", "Work", "FAQ"];
+// Section navigation links matching exact IDs across your landing page
+const links = [
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Services", href: "#services" },
+  { name: "Work", href: "#work" },
+  { name: "FAQ", href: "#faq" },
+];
 
 export default function Navbar() {
   const [active, setActive] = useState("Home");
@@ -17,6 +23,11 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleNavClick = (linkName) => {
+    setActive(linkName);
+    setOpen(false);
+  };
+
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
@@ -26,30 +37,31 @@ export default function Navbar() {
         scrolled ? "bg-black/80 backdrop-blur-md" : "bg-black"
       }`}
     >
-      <nav className="mx-auto flex h-[70px] w-full max-w-[1140px] items-center justify-between px-6 sm:px-8 lg:px-12 ">
-        {/* Text logo — replace with an image if you receive the actual logo */}
+      <nav className="mx-auto flex h-[70px] w-full max-w-[1140px] items-center justify-between px-6 sm:px-8 lg:px-12">
+        {/* Text Logo */}
         <a
           href="#home"
+          onClick={() => setActive("Home")}
           className="font-serif text-2xl tracking-tight text-white"
         >
           LOGO
         </a>
 
-        {/* Desktop navigation */}
+        {/* Desktop Navigation */}
         <ul className="hidden items-center gap-6 md:flex">
           {links.map((link) => (
-            <li key={link}>
+            <li key={link.name}>
               <a
-                href={`#${link.toLowerCase()}`}
-                onClick={() => setActive(link)}
+                href={link.href}
+                onClick={() => handleNavClick(link.name)}
                 className={`relative text-sm transition-colors ${
-                  active === link
+                  active === link.name
                     ? "text-white"
                     : "text-white/70 hover:text-white"
                 }`}
               >
-                {link}
-                {active === link && (
+                {link.name}
+                {active === link.name && (
                   <motion.span
                     layoutId="nav-underline"
                     className="absolute -bottom-1 left-0 h-px w-full bg-white"
@@ -61,7 +73,7 @@ export default function Navbar() {
 
           <li>
             <motion.a
-              href="#contact"
+              href="#socials"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="group flex items-center gap-2 bg-[#2f6bff] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#4a7fff]"
@@ -72,7 +84,7 @@ export default function Navbar() {
           </li>
         </ul>
 
-        {/* Mobile toggle */}
+        {/* Mobile Toggle Button */}
         <button
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
@@ -83,10 +95,10 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Divider below navbar */}
-      <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:mx-24" />
+      {/* Grid Border Line Below Navbar */}
+      <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:mx-28" />
 
-      {/* Mobile navigation */}
+      {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {open && (
           <motion.ul
@@ -96,24 +108,21 @@ export default function Navbar() {
             className="overflow-hidden border-b border-white/20 bg-black px-6 md:hidden"
           >
             {links.map((link) => (
-              <li key={link} className="py-3">
+              <li key={link.name} className="py-3">
                 <a
-                  href={`#${link.toLowerCase()}`}
-                  onClick={() => {
-                    setActive(link);
-                    setOpen(false);
-                  }}
+                  href={link.href}
+                  onClick={() => handleNavClick(link.name)}
                   className={
-                    active === link ? "text-white" : "text-white/70"
+                    active === link.name ? "text-white" : "text-white/70"
                   }
                 >
-                  {link}
+                  {link.name}
                 </a>
               </li>
             ))}
             <li className="py-3">
               <a
-                href="#contact"
+                href="#socials"
                 onClick={() => setOpen(false)}
                 className="inline-flex items-center gap-2 bg-[#2f6bff] px-4 py-2.5 text-sm font-medium text-white"
               >

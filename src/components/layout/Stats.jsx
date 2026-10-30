@@ -1,4 +1,3 @@
-
 import { motion } from "motion/react";
 
 const stats = [
@@ -19,7 +18,7 @@ export default function Stats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={`flex min-h-[150px] flex-col justify-center border-b border-white/20 px-6 py-8 sm:min-h-[180px] sm:px-8 lg:min-h-[210px] lg:border-b-0 lg:px-10 ${
+            className={`flex min-h-[150px] flex-col items-center text-center lg:items-start lg:text-left justify-center border-b border-white/20 px-6 py-8 sm:min-h-[180px] sm:px-8 lg:min-h-[210px] lg:border-b-0 lg:px-10 ${
               index > 0 ? "lg:border-l lg:border-white/20" : ""
             } ${
               index === 1 ? "bg-white/[0.10]" : ""

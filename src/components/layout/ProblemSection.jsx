@@ -1,4 +1,3 @@
-
 import { motion } from "motion/react";
 import {
   Gauge,
@@ -55,7 +54,7 @@ function ProblemCard({ icon: Icon, title, description }) {
   return (
     <motion.article
       variants={cardAnimation}
-      className="min-w-0 border-b border-white/20 p-6 sm:p-7 lg:p-[30px]"
+      className="flex min-w-0 flex-col items-center text-center lg:items-start lg:text-left border-b border-white/20 p-6 sm:p-7 lg:p-[30px]"
     >
       <div className="relative flex size-[50px] items-center justify-center bg-white/[0.06]">
         <Icon
@@ -76,7 +75,7 @@ function ProblemCard({ icon: Icon, title, description }) {
         {title}
       </h3>
 
-      <p className="mt-3 max-w-[340px] text-[15px] leading-[1.5] text-white/80">
+      <p className="mt-3 max-w-[340px] mx-auto lg:mx-0 text-[15px] leading-[1.5] text-white/80">
         {description}
       </p>
     </motion.article>
@@ -130,7 +129,7 @@ export default function ProblemSection() {
           {/* CTA card */}
           <motion.div
             variants={cardAnimation}
-            className="flex min-h-[245px] flex-col justify-between bg-[linear-gradient(160deg,#073b91_0%,#0784b7_45%,#001014_100%)] p-6 sm:p-7 lg:p-[30px]"
+            className="flex min-h-[245px] flex-col items-center text-center lg:items-start lg:text-left justify-between bg-[linear-gradient(160deg,#073b91_0%,#0784b7_45%,#001014_100%)] p-6 sm:p-7 lg:p-[30px]"
           >
             <div>
               <h3 className="text-lg font-medium leading-snug">

@@ -32,9 +32,9 @@ export default function LaunchSection() {
     <section id="launch" className="bg-black text-white">
       <div className="mx-auto max-w-[1237px] border-x border-white/20">
         {/* Communication section */}
-        <div className="border-t border-white/20">
+        <div className="border-t border-white/20 mb-20">
           <div className="flex min-h-[100px] items-center justify-center border-b border-white/20 px-5 py-6 text-center">
-            <p className="max-w-[700px] text-sm leading-relaxed text-white sm:text-base">
+            <p className="max-w-[800px] text-xs leading-relaxed text-white sm:text-base">
               Clear communication, regular updates, and check-in calls keep
               you involved from start to finish.
             </p>
@@ -44,7 +44,7 @@ export default function LaunchSection() {
             {communicationMethods.map((method, index) => (
               <div
                 key={method.title}
-                className={`flex min-h-[76px] items-center justify-center gap-3 border-t border-white/20 bg-black px-4 py-4 ${
+                className={`flex min-h-[76px]  items-center justify-center gap-3 border-t border-white/20 bg-black px-4 py-4 ${
                   index > 0 ? "sm:border-l" : ""
                 }`}
               >
@@ -58,9 +58,11 @@ export default function LaunchSection() {
                 <span className="whitespace-nowrap text-sm font-medium text-white sm:text-base">
                   {method.title}
                 </span>
+                
               </div>
             ))}
           </div>
+          <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
         </div>
 
         {/* Promotional section */}
@@ -155,7 +157,7 @@ export default function LaunchSection() {
         </div>
 
         {/* Bottom divider */}
-        <div className="h-px w-full bg-white/20" />
+        <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
       </div>
     </section>
   );

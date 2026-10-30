@@ -8,6 +8,11 @@ import ProblemSection from "../layout/ProblemSection";
 import ServicesSection from "../layout/ServicesSection";
 import ProcessSection from "../layout/ProcessSection";
 import LaunchSection from "../layout/LaunchSection";
+import TestimonialsSection from "../layout/TestimonialsSection";
+import FAQSection from "../layout/FAQSection";
+import CTASection from "../layout/CTASection";
+import FooterSection from "../layout/socialLinks";
+import GiantLogoSection from "../layout/LogoSection";
 
 export default function Home() {
   return (
@@ -25,6 +30,11 @@ export default function Home() {
       <ServicesSection></ServicesSection>
       <ProcessSection></ProcessSection>
       <LaunchSection></LaunchSection>
+      <TestimonialsSection></TestimonialsSection>
+      <FAQSection></FAQSection>
+      <CTASection></CTASection>
+      <FooterSection></FooterSection>
+      <GiantLogoSection></GiantLogoSection>
     </main>
     </div>
   );
