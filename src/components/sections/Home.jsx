@@ -1,3 +1,4 @@
+
 import Navbar from "../layout/Navbar";
 import Hero from "../layout/Hero";
 import TrustedBy from "./TrustedBy";
@@ -16,26 +17,26 @@ import GiantLogoSection from "../layout/LogoSection";
 
 export default function Home() {
   return (
-   
-    <div className="px-0 lg:px-52 bg-black">
-        <main className="h-full bg-black border-x-2 border-gray-700  ">
-      
-      <div className=" w-full lg:w-[1440px] "><Navbar /></div>
-      <Hero />
-      <TrustedBy/>
-      <AboutUs/>
-      <Stats/>
-      <WorkShowcase></WorkShowcase>
-      <ProblemSection></ProblemSection>
-      <ServicesSection></ServicesSection>
-      <ProcessSection></ProcessSection>
-      <LaunchSection></LaunchSection>
-      <TestimonialsSection></TestimonialsSection>
-      <FAQSection></FAQSection>
-      <CTASection></CTASection>
-      <FooterSection></FooterSection>
-      <GiantLogoSection></GiantLogoSection>
-    </main>
+   <div className="overflow-x-clip bg-black">
+    <main className="relative mx-auto w-full max-w-[1237px] bg-black min-[1238px]:border-x min-[1238px]:border-white/20">
+
+        <Navbar />
+        <Hero />
+        <TrustedBy />
+        <AboutUs />
+        <Stats />
+        <WorkShowcase />
+        <ProblemSection />
+        <ServicesSection />
+        <ProcessSection />
+        <LaunchSection />
+        <TestimonialsSection />
+        <FAQSection />
+        <CTASection />
+        <FooterSection />
+        <GiantLogoSection />
+
+      </main>
     </div>
   );
 }

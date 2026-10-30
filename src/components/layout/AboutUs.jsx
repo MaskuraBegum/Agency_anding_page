@@ -1,5 +1,10 @@
-import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { ArrowRight, X, CheckCircle2 } from "lucide-react";
+
+// Replace this with your actual Google Form responder URL
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSei64i0y7IMQl9JlE9cP-StTMGTM8X8bGvRPvpOSixo_Nh5Vg/viewform?usp=publish-editor";
 
 const principles = [
   {
@@ -32,16 +37,26 @@ const fadeUp = {
 };
 
 export default function AboutUs() {
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+
+  // Open Google Form instead of opening the contact modal
+  const handleOpenContact = () => {
+    setIsAboutModalOpen(false);
+    window.open(GOOGLE_FORM_URL, "_blank", "noopener,noreferrer");
+  };
+
   return (
-    <section id="about" className="bg-black text-white">
-      <div className="mx-auto grid max-w-[1220px] grid-cols-1 border-x border-white/20 lg:grid-cols-2">
+    <section id="about" className="relative bg-black text-white">
+      <div className="mx-auto grid max-w-[1237px] grid-cols-1 lg:grid-cols-2">
+
         {/* Left: About content */}
+
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="flex min-h-[600px] flex-col items-center text-center lg:items-start lg:text-left border-b border-white/20 bg-[linear-gradient(180deg,#073b91_0%,#087da7_38%,#07566b_68%,#001014_100%)] px-6 py-10 sm:px-10 sm:py-12 lg:min-h-[858px] lg:border-b-0 lg:border-r lg:border-white/20 lg:px-10 lg:py-10"
+          className="flex min-h-[600px] flex-col items-center border-b border-white/20 bg-[linear-gradient(180deg,#073b91_0%,#087da7_38%,#07566b_68%,#001014_100%)] px-6 py-10 text-center sm:px-10 sm:py-12 lg:min-h-[858px] lg:items-start lg:border-b-0 lg:border-r lg:border-white/20 lg:px-10 lg:py-10 lg:text-left"
         >
           <span className="bg-black px-1.5 py-1 text-xs uppercase leading-none">
             About Us
@@ -60,16 +75,18 @@ export default function AboutUs() {
             users.
           </p>
 
-          <a
-            href="#contact"
-            className="mt-12 inline-flex items-center gap-2 border border-white/70 px-5 py-3 text-sm transition-colors hover:bg-white hover:text-black"
+          <button
+            type="button"
+            onClick={() => setIsAboutModalOpen(true)}
+            className="mt-12 inline-flex cursor-pointer items-center gap-2 border border-white/70 px-5 py-3 text-sm transition-colors hover:bg-white hover:text-black"
           >
             More About Us
             <ArrowRight className="size-4" />
-          </a>
+          </button>
         </motion.div>
 
         {/* Right: Principles */}
+
         <div className="flex flex-col justify-between gap-12 px-6 py-10 sm:px-10 sm:py-12 lg:min-h-[858px] lg:gap-8 lg:px-10 lg:py-10">
           {principles.map((principle, index) => (
             <motion.article
@@ -82,7 +99,7 @@ export default function AboutUs() {
                 delay: index * 0.12,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className={`flex flex-col items-center text-center max-w-[320px] mx-auto lg:mx-0 lg:items-start lg:text-left ${
+              className={`mx-auto flex max-w-[320px] flex-col items-center text-center lg:mx-0 lg:items-start lg:text-left ${
                 index === 1 ? "lg:self-center" : ""
               } ${index === 2 ? "lg:self-start" : ""}`}
             >
@@ -90,6 +107,7 @@ export default function AboutUs() {
                 {principle.number}
 
                 {/* Corner marks */}
+
                 <span className="absolute left-0 top-0 h-2 w-2 border-l border-t border-white/70" />
                 <span className="absolute right-0 top-0 h-2 w-2 border-r border-t border-white/70" />
                 <span className="absolute bottom-0 left-0 h-2 w-2 border-b border-l border-white/70" />
@@ -107,7 +125,80 @@ export default function AboutUs() {
           ))}
         </div>
       </div>
-      <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+
+      <div className="bleed-line" />
+
+      {/* About Us Modal */}
+
+      <AnimatePresence>
+        {isAboutModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+            {/* Modal backdrop */}
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsAboutModalOpen(false)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            />
+
+            {/* Modal content */}
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="relative z-10 w-full max-w-2xl border border-white/20 bg-[#0a0a0a] p-8 text-white shadow-2xl sm:p-10"
+            >
+              <button
+                type="button"
+                onClick={() => setIsAboutModalOpen(false)}
+                className="absolute right-6 top-6 cursor-pointer rounded-full bg-white/10 p-2 transition-colors hover:bg-white/20"
+                aria-label="Close modal"
+              >
+                <X className="size-5" />
+              </button>
+
+              <span className="bg-[#07566b] px-2 py-1 text-xs font-medium uppercase leading-none">
+                Our Story & Vision
+              </span>
+
+              <h3 className="mt-6 font-serif text-2xl tracking-tight sm:text-3xl">
+                Empowering businesses through next-generation web engineering.
+              </h3>
+
+              <div className="mt-4 space-y-4 text-sm leading-relaxed text-white/80 sm:text-base">
+                <p>
+                  Founded with a clear mission to bridge the gap between design
+                  and high-performance engineering, our team helps
+                  forward-thinking companies modernize their digital
+                  architecture.
+                </p>
+
+                <p>
+                  We don’t just write code—we analyze your core business
+                  workflow to eliminate friction, optimize conversion funnels,
+                  and ensure your web assets remain lightweight, accessible,
+                  and ready for rapid scaling.
+                </p>
+              </div>
+
+              <div className="mt-8 flex justify-end">
+                <button
+                  type="button"
+                  onClick={handleOpenContact}
+                  className="inline-flex cursor-pointer items-center gap-2 bg-white px-5 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90"
+                >
+                  Let’s Work Together
+                  <ArrowRight className="size-4" />
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

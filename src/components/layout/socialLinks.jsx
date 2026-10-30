@@ -1,12 +1,23 @@
+
 import React from "react";
 
+import {
+  FaDribbble,
+  FaInstagram,
+  FaBehance,
+  FaLinkedinIn,
+  FaFacebookF,
+} from "react-icons/fa";
+
+import { FaXTwitter } from "react-icons/fa6";
+
 const socialLinks = [
-  { name: "Dribbble", icon: "🏀", href: "#" },
-  { name: "Instagram", icon: "📸", href: "#" },
-  { name: "Behance", icon: "🎨", href: "#" },
-  { name: "Linkedin", icon: "💼", href: "#" },
-  { name: "Facebook", icon: "👍", href: "#" },
-  { name: "X (Twitter)", icon: "𝕏", href: "#" },
+  { name: "Dribbble", icon: FaDribbble, href: "#" },
+  { name: "Instagram", icon: FaInstagram, href: "#" },
+  { name: "Behance", icon: FaBehance, href: "#" },
+  { name: "LinkedIn", icon: FaLinkedinIn, href: "#" },
+  { name: "Facebook", icon: FaFacebookF, href: "#" },
+  { name: "X (Twitter)", icon: FaXTwitter, href: "#" },
 ];
 
 const navLinks = [
@@ -15,98 +26,152 @@ const navLinks = [
   { label: "Services", href: "#services" },
   { label: "Work", href: "#work" },
   { label: "FAQ", href: "#faq" },
-  { label: "Contact Us", href: "#cta" },
+  {
+    label: "Contact Us",
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSei64i0y7IMQl9JlE9cP-StTMGTM8X8bGvRPvpOSixo_Nh5Vg/viewform?usp=publish-editor",
+  },
 ];
+
+const brandColors = {
+  Dribbble: "text-[#EA4C89] bg-[#EA4C89]/10",
+  Instagram: "text-[#E4405F] bg-[#E4405F]/10",
+  Behance: "text-[#1769FF] bg-[#1769FF]/10",
+  LinkedIn: "text-[#0A66C2] bg-[#0A66C2]/10",
+  Facebook: "text-[#1877F2] bg-[#1877F2]/10",
+  "X (Twitter)": "text-white bg-white/10",
+};
 
 export default function FooterSection() {
   return (
     <div id="socials" className="scroll-mt-[70px]">
-      <footer className="bg-black text-white overflow-hidden">
-        <div className="mx-auto max-w-[1237px] border-x border-white/20">
+      <footer className="bg-black text-white">
+        <div className="mx-auto max-w-[1237px]">
+          <div className="bleed-line" />
 
-          {/* Top Horizontal Grid Line Extension */}
-          <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
-
-          {/* Main Footer Block: 2 Columns */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 border-b border-white/20">
-            
+          <div className="grid grid-cols-1 border-b border-white/20 lg:grid-cols-2">
             {/* Left Dark Card Block */}
-            <div className="bg-[#181818] p-8 sm:p-12 md:p-12 flex flex-col justify-end min-h-[380px] lg:min-h-[460px] border-b lg:border-b-0 lg:border-r border-white/20">
-              <h3 className="font-serif text-2xl sm:text-3xl md:text-[28px] leading-tight text-white max-w-[480px]">
-                Let’s turn your idea into a digital experience that works for your business.
+            <div className="flex min-h-[380px] flex-col justify-end border-b border-white/20 bg-[#181818] p-8 sm:p-12 md:p-12 lg:min-h-[460px] lg:border-b-0 lg:border-r">
+              <h3 className="max-w-[480px] font-serif text-2xl leading-tight text-white sm:text-3xl md:text-[28px]">
+                Let’s turn your idea into a digital experience that works for
+                your business.
               </h3>
+
               <a
                 href="mailto:hello@logo.com"
-                className="mt-6 font-serif text-3xl sm:text-4xl md:text-[40px] text-gray-200 underline underline-offset-8 decoration-white/40 hover:decoration-white transition-colors w-fit"
+                className="mt-6 w-fit font-serif text-3xl text-gray-200 underline decoration-white/40 underline-offset-8 transition-colors hover:decoration-white sm:text-4xl md:text-[40px]"
               >
                 hello@logo.com
               </a>
             </div>
 
-            {/* Right Brand & Nav Block */}
-            <div className="p-8 sm:p-4 md:p-12 flex flex-col justify-between min-h-[380px] lg:min-h-[460px]">
+            {/* Right Brand & Navigation Block */}
+            <div className="flex min-h-[380px] flex-col justify-between p-8 sm:p-4 md:p-12 lg:min-h-[460px]">
               {/* Logo & Tagline */}
               <div>
                 <a href="#home" className="inline-block">
-                  <h2 className="font-serif text-3xl sm:text-4xl tracking-tight text-white uppercase">
+                  <h2 className="font-serif text-3xl uppercase tracking-tight text-white sm:text-4xl">
                     LOGO
                   </h2>
                 </a>
-                <p className="mt-4 text-sm sm:text-base text-white/80 max-w-[320px] leading-relaxed">
+
+                <p className="mt-4 max-w-[320px] text-sm leading-relaxed text-white/80 sm:text-base">
                   Digital transformation for businesses ready to move forward.
                 </p>
               </div>
 
-              {/* Navigation Links with Proper Section Anchors */}
-              {/* Navigation Links with Proper Section Anchors */}
-<nav className="mt-12 grid grid-cols-3 gap-x-4 gap-y-3 text-sm sm:text-base text-white/90 lg:flex lg:flex-wrap lg:items-center lg:gap-x-6">
-  {navLinks.map((link) => (
-    <a
-      key={link.label}
-      href={link.href}
-      className="hover:text-white transition-colors"
-    >
-      {link.label}
-    </a>
-  ))}
-</nav>
-            </div>
+              {/* Social Links - Mobile Only */}
+              <div className="mt-10 grid grid-cols-6 border-y border-white/20 lg:hidden">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
 
+                  return (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.name}
+                      title={social.name}
+                      className="flex min-w-0 items-center justify-center py-3"
+                    >
+                      <Icon
+                        size={19}
+                        className={
+                          {
+                            Dribbble: "text-[#EA4C89]",
+                            Instagram: "text-[#E4405F]",
+                            Behance: "text-[#1769FF]",
+                            LinkedIn: "text-[#0A66C2]",
+                            Facebook: "text-[#1877F2]",
+                            "X (Twitter)": "text-white",
+                          }[social.name]
+                        }
+                      />
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="mt-8 grid grid-cols-3 justify-items-center gap-x-4 gap-y-3 text-center text-sm text-white/90 sm:text-base lg:mt-12 lg:flex lg:flex-wrap lg:items-center lg:justify-start lg:gap-x-6 lg:text-left">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target={
+                      link.label === "Contact Us" ? "_blank" : undefined
+                    }
+                    rel={
+                      link.label === "Contact Us"
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    className="transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+            </div>
           </div>
 
-          {/* Social Links Grid with Full Vertical Borders */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 border-b border-white/20">
+          {/* Social Links Grid - Desktop Only */}
+          <div className="hidden grid-cols-3 border-b border-white/20 lg:grid">
             {socialLinks.map((social, index) => {
-              const isLastInRow = (index + 1) % 3 === 0;
-              const isTopRow = index < 3;
+              const Icon = social.icon;
 
               return (
                 <a
                   key={social.name}
                   href={social.href}
-                  className={`flex items-center justify-center gap-3 py-4 px-6 transition-colors hover:bg-white/5 border-white/20 ${
-                    isTopRow ? "border-b" : ""
-                  } ${
-                    !isLastInRow ? "border-r" : ""
-                  }`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  title={social.name}
+                  className={`group flex items-center justify-center gap-3 border-white/20 px-6 py-2 transition-colors duration-300 hover:bg-white/[0.04] ${
+                    index < 3 ? "border-b" : ""
+                  } ${index % 3 !== 2 ? "border-r" : ""}`}
                 >
-                  <span className="flex size-8 items-center justify-center rounded bg-white/10 text-xs font-light text-white shrink-0">
-                    {social.icon}
+                  <span
+                    className={`flex size-10 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-110 ${
+                      brandColors[social.name]
+                    }`}
+                  >
+                    <Icon size={20} />
                   </span>
-                  <span className="text-base font-medium text-white">
+
+                  <span className="text-base font-medium text-white/80 transition-colors group-hover:text-white">
                     {social.name}
                   </span>
                 </a>
               );
             })}
           </div>
-
         </div>
       </footer>
 
-      {/* Bottom Horizontal Grid Line Extension */}
       <div className="mx-auto max-w-[1237px]">
-        <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+        <div className="bleed-line" />
       </div>
     </div>
   );

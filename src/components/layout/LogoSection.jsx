@@ -2,11 +2,11 @@ import React from "react";
 
 export default function GiantLogoSection() {
   return (
-    <section className="bg-black text-white overflow-hidden">
-      <div className="mx-auto max-w-[1237px] border-x border-white/20 relative">
+    <section className="bg-black text-white">
+      <div className="mx-auto max-w-[1237px] relative">
 
         {/* Top Horizontal Grid Line Extension */}
-        <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+        <div className="bleed-line" />
 
         {/* Logo Container Box */}
         <div className="relative flex items-end justify-center h-[180px] sm:h-[240px] md:h-[300px] lg:h-[360px] overflow-hidden border-b border-white/20">
@@ -38,7 +38,7 @@ export default function GiantLogoSection() {
         </div>
 
         {/* Bottom Horizontal Grid Line Extension */}
-        <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+        <div className="bleed-line" />
 
       </div>
     </section>

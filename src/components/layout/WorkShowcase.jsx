@@ -58,10 +58,10 @@ export default function WorkShowcase() {
   return (
     <section
       id="work"
-      className="overflow-hidden bg-black  text-white"
+      className="bg-black text-white"
     >
       {/* Heading */}
-      <div className="mx-auto flex max-w-[1237px] flex-col items-center border-x border-t border-white/20 px-5 pb-8 pt-16 text-center sm:pb-10 sm:pt-20 lg:pb-16 lg:pt-24">
+      <div className="mx-auto flex max-w-[1237px] flex-col items-center border-t border-white/20 px-5 pb-8 pt-16 text-center sm:pb-10 sm:pt-20 lg:pb-16 lg:pt-24">
         <motion.span
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -118,7 +118,7 @@ export default function WorkShowcase() {
         </motion.div>
         
       </div>
-      <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+      <div className="bleed-line" />
     </section>
   );
 }

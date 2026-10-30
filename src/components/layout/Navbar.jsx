@@ -37,6 +37,7 @@ export default function Navbar() {
         scrolled ? "bg-black/80 backdrop-blur-md" : "bg-black"
       }`}
     >
+      <div className="mx-auto w-full max-w-[1237px] min-[1238px]:border-x min-[1238px]:border-white/20">
       <nav className="mx-auto flex h-[70px] w-full max-w-[1140px] items-center justify-between px-6 sm:px-8 lg:px-12">
         {/* Text Logo */}
         <a
@@ -73,7 +74,7 @@ export default function Navbar() {
 
           <li>
             <motion.a
-              href="#socials"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSei64i0y7IMQl9JlE9cP-StTMGTM8X8bGvRPvpOSixo_Nh5Vg/viewform?usp=publish-editor"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="group flex items-center gap-2 bg-[#2f6bff] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#4a7fff]"
@@ -96,7 +97,8 @@ export default function Navbar() {
       </nav>
 
       {/* Grid Border Line Below Navbar */}
-      <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:mx-28" />
+      <div className="bleed-line" />
+      </div>
 
       {/* Mobile Navigation Menu */}
       <AnimatePresence>

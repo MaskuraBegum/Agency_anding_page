@@ -3,7 +3,7 @@ import React from "react";
 export default function CTASection() {
   return (
     <section id="cta" className="bg-black text-white">
-      <div className="mx-auto max-w-[1237px] border-x border-white/20">
+      <div className="mx-auto max-w-[1237px]">
         
         {/* Top Header Section */}
         <div className="flex min-h-[278px] flex-col items-center justify-center border-b border-white/20 px-5 py-12 text-center">
@@ -23,7 +23,7 @@ export default function CTASection() {
         </div>
 
         {/* Horizontal Divider Line */}
-        <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+        <div className="bleed-line" />
 
         {/* Embedded Container Section - Matching 3-Column Grid */}
         <div className="grid grid-cols-1 border-b border-white/20 md:grid-cols-[216px_1fr_216px]">
@@ -32,7 +32,7 @@ export default function CTASection() {
           <div className="hidden border-r border-white/20 md:block" />
 
           {/* Center Content / Embed Container */}
-          <div className="border-x border-white/20 px-5 py-16 md:py-24 text-center flex items-center justify-center min-h-[350px]">
+          <div className="px-5 py-16 md:py-24 text-center flex items-center justify-center min-h-[350px]">
             <p className="text-base sm:text-lg font-light text-white/80">
               We’ll add the Call.com/Calendly link here.
             </p>
@@ -44,7 +44,7 @@ export default function CTASection() {
         </div>
 
         {/* Bottom Horizontal Divider Line */}
-        <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+        <div className="bleed-line" />
 
       </div>
     </section>

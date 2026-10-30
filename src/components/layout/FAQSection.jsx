@@ -43,10 +43,10 @@ export default function FAQSection() {
 
   return (
     <section id="faq" className="bg-black text-white scroll-mt-[70px]">
-      <div className="mx-auto max-w-[1237px] border-x border-white/20">
+      <div className="mx-auto max-w-[1237px]">
 
         {/* Top Grid Extension Line */}
-        <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+        <div className="bleed-line" />
 
         {/* FAQ Heading */}
         <div className="flex min-h-[278px] flex-col items-center justify-center border-b border-white/20 px-5 py-12 text-center">
@@ -62,7 +62,7 @@ export default function FAQSection() {
         </div>
 
         {/* Mid Horizontal Grid Extension Line */}
-        <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+        <div className="bleed-line" />
 
         {/* FAQ 3-Column Grid Layout */}
         <div className="grid grid-cols-1 border-b border-white/20 md:grid-cols-[216px_1fr_216px]">
@@ -71,7 +71,7 @@ export default function FAQSection() {
           <div className="hidden border-r border-white/20 md:block" />
 
           {/* Accordion List Center Column */}
-          <div className="border-x border-white/20">
+          <div>
             <div className="py-6 md:py-10">
               {faqs.map((faq, index) => {
                 const isOpen = openIndex === index;
@@ -127,7 +127,7 @@ export default function FAQSection() {
         </div>
 
         {/* Bottom Grid Extension Line */}
-        <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+        <div className="bleed-line" />
 
       </div>
     </section>

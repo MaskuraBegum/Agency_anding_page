@@ -1,14 +1,12 @@
-import { div } from "motion/react-client";
-
 const brands = ["PayPal", "PAYCO", "PayPal", "toss pay", "amazon pay"];
 
 export default function TrustedBy() {
   return (
     <div>
-        <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+        <div className="bleed-line" />
         <section
       aria-label="Trusted by"
-      className="relative border-x-2 border-gray-900 bg-black text-white"
+      className="relative bg-black text-white"
     >
       <div className="mx-auto flex min-h-[300px] max-w-[1237px] flex-col items-center justify-center px-5 py-16 sm:min-h-[340px] sm:py-20">
         {/* Section label */}
@@ -59,7 +57,7 @@ export default function TrustedBy() {
         </div>
       </div>
     </section>
-    <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+    <div className="bleed-line" />
     </div>
   );
 }

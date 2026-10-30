@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 const communicationMethods = [
   {
     title: "For Communication",
-    icon: "https://cdn.simpleicons.org/slack/E01E5A",
+    icon: "https://img.icons8.com/color/96/slack-new.png",
     alt: "Slack logo",
   },
   {
@@ -30,7 +30,7 @@ const details = [
 export default function LaunchSection() {
   return (
     <section id="launch" className="bg-black text-white">
-      <div className="mx-auto max-w-[1237px] border-x border-white/20">
+      <div className="mx-auto max-w-[1237px]">
         {/* Communication section */}
         <div className="border-t border-white/20 mb-20">
           <div className="flex min-h-[100px] items-center justify-center border-b border-white/20 px-5 py-6 text-center">
@@ -62,7 +62,7 @@ export default function LaunchSection() {
               </div>
             ))}
           </div>
-          <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+          <div className="bleed-line" />
         </div>
 
         {/* Promotional section */}
@@ -157,7 +157,7 @@ export default function LaunchSection() {
         </div>
 
         {/* Bottom divider */}
-        <div className="h-px w-full lg:w-[1290px] bg-white/20 mx-0 lg:-mx-24" />
+        <div className="bleed-line" />
       </div>
     </section>
   );
