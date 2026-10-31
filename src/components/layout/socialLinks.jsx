@@ -32,13 +32,13 @@ const navLinks = [
   },
 ];
 
-const brandColors = {
-  Dribbble: "text-[#EA4C89] bg-[#EA4C89]/10",
-  Instagram: "text-[#E4405F] bg-[#E4405F]/10",
-  Behance: "text-[#1769FF] bg-[#1769FF]/10",
-  LinkedIn: "text-[#0A66C2] bg-[#0A66C2]/10",
-  Facebook: "text-[#1877F2] bg-[#1877F2]/10",
-  "X (Twitter)": "text-white bg-white/10",
+const iconColors = {
+  Dribbble: "text-[#EA4C89]",
+  Instagram: "text-[#E4405F]",
+  Behance: "text-[#1769FF]",
+  LinkedIn: "text-[#0A66C2]",
+  Facebook: "text-[#1877F2]",
+  "X (Twitter)": "text-white",
 };
 
 export default function FooterSection() {
@@ -48,8 +48,9 @@ export default function FooterSection() {
         <div className="mx-auto max-w-[1237px]">
           <div className="bleed-line" />
 
+          {/* Main Footer */}
           <div className="grid grid-cols-1 border-b border-white/20 lg:grid-cols-2">
-            {/* Left Dark Card Block */}
+            {/* Left Contact Block */}
             <div className="flex min-h-[380px] flex-col justify-end border-b border-white/20 bg-[#181818] p-8 sm:p-12 md:p-12 lg:min-h-[460px] lg:border-b-0 lg:border-r">
               <h3 className="max-w-[480px] font-serif text-2xl leading-tight text-white sm:text-3xl md:text-[28px]">
                 Let’s turn your idea into a digital experience that works for
@@ -64,7 +65,7 @@ export default function FooterSection() {
               </a>
             </div>
 
-            {/* Right Brand & Navigation Block */}
+            {/* Right Brand & Social Block */}
             <div className="flex min-h-[380px] flex-col justify-between p-8 sm:p-4 md:p-12 lg:min-h-[460px]">
               {/* Logo & Tagline */}
               <div>
@@ -79,8 +80,8 @@ export default function FooterSection() {
                 </p>
               </div>
 
-              {/* Social Links - Mobile Only */}
-              <div className="mt-10 grid grid-cols-6 border-y border-white/20 lg:hidden">
+              {/* Social Icons - No Borders */}
+              <div className="mt-10 grid grid-cols-6 gap-2">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
 
@@ -92,35 +93,24 @@ export default function FooterSection() {
                       rel="noopener noreferrer"
                       aria-label={social.name}
                       title={social.name}
-                      className="flex min-w-0 items-center justify-center py-3"
+                      className="group flex items-center justify-center py-3"
                     >
                       <Icon
                         size={19}
-                        className={
-                          {
-                            Dribbble: "text-[#EA4C89]",
-                            Instagram: "text-[#E4405F]",
-                            Behance: "text-[#1769FF]",
-                            LinkedIn: "text-[#0A66C2]",
-                            Facebook: "text-[#1877F2]",
-                            "X (Twitter)": "text-white",
-                          }[social.name]
-                        }
+                        className={`transition-transform duration-300 group-hover:scale-125 ${iconColors[social.name]}`}
                       />
                     </a>
                   );
                 })}
               </div>
 
-              {/* Navigation Links */}
-              <nav className="mt-8 grid grid-cols-3 justify-items-center gap-x-4 gap-y-3 text-center text-sm text-white/90 sm:text-base lg:mt-12 lg:flex lg:flex-wrap lg:items-center lg:justify-start lg:gap-x-6 lg:text-left">
+              {/* Mobile Navigation */}
+              <nav className="mt-8 grid grid-cols-3 justify-items-center gap-x-4 gap-y-3 text-center text-sm text-white/90 sm:text-base lg:hidden">
                 {navLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
-                    target={
-                      link.label === "Contact Us" ? "_blank" : undefined
-                    }
+                    target={link.label === "Contact Us" ? "_blank" : undefined}
                     rel={
                       link.label === "Contact Us"
                         ? "noopener noreferrer"
@@ -135,41 +125,30 @@ export default function FooterSection() {
             </div>
           </div>
 
-          {/* Social Links Grid - Desktop Only */}
-          <div className="hidden grid-cols-3 border-b border-white/20 lg:grid">
-            {socialLinks.map((social, index) => {
-              const Icon = social.icon;
-
-              return (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  title={social.name}
-                  className={`group flex items-center justify-center gap-3 border-white/20 px-6 py-2 transition-colors duration-300 hover:bg-white/[0.04] ${
-                    index < 3 ? "border-b" : ""
-                  } ${index % 3 !== 2 ? "border-r" : ""}`}
-                >
-                  <span
-                    className={`flex size-10 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-110 ${
-                      brandColors[social.name]
-                    }`}
-                  >
-                    <Icon size={20} />
-                  </span>
-
-                  <span className="text-base font-medium text-white/80 transition-colors group-hover:text-white">
-                    {social.name}
-                  </span>
-                </a>
-              );
-            })}
-          </div>
+          {/* Desktop Navigation - Single Row */}
+          <nav className="hidden grid-cols-6 border-b border-white/20 lg:grid">
+            {navLinks.map((link, index) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.label === "Contact Us" ? "_blank" : undefined}
+                rel={
+                  link.label === "Contact Us"
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                className={`flex items-center justify-center px-3 py-5 text-sm font-medium text-white/80 transition-colors duration-300 hover:bg-white/[0.04] hover:text-white ${
+                  index !== 5 ? "border-r border-white/20" : ""
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
       </footer>
 
+      {/* Bottom Horizontal Line */}
       <div className="mx-auto max-w-[1237px]">
         <div className="bleed-line" />
       </div>
