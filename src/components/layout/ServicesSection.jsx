@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import {
   motion,
@@ -149,7 +148,7 @@ function InquiryModal({ service, onClose }) {
         exit={{ opacity: 0, y: 20, scale: 0.97 }}
         transition={{ duration: 0.25 }}
         onClick={(e) => e.stopPropagation()}
-        className="relative max-h-[90vh] w-full max-w-[520px] overflow-y-auto border border-white/20 p-6 text-white shadow-[0_30px_80px_rgba(0,0,0,0.7)] sm:p-8"
+        className="relative max-h-[90vh] w-full max-w-[520px] overflow-y-auto rounded-2xl border border-white/20 p-6 text-white shadow-[0_30px_80px_rgba(0,0,0,0.7)] sm:p-8"
         style={{ background: CARD_GRADIENT }}
       >
         <button
@@ -221,7 +220,7 @@ function InquiryModal({ service, onClose }) {
 
             <button
               type="submit"
-              className="group flex w-full items-center justify-center gap-2 border border-white bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-transparent hover:text-white"
+              className="group flex w-full items-center justify-center gap-2 rounded-md border border-white bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-transparent hover:text-white"
             >
               Send Inquiry
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
@@ -255,10 +254,9 @@ function StackedCard({ service, index, total, progress, onCta }) {
     >
       <motion.article
         style={{ scale, background: CARD_GRADIENT }}
-        className="relative h-[min(540px,calc(100vh-110px))] w-full origin-top overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.55)] ring-1 ring-white/15"
+        className="relative h-[min(540px,calc(100vh-110px))] w-full origin-top overflow-hidden rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.55)] ring-1 ring-white/15"
       >
         <div className="flex h-full flex-col gap-3 overflow-y-auto px-5 py-5 sm:gap-6 sm:px-10 sm:py-7 md:flex-row md:items-center md:gap-12 md:overflow-hidden md:px-12 md:py-10">
-
           {/* LEFT CONTENT */}
 
           <div className="flex min-w-0 flex-1 flex-col justify-center">
@@ -302,7 +300,7 @@ function StackedCard({ service, index, total, progress, onCta }) {
             <button
               type="button"
               onClick={() => onCta(service)}
-              className="group mt-4 inline-flex w-full max-w-[450px] shrink-0 cursor-pointer items-center justify-center gap-2 border border-white/50 bg-black/25 px-4 py-2.5 text-xs font-semibold text-white backdrop-blur transition-all duration-300 hover:border-white hover:bg-white hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 active:scale-[0.98] sm:mt-7 sm:px-5 sm:py-3 sm:text-sm"
+              className="group mt-4 inline-flex w-full max-w-[450px] shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border border-white/50 bg-black/25 px-4 py-2.5 text-xs font-semibold text-white backdrop-blur transition-all duration-300 hover:border-white hover:bg-white hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 active:scale-[0.98] sm:mt-7 sm:px-5 sm:py-3 sm:text-sm"
             >
               {service.button}
 
@@ -312,7 +310,7 @@ function StackedCard({ service, index, total, progress, onCta }) {
 
           {/* DESKTOP IMAGE */}
 
-          <div className="hidden h-full max-h-[440px] w-[42%] shrink-0 self-center overflow-hidden bg-white shadow-[0_10px_40px_rgba(0,0,0,0.4)] ring-1 ring-white/20 md:block">
+          <div className="hidden h-full max-h-[440px] w-[42%] shrink-0 self-center overflow-hidden rounded-lg bg-white shadow-[0_10px_40px_rgba(0,0,0,0.4)] ring-1 ring-white/20 md:block">
             <img
               src={service.image}
               alt={service.title}
@@ -341,7 +339,6 @@ export default function ServicesSection() {
   return (
     <section id="services" className="bg-black text-white">
       <div className="mx-auto max-w-[1237px]">
-
         {/* HEADER */}
 
         <div className="px-6 pb-10 pt-14 sm:px-10 md:pb-12 md:pt-16 lg:px-[44px]">

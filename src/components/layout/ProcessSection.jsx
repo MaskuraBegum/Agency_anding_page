@@ -113,9 +113,9 @@ function ProcessCard({ step, index }) {
 export default function ProcessSection() {
   return (
     <section id="process" className="bg-black text-white">
-      <div className="mx-auto max-w-[1237px]">
+      <div className="mx-auto max-w-[1237px] ">
         {/* Heading */}
-        <div className="flex flex-col items-center border-b border-white/20 px-5 pb-12 pt-16 text-center sm:pb-16 sm:pt-20 lg:pb-[78px] lg:pt-[90px]">
+        <div className="flex flex-col items-center border-b border-white/20 px-5 pb-12 pt-16 text-center sm:pb-16 sm:pt-20 lg:pb-[78px] lg:pt-[90px] ">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -1,137 +1,258 @@
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    quote:
-      "They understood what we needed before we even had the words for it. The new website feels clearer, faster, and much more aligned with our brand.",
     name: "Daniel Carter",
-    role: "Founder, Northline Labs",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&h=200&q=85",
+    role: "Founder, Digital Agency",
+    rating: 5,
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=85",
+    quote:
+      "Working with this team was a great experience. They understood our vision, communicated clearly, and delivered a website that exceeded our expectations.",
   },
   {
-    quote:
-      "Working with this team was a great experience. They transformed our ideas into a clean, professional website that represents our business perfectly.",
     name: "Sarah Mitchell",
-    role: "CEO, Creative Studio",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&h=200&q=85",
+    role: "Marketing Director",
+    rating: 4,
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=85",
+    quote:
+      "The attention to detail and the overall quality of the work really impressed us. The entire process felt smooth, collaborative, and well organized.",
   },
   {
-    quote:
-      "The attention to detail was impressive. Every section feels intentional, and the final website is much easier for our customers to navigate.",
     name: "James Wilson",
-    role: "Director, Growth Partners",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&h=200&q=85",
+    role: "Business Owner",
+    rating: 5,
+    image:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=85",
+    quote:
+      "They transformed our ideas into a polished digital experience. The result looks great, works smoothly, and gives our business a stronger online presence.",
   },
   {
-    quote:
-      "Communication was clear throughout the project. They listened to our feedback and delivered a result that exceeded our expectations.",
     name: "Emily Roberts",
-    role: "Marketing Lead, Nova Digital",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&h=200&q=85",
+    role: "Startup Founder",
+    rating: 4,
+    image:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=85",
+    quote:
+      "From the initial discussion to the final delivery, the team was thoughtful and professional. I really appreciated their creative approach and communication.",
   },
   {
-    quote:
-      "Our new website has given our brand a fresh identity. The process was smooth, the design was thoughtful, and the result speaks for itself.",
     name: "Michael Anderson",
-    role: "Founder, Horizon Works",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=85",
+    role: "Product Manager",
+    rating: 5,
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=85",
+    quote:
+      "A reliable team with a strong understanding of design and development. They helped us turn a complicated idea into a clear and usable product.",
   },
 ];
 
 export default function TestimonialsSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % testimonials.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const activeTestimonial = testimonials[activeIndex];
+
+  const paginationDots = (
+    <div className="flex w-full items-center justify-center gap-3">
+      {testimonials.map((testimonial, index) => (
+        <button
+          key={testimonial.name}
+          type="button"
+          onClick={() => setActiveIndex(index)}
+          aria-label={`Show testimonial ${index + 1}`}
+          aria-current={activeIndex === index ? "true" : undefined}
+          className={`h-2.5 rounded-full transition-all duration-300 ${
+            activeIndex === index
+              ? "w-8 bg-white"
+              : "w-2.5 bg-white/40 hover:bg-white/70"
+          }`}
+        />
+      ))}
+    </div>
+  );
+
   return (
-    <section className="bg-black text-white">
+    <section className="w-full bg-black px-4 py-20 text-white sm:px-6 lg:px-0">
       <div className="mx-auto max-w-[1237px]">
         {/* Section heading */}
-        <div className="flex min-h-[230px] flex-col items-center justify-center border-b border-white/20 px-5 py-12 text-center">
-          <span className="bg-slate-700 px-1.5 py-1 text-xs uppercase leading-none text-white">
+        <div className="mb-12 text-center sm:mb-16">
+          <span className="mb-4 inline-flex items-center rounded-full border border-white/20 px-4 py-2 text-xs tracking-wide text-white/70">
             Client Experiences
           </span>
 
-          <h2 className="mt-8 font-serif text-3xl leading-tight tracking-tight sm:text-4xl md:text-5xl">
+          <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
             Don’t Just Take Our Word for It
           </h2>
         </div>
 
-        {/* Testimonials panel */}
-        <div className="border-b border-white/20 px-5 sm:px-10 lg:px-0">
-          <div className="bleed-line" />
+        {/* Testimonial panel */}
+        <div
+          className="overflow-hidden rounded-[18px] px-5 py-12 sm:rounded-[24px] sm:px-8 sm:py-[72px] lg:px-10 lg:py-[72px]"
+          style={{
+            background:
+              "linear-gradient(135deg, #063d91 0%, #0785ae 45%, #00303b 100%)",
+          }}
+        >
+          {/* Main layout */}
+          <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.5fr)_minmax(100px,0.3fr)] lg:gap-x-28 lg:gap-y-8">
+            {/* LEFT: Image stack */}
+            <div className="flex w-full justify-center lg:justify-start">
+              <div className="relative aspect-square w-full max-w-[220px] sm:max-w-[340px] lg:max-w-[380px]">
+                {/* Background images */}
+                {testimonials.map((testimonial, index) => {
+                  const offset =
+                    (index - activeIndex + testimonials.length) %
+                    testimonials.length;
 
-          <div className="mx-auto max-w-[872px] bg-[linear-gradient(180deg,#063d91_0%,#0785ae_38%,#00303b_78%,#000000_100%)] px-5 py-7 sm:px-8 sm:py-10 md:h-[460px] md:grid md:grid-cols-[2fr_0.9fr] md:grid-rows-1 md:gap-10 md:px-10">
-            {/* Testimonial cards */}
-            <div
-              className="
-                flex gap-4 overflow-x-auto pb-4
-                snap-x snap-mandatory
-                [scrollbar-width:thin]
-                [scrollbar-color:rgba(255,255,255,0.55)_transparent]
-                md:min-h-0 md:flex-col md:gap-5 md:overflow-y-auto md:overflow-x-hidden md:pr-2 md:pb-2
-                md:snap-none
-              "
-            >
-              {testimonials.map((testimonial) => (
-                <article
-                  key={testimonial.name}
-                  className="
-                    relative flex min-h-[310px] w-[85%] shrink-0 snap-start flex-col
-                    bg-white px-5 py-6 text-black
-                    sm:w-[65%] sm:min-h-[290px] sm:px-6
-                    md:min-h-[250px] md:w-full md:snap-align-none
-                  "
-                >
-                  {/* Star rating */}
-                  <div
-                    className="mb-5 text-[25px] leading-none tracking-[2px] text-[#F7B844]"
-                    aria-label="5 out of 5 stars"
+                  if (offset === 0) return null;
+
+                  return (
+                    <motion.div
+                      key={testimonial.name}
+                      className="absolute left-1/2 top-1/2 aspect-square h-full w-[88%] overflow-hidden rounded-[24px_8px_24px_8px] shadow-xl sm:rounded-[28px_9px_28px_9px] lg:rounded-[32px_9px_32px_9px]"
+                      style={{
+                        zIndex: testimonials.length - offset,
+                      }}
+                      animate={{
+                        x: `calc(-50% + ${offset * 9}px)`,
+                        y: `calc(-50% + ${offset * 6}px)`,
+                        scale: 1 - offset * 0.025,
+                        rotate: offset * 1.2,
+                        opacity: 1 - offset * 0.035,
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                    </motion.div>
+                  );
+                })}
+
+                {/* Active image */}
+                <AnimatePresence mode="sync">
+                  <motion.div
+                    key={activeTestimonial.name}
+                    className="absolute left-1/2 top-1/2 aspect-square h-full w-[88%] overflow-hidden rounded-[24px_8px_24px_8px] shadow-2xl sm:rounded-[28px_9px_28px_9px] lg:rounded-[32px_9px_32px_9px]"
+                    style={{
+                      zIndex: testimonials.length + 1,
+                    }}
+                    initial={{
+                      x: "115%",
+                      y: "-50%",
+                      opacity: 0,
+                    }}
+                    animate={{
+                      x: "-50%",
+                      y: "-50%",
+                      opacity: 1,
+                    }}
+                    exit={{
+                      x: "-115%",
+                      y: "-50%",
+                      opacity: 0,
+                    }}
+                    transition={{
+                      duration: 0.85,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
                   >
-                    ★★★★★
-                  </div>
+                    <img
+                      src={activeTestimonial.image}
+                      alt={activeTestimonial.name}
+                      className="h-full w-full object-cover"
+                    />
 
-                  {/* Review */}
-                  <blockquote className="max-w-[95%] pb-16 font-serif text-xl leading-[1.25] tracking-tight sm:text-[23px]">
-                    “{testimonial.quote}”
-                  </blockquote>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
 
+            {/* MIDDLE: Review content */}
+            <div className="flex min-h-[280px] w-full flex-col justify-center sm:min-h-[340px] lg:min-h-[360px] lg:pl-2">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTestimonial.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.45 }}
+                >
                   {/* Client details */}
-                  <div className="mt-auto max-w-[75%]">
-                    <h3 className="font-serif text-lg">
-                      {testimonial.name}
+                  <div className="mb-5">
+                    <h3 className="text-lg font-semibold">
+                      {activeTestimonial.name}
                     </h3>
 
-                    <p className="mt-1 text-sm text-black/75">
-                      {testimonial.role}
+                    <p className="mt-1 text-sm text-white/65">
+                      {activeTestimonial.role}
                     </p>
                   </div>
 
-                  {/* Client image - bottom right */}
-                  <img
-                    src={testimonial.image}
-                    alt={`${testimonial.name} portrait`}
-                    loading="lazy"
-                    className="
-                      absolute bottom-5 right-5
-                      size-[58px] rounded-full
-                      border-2 border-black/10
-                      object-cover
-                      sm:size-[64px]
-                    "
-                  />
-                </article>
-              ))}
+                  {/* Star rating */}
+                  <div className="mb-6 flex items-center gap-1.5">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        size={18}
+                        className={
+                          star <= activeTestimonial.rating
+                            ? "fill-white text-white"
+                            : "fill-transparent text-white/40"
+                        }
+                      />
+                    ))}
+                  </div>
+
+                  {/* Review quote */}
+                  <p className="max-w-[590px] text-lg leading-relaxed text-white sm:text-xl md:text-[22px]">
+                    “{activeTestimonial.quote}”
+                  </p>
+                </motion.div>
+              </AnimatePresence>
             </div>
 
-            {/* Results highlight */}
-            <div className="mt-8 flex flex-col items-start text-white md:mt-0 md:pt-1">
-              <span className="font-serif text-5xl leading-none sm:text-6xl">
-                40%
-              </span>
+            {/* Mobile pagination: directly after review */}
+            <div className="md:hidden">
+              {paginationDots}
+            </div>
 
-              <p className="mt-3 max-w-[230px] font-serif text-lg leading-[1.35] sm:text-xl">
-                Marked improvement in financial efficiency and performance.
-              </p>
+            {/* RIGHT: Statistic */}
+            <div className="flex items-start justify-start border-t border-white/20 pt-8 text-left md:col-span-2 md:flex-row md:gap-5 lg:col-span-1 lg:-ml-20 lg:h-full lg:justify-start lg:border-l lg:border-t-0 lg:pl-3 lg:pt-0">
+              <div className="text-left">
+                <p className="font-serif text-4xl leading-none sm:text-5xl lg:text-4xl">
+                  40%
+                </p>
+
+                <p className="mt-3 max-w-[120px] text-xs leading-relaxed text-white/75">
+                  Marked improvement in financial efficiency and performance.
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="bleed-line" />
+          {/* Desktop and tablet pagination */}
+          <div className="mt-12 hidden md:flex md:mt-14">
+            {paginationDots}
+          </div>
         </div>
       </div>
     </section>

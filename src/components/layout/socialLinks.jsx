@@ -1,4 +1,3 @@
-
 import React from "react";
 
 import {
@@ -80,7 +79,7 @@ export default function FooterSection() {
                 </p>
               </div>
 
-              {/* Social Icons - No Borders */}
+              {/* Social Icons */}
               <div className="mt-10 grid grid-cols-6 gap-2">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
@@ -105,7 +104,7 @@ export default function FooterSection() {
               </div>
 
               {/* Mobile Navigation */}
-              <nav className="mt-8 grid grid-cols-3 justify-items-center gap-x-4 gap-y-3 text-center text-sm text-white/90 sm:text-base lg:hidden">
+              <nav className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-4 text-sm text-white/90 sm:text-base lg:hidden">
                 {navLinks.map((link) => (
                   <a
                     key={link.label}
@@ -125,9 +124,9 @@ export default function FooterSection() {
             </div>
           </div>
 
-          {/* Desktop Navigation - Single Row */}
-          <nav className="hidden grid-cols-6 border-b border-white/20 lg:grid">
-            {navLinks.map((link, index) => (
+          {/* Desktop Navigation */}
+          <nav className="hidden items-center justify-between border-b border-white/20 lg:flex">
+            {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -137,9 +136,7 @@ export default function FooterSection() {
                     ? "noopener noreferrer"
                     : undefined
                 }
-                className={`flex items-center justify-center px-3 py-5 text-sm font-medium text-white/80 transition-colors duration-300 hover:bg-white/[0.04] hover:text-white ${
-                  index !== 5 ? "border-r border-white/20" : ""
-                }`}
+                className="flex-1 px-3 py-5 text-center text-sm font-medium text-white/80 transition-colors duration-300 hover:bg-white/[0.04] hover:text-white"
               >
                 {link.label}
               </a>
