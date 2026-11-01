@@ -84,7 +84,7 @@ export default function WorkShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-slate-700/70 px-1.5 py-1 text-xs uppercase leading-none"
+          className="bg-slate-700/70 px-1.5 py-1 text-[14px] uppercase leading-none"
         >
           Work Showcase
         </motion.span>

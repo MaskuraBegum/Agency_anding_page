@@ -1,43 +1,45 @@
+
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Star } from "lucide-react";
+import { frame } from "./layout";
 
 const testimonials = [
   {
     name: "Daniel Carter",
-    role: "Founder, Digital Agency",
+    role: "Founder, Northline Labs",
     rating: 5,
     image:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=85",
     quote:
-      "Working with this team was a great experience. They understood our vision, communicated clearly, and delivered a website that exceeded our expectations.",
+      "They understood what we needed before we even had the words for it. The new website feels clearer, faster, and much more aligned with our brand.",
   },
   {
-    name: "Sarah Mitchell",
-    role: "Marketing Director",
+    name: "Alex Morgan",
+    role: "Founder, BrightPath",
     rating: 4,
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=85",
-    quote:
-      "The attention to detail and the overall quality of the work really impressed us. The entire process felt smooth, collaborative, and well organized.",
-  },
-  {
-    name: "James Wilson",
-    role: "Business Owner",
-    rating: 5,
     image:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=85",
     quote:
-      "They transformed our ideas into a polished digital experience. The result looks great, works smoothly, and gives our business a stronger online presence.",
+      "We needed a modern website without spending months going back and forth. The team moved quickly, stayed focused, and delivered exactly what we needed.",
   },
   {
-    name: "Emily Roberts",
-    role: "Startup Founder",
+    name: "Sarah Mitchell",
+    role: "Marketing Director, Elevate Digital",
+    rating: 5,
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=85",
+    quote:
+      "The entire process was smooth from strategy to launch. Communication was clear, the design was thoughtful, and the final website feels incredibly polished.",
+  },
+  {
+    name: "Emma Wilson",
+    role: "CEO, NovaWorks",
     rating: 4,
     image:
       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=85",
     quote:
-      "From the initial discussion to the final delivery, the team was thoughtful and professional. I really appreciated their creative approach and communication.",
+      "From strategy to launch, everything felt intentional. They brought strong design thinking and technical execution to every part of the project.",
   },
   {
     name: "Michael Anderson",
@@ -83,22 +85,31 @@ export default function TestimonialsSection() {
   );
 
   return (
-    <section className="w-full bg-black px-4 py-20 text-white sm:px-6 lg:px-0">
-      <div className="mx-auto max-w-[1237px]">
-        {/* Section heading */}
-        <div className="mb-12 text-center sm:mb-16">
-          <span className="mb-4 inline-flex items-center rounded-full border border-white/20 px-4 py-2 text-xs tracking-wide text-white/70">
-            Client Experiences
-          </span>
+    <section className="bg-black text-white">
+      <div className={`${frame} border-x border-white/20`}>
+        {/* Top frame line */}
+        <div className="bleed-line" />
 
-          <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
+        {/* Section heading */}
+        <div className="my-12 text-center sm:mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-slate-700/80  text-[14px] uppercase leading-none"
+          >
+            CLIENT EXPERIENCES
+          </motion.span>
+
+          <h2 className="font-['Merriweather'] text-3xl mt-8 leading-tight sm:text-4xl md:text-5xl">
             Don’t Just Take Our Word for It
           </h2>
         </div>
 
         {/* Testimonial panel */}
         <div
-          className="overflow-hidden rounded-[18px] px-5 py-12 sm:rounded-[24px] sm:px-8 sm:py-[72px] lg:px-10 lg:py-[72px]"
+          className="overflow-hidden  px-5 py-12 sm:px-8 sm:py-[72px] lg:px-10 lg:py-[72px]"
           style={{
             background:
               "linear-gradient(135deg, #063d91 0%, #0785ae 45%, #00303b 100%)",
@@ -187,7 +198,7 @@ export default function TestimonialsSection() {
             </div>
 
             {/* MIDDLE: Review content */}
-            <div className="flex min-h-[280px] w-full flex-col justify-center sm:min-h-[340px] lg:min-h-[360px] lg:pl-2">
+            <div className="flex font-['Merriweather'] min-h-[280px] w-full flex-col justify-center sm:min-h-[340px] lg:min-h-[360px] lg:pl-2">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTestimonial.name}
@@ -238,11 +249,11 @@ export default function TestimonialsSection() {
             {/* RIGHT: Statistic */}
             <div className="flex items-start justify-start border-t border-white/20 pt-8 text-left md:col-span-2 md:flex-row md:gap-5 lg:col-span-1 lg:-ml-20 lg:h-full lg:justify-start lg:border-l lg:border-t-0 lg:pl-3 lg:pt-0">
               <div className="text-left">
-                <p className="font-serif text-4xl leading-none sm:text-5xl lg:text-4xl">
+                <p className="font-['Merriweather'] text-4xl leading-none sm:text-5xl lg:text-4xl">
                   40%
                 </p>
 
-                <p className="mt-3 max-w-[120px] text-xs leading-relaxed text-white/75">
+                <p className="mt-3 max-w-[120px] font-['Merriweather'] text-xs leading-relaxed text-white/75">
                   Marked improvement in financial efficiency and performance.
                 </p>
               </div>
@@ -254,6 +265,9 @@ export default function TestimonialsSection() {
             {paginationDots}
           </div>
         </div>
+
+        {/* Bottom frame line */}
+        <div className="bleed-line" />
       </div>
     </section>
   );

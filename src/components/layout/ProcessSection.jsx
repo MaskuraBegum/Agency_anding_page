@@ -162,7 +162,7 @@ export default function ProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-slate-700/70 px-1.5 py-1 text-xs uppercase leading-none"
+            className="bg-slate-700/70 px-1.5 py-1 text-[14px] uppercase leading-none"
           >
             How We Work
           </motion.span>
@@ -172,7 +172,7 @@ export default function ProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8 max-w-[700px] font-['Merriweather'] text-4xl leading-[1.12] tracking-tight sm:text-5xl lg:text-[52px]"
+            className="mt-6 max-w-[700px] font-['Merriweather'] text-3xl leading-[1.12] tracking-tight sm:text-5xl lg:text-[48px]"
           >
             From Digital Challenge to
             <br className="hidden sm:block" /> Scalable Solution
@@ -183,7 +183,7 @@ export default function ProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-5 max-w-[650px] text-[15px] leading-relaxed text-white/80 sm:text-base"
+            className="mt-5 max-w-[650px] font-['Inter'] text-[15px] leading-relaxed text-white/80 sm:text-base"
           >
             A clear process keeps complex projects focused, transparent, and
             moving forward.

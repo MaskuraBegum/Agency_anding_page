@@ -18,7 +18,7 @@ export default function TrustedBy() {
       <div className={frame}>
         <div className="relative flex min-h-[362px] w-full flex-col items-center justify-center border-x border-white/20 px-5 py-14 sm:px-10">
           {/* Section Label */}
-          <span className="bg-slate-700/70 px-1.5 py-1 font-['Inter'] text-xs font-normal uppercase leading-none tracking-wide text-white">
+          <span className="bg-slate-700/70 px-1.5 py-1 font-['Inter'] text-[14px] font-normal uppercase leading-none tracking-wide text-white">
             They Trusted Us
           </span>
 

@@ -22,14 +22,14 @@ const details = [
 function CommunicationSection() {
   return (
     <div>
-      <div className="flex min-h-[105px] items-center justify-center border-y border-white/20 px-6 py-7 text-center">
+      <div className={`${frame} flex min-h-[105px] items-center justify-center border-y border-white/20 px-6 py-7 text-center`}>
         <p className="max-w-[900px] text-base font-medium leading-relaxed tracking-tight text-white sm:text-lg">
           Clear communication, regular updates, and check-in calls keep you
           involved from start to finish.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 border-b border-white/20 sm:grid-cols-3">
+      <div className={`${frame} grid grid-cols-1 border-b border-white/20 sm:grid-cols-3`}>
         {communicationTools.map((tool, index) => (
           <div
             key={tool.title}
@@ -164,7 +164,7 @@ export default function LaunchSection() {
                 Launch Without the Long Wait
               </span>
 
-              <h2 className="mt-7 font-['Merriweather'] text-[clamp(3.5rem,7.4vw,5.8rem)] leading-[0.99] tracking-[-0.055em]">
+              <h2 className="mt-7 font-heading font-light text-[88px] leading-[0.99] tracking-[-0.055em]">
                 $1,112
                 <br />
                 From Idea to
@@ -223,7 +223,9 @@ export default function LaunchSection() {
                 </div>
 
                 <a
-                  href="#contact"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSei64i0y7IMQl9JlE9cP-StTMGTM8X8bGvRPvpOSixo_Nh5Vg/viewform?usp=publish-editor"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-4 flex min-h-[39px] items-center justify-center gap-2 bg-[linear-gradient(90deg,#4945ff,#0ba9ed)] px-3 py-2 text-center text-xs font-medium tracking-[-0.02em] text-white transition-opacity hover:opacity-90 sm:text-sm"
                 >
                   Book Your Free Call

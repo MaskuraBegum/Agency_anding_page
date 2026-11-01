@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -56,11 +57,16 @@ const cardAnimation = {
   },
 };
 
-function ProblemCard({ icon, title, description }) {
+function ProblemCard({ icon, title, description, index }) {
+  const responsiveBorder = [
+    index % 2 === 0 ? "sm:border-r" : "",
+    index % 3 !== 2 ? "lg:border-r" : "",
+  ].join(" ");
+
   return (
     <motion.article
       variants={cardAnimation}
-      className="flex min-w-0 flex-col items-center border-b border-white/20 p-6 text-center sm:p-7 lg:items-start lg:p-[30px] lg:text-left"
+      className={`flex min-w-0 flex-col items-center border-b border-white/20 p-6 text-center sm:p-7 lg:items-start lg:p-[30px] lg:text-left ${responsiveBorder}`}
     >
       {/* Icon */}
       <div className="flex size-[48px] shrink-0 items-center justify-center">
@@ -158,10 +164,14 @@ export default function ProblemSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 border-y  border-white/20 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 border-y border-white/20 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {problems.map((problem) => (
-            <ProblemCard key={problem.title} {...problem} />
+          {problems.map((problem, index) => (
+            <ProblemCard
+              key={problem.title}
+              {...problem}
+              index={index}
+            />
           ))}
 
           {/* CTA card */}
@@ -203,6 +213,7 @@ export default function ProblemSection() {
               onClick={() => setIsModalOpen(false)}
               className="absolute inset-0 bg-black/80 backdrop-blur-sm"
             />
+
             {/* Modal */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}

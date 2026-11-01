@@ -385,7 +385,7 @@ export default function ServicesSection() {
         {/* HEADER */}
 
         <div className="px-6 pb-10 pt-14 sm:px-10 md:pb-12 md:pt-16 lg:px-[44px]">
-          <span className="inline-block bg-white/15 px-1.5 py-0.5 text-xs font-medium uppercase tracking-wide text-white">
+          <span className="inline-block bg-white/15 px-1.5 py-0.5 text-[14px] font-['Inter'] font-medium uppercase tracking-wide text-white">
             What We Do
           </span>
 
@@ -393,7 +393,7 @@ export default function ServicesSection() {
             Everything You Need to Build Digital That Performs
           </h2>
 
-          <p className="mt-6 max-w-[600px] text-base leading-7 text-white/70 md:text-lg">
+          <p className="mt-6 max-w-[680px] text-base leading-7 text-white/70 md:text-lg">
             From a complete redesign to deep technical optimization, we solve
             digital challenges across strategy, experience, and engineering.
           </p>

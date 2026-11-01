@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
+import { frame } from "./layout";
 
 const faqs = [
   {
@@ -38,23 +40,25 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0);
 
   const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? -1 : index);
+    setOpenIndex((current) => (current === index ? -1 : index));
   };
 
   return (
-    <section id="faq" className="bg-black text-white scroll-mt-[70px]">
-      <div className="mx-auto max-w-[1237px]">
-
+    <section
+      id="faq"
+      className="scroll-mt-[70px] bg-black text-white"
+    >
+      <div className={`${frame} border-x border-white/20`}>
         {/* Top Grid Extension Line */}
         <div className="bleed-line" />
 
         {/* FAQ Heading */}
         <div className="flex min-h-[278px] flex-col items-center justify-center border-b border-white/20 px-5 py-12 text-center">
-          <span className="bg-slate-700 px-1.5 py-1 text-xs uppercase leading-none text-white">
+          <span className="bg-slate-700 px-1.5 py-1 text-[14px] uppercase leading-none text-white">
             FAQ
           </span>
 
-          <h2 className="mt-8 max-w-[600px] font-serif text-4xl leading-[1.12] tracking-tight sm:text-5xl md:text-[52px]">
+          <h2 className="mt-8 max-w-[600px] font-['Merriweather'] text-3xl leading-[1.12] tracking-tight sm:text-3xl md:text-[48px]">
             Questions Before We
             <br />
             Get Started?
@@ -66,13 +70,12 @@ export default function FAQSection() {
 
         {/* FAQ 3-Column Grid Layout */}
         <div className="grid grid-cols-1 border-b border-white/20 md:grid-cols-[216px_1fr_216px]">
-          
           {/* Left empty grid column */}
           <div className="hidden border-r border-white/20 md:block" />
 
           {/* Accordion List Center Column */}
           <div>
-            <div className="py-6 md:py-10">
+            <div className="py-6 md:py-10 font-['Inter']">
               {faqs.map((faq, index) => {
                 const isOpen = openIndex === index;
 
@@ -89,7 +92,7 @@ export default function FAQSection() {
                       aria-expanded={isOpen}
                       className="flex w-full items-center justify-between gap-5 px-5 py-5 text-left sm:px-6"
                     >
-                      <span className="text-base font-medium leading-snug text-white sm:text-[17px]">
+                      <span className="text-base font-medium leading-snug text-white sm:text-[18px]">
                         {faq.question}
                       </span>
 
@@ -110,7 +113,7 @@ export default function FAQSection() {
 
                     {isOpen && (
                       <div className="px-5 pb-5 sm:px-6 sm:pr-14">
-                        <p className="text-[15px] leading-[1.5] text-white/75 sm:text-base">
+                        <p className="text-[18px] leading-[1.5] text-white/75 sm:text-base">
                           {faq.answer}
                         </p>
                       </div>
@@ -123,12 +126,10 @@ export default function FAQSection() {
 
           {/* Right empty grid column */}
           <div className="hidden border-l border-white/20 md:block" />
-
         </div>
 
         {/* Bottom Grid Extension Line */}
         <div className="bleed-line" />
-
       </div>
     </section>
   );
