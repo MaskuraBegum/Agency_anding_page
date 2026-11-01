@@ -134,7 +134,7 @@ export default function Hero() {
           {/* Label */}
           <motion.span
             variants={item}
-            className="inline-flex min-h-[17px] items-center bg-white/15 px-1.5 py-1 font-['Inter'] text-[14px] font-medium uppercase leading-[100%] tracking-[-0.5px] text-white backdrop-blur-sm"
+            className="inline-flex min-h-[17px] items-center bg-white/15 px-1.5 py-1 font-['Inter'] font-medium text-[14px] font-medium uppercase leading-[100%] tracking-[-0.5px] text-white backdrop-blur-sm"
           >
             Design • Development • Growth
           </motion.span>
@@ -142,7 +142,7 @@ export default function Hero() {
           {/* Main Heading */}
           <motion.h1
             variants={item}
-            className="mt-4 w-full max-w-[1250px] font-['Merriweather'] text-[36px] font-normal leading-[1.12] tracking-[-1px] text-white sm:text-[48px] lg:text-[68px] lg:leading-[1.05]"
+            className="mt-4 w-full max-w-[1250px] font-['Merriweather'] text-[36px] font-normal leading-[1.12] tracking-[-1px] text-white sm:text-[48px] lg:text-[64px] lg:leading-[1.05]"
           >
             Turn Digital Infrastructure Into Business Growth
           </motion.h1>
@@ -150,7 +150,7 @@ export default function Hero() {
           {/* Description */}
           <motion.p
             variants={item}
-            className="mt-5 w-full max-w-[800px] font-['Inter'] text-[14px] font-medium leading-[22px] tracking-[-0.5px] text-white/90 sm:text-[15px] sm:leading-[24px] lg:text-[20px] lg:leading-[26px]"
+            className="mt-5 w-full max-w-[800px] font-['Inter'] text-[14px] font-medium leading-[22px] tracking-[-0.5px] text-white/90 sm:text-[15px] sm:leading-[24px] lg:text-[18px] lg:leading-[26px]"
           >
             We design, develop, and optimize high-performance digital
             experiences that help ambitious businesses operate better, convert

@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 import { frame } from "./layout";
 import com1 from "../../assets/com1.png";
@@ -58,91 +57,98 @@ function CommunicationSection() {
   );
 }
 
+function SilverLines({ id, viewBox, startX, endX, top, bottom, className }) {
+  const gap = 13;
+  const paths = [0, 1, 2, 3].map(
+    (i) => `M ${startX + i * gap} ${top} L ${endX + i * gap} ${bottom}`
+  );
+
+  return (
+    <svg
+      viewBox={viewBox}
+      preserveAspectRatio="xMidYMid slice"
+      className={`h-full w-full ${className}`}
+    >
+      <defs>
+        <linearGradient id={`${id}-line`} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#b8bbc0" stopOpacity="0.5" />
+          <stop offset="35%" stopColor="#ffffff" stopOpacity="0.95" />
+          <stop offset="60%" stopColor="#c6c9cd" stopOpacity="0.85" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0.4" />
+        </linearGradient>
+
+        <filter id={`${id}-shadow`} x="-30%" y="-10%" width="160%" height="120%">
+          <feGaussianBlur stdDeviation="3" />
+        </filter>
+      </defs>
+
+      {/* Soft shadows */}
+      <g
+        fill="none"
+        stroke="#8e9298"
+        strokeWidth="9"
+        opacity="0.22"
+        filter={`url(#${id}-shadow)`}
+      >
+        {paths.map((d) => (
+          <path key={d} d={d} />
+        ))}
+      </g>
+
+      {/* Main silver lines */}
+      <g
+        fill="none"
+        stroke={`url(#${id}-line)`}
+        strokeWidth="6"
+        strokeLinecap="butt"
+      >
+        {paths.map((d) => (
+          <path key={d} d={d} />
+        ))}
+      </g>
+
+      {/* Sharp white highlights */}
+      <g fill="none" stroke="#ffffff" strokeWidth="1.5" opacity="0.9">
+        <path d={paths[0]} />
+        <path d={paths[2]} />
+      </g>
+
+      {/* Fine grey edges */}
+      <g fill="none" stroke="#a6a9ae" strokeWidth="1" opacity="0.65">
+        <path d={paths[1]} />
+        <path d={paths[3]} />
+      </g>
+    </svg>
+  );
+}
+
 function DiagonalBackground() {
   return (
     <div
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
     >
-      <svg
+      {/* Mobile / tablet */}
+      <SilverLines
+        id="silverMobile"
+        viewBox="0 0 600 800"
+        startX={330}
+        endX={735}
+        top={-30}
+        bottom={830}
+        className="lg:hidden"
+      />
+
+      {/* Desktop: same geometry as the original (700,-30 -> 1080,776) */}
+      <SilverLines
+        id="silverDesktop"
         viewBox="0 0 1210 746"
-        preserveAspectRatio="none"
-        className="h-full w-full"
-      >
-        <defs>
-          <linearGradient
-            id="silverLine"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="0%"
-          >
-            <stop offset="0%" stopColor="#b8bbc0" stopOpacity="0.5" />
-            <stop offset="35%" stopColor="#ffffff" stopOpacity="0.95" />
-            <stop offset="60%" stopColor="#c6c9cd" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#ffffff" stopOpacity="0.4" />
-          </linearGradient>
-
-          <filter
-            id="silverLineShadow"
-            x="-30%"
-            y="-10%"
-            width="160%"
-            height="120%"
-          >
-            <feGaussianBlur stdDeviation="3" />
-          </filter>
-        </defs>
-
-        {/* Soft shadows */}
-        <g
-          fill="none"
-          stroke="#8e9298"
-          strokeWidth="9"
-          opacity="0.22"
-          filter="url(#silverLineShadow)"
-        >
-          <path d="M 700 -30 L 1080 776" />
-          <path d="M 713 -30 L 1093 776" />
-          <path d="M 726 -30 L 1106 776" />
-          <path d="M 739 -30 L 1119 776" />
-        </g>
-
-        {/* Main silver lines */}
-        <g
-          fill="none"
-          stroke="url(#silverLine)"
-          strokeWidth="6"
-          strokeLinecap="butt"
-        >
-          <path d="M 700 -30 L 1080 776" />
-          <path d="M 713 -30 L 1093 776" />
-          <path d="M 726 -30 L 1106 776" />
-          <path d="M 739 -30 L 1119 776" />
-        </g>
-
-        {/* Sharp highlights */}
-        <g
-          fill="none"
-          stroke="#ffffff"
-          strokeWidth="1.5"
-          opacity="0.9"
-        >
-          <path d="M 700 -30 L 1080 776" />
-          <path d="M 726 -30 L 1106 776" />
-        </g>
-
-        {/* Fine grey edges */}
-        <g
-          fill="none"
-          stroke="#a6a9ae"
-          strokeWidth="1"
-          opacity="0.65"
-        >
-          <path d="M 713 -30 L 1093 776" />
-          <path d="M 739 -30 L 1119 776" />
-        </g>
-      </svg>
+        startX={700}
+        endX={1080}
+        top={-30}
+        bottom={776}
+        className="hidden lg:block"
+      />
     </div>
   );
 }

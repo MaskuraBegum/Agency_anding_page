@@ -5,11 +5,11 @@ import amazonPayLogo from "../../assets/logos/amazonpay.png";
 import { frame } from "../layout/layout.js"; // adjust the path to where layout.js lives
 
 const brands = [
-  { name: "PayPal", logo: paypalLogo, width: "110px" },
-  { name: "PAYCO", logo: paycoLogo, width: "100px" },
-  { name: "PayPal", logo: paypalLogo, width: "110px" },
-  { name: "toss pay", logo: tossPayLogo, width: "105px" },
-  { name: "amazon pay", logo: amazonPayLogo, width: "115px" },
+  { name: "PayPal", logo: paypalLogo, width: "159px" },
+  { name: "PAYCO", logo: paycoLogo, width: "159px" },
+  { name: "PayPal", logo: paypalLogo, width: "159px" },
+  { name: "toss pay", logo: tossPayLogo, width: "159px" },
+  { name: "amazon pay", logo: amazonPayLogo, width: "159px" },
 ];
 
 export default function TrustedBy() {
@@ -39,7 +39,7 @@ export default function TrustedBy() {
                   src={brand.logo}
                   alt={`${brand.name} logo`}
                   style={{ width: brand.width }}
-                  className="h-auto max-h-[48px] max-w-full object-contain opacity-100 transition-transform duration-300 hover:scale-110"
+                  className="h-auto max-h-[61px] max-w-full object-contain opacity-100 transition-transform duration-300 hover:scale-110"
                 />
               </div>
             ))}

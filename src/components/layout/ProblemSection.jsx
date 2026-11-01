@@ -164,13 +164,14 @@ export default function ProblemSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 border-y border-white/20 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 border-y border-white/20 sm:grid-cols-2 lg:grid-cols-3 "
         >
           {problems.map((problem, index) => (
             <ProblemCard
               key={problem.title}
               {...problem}
               index={index}
+              className="w-full lg:w-[364px] h-full lg:h-[240px] text-[18px]"
             />
           ))}
 
@@ -184,7 +185,7 @@ export default function ProblemSection() {
                 Ready to Fix What’s Holding You Back?
               </h3>
 
-              <p className="mt-3 text-[16px] leading-[1.5] text-white/95">
+              <p className="mt-3 text-[16px] leading-[1.5] font-medium text-white/95">
                 Let’s identify the gaps, improve the experience, and build a
                 digital foundation ready for growth.
               </p>

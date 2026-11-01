@@ -83,7 +83,7 @@ export default function FooterSection() {
                     <img
                       src={social.icon}
                       alt=""
-                      className="h-20 w-20 object-contain transition-transform duration-300 group-hover:scale-110"
+                      className="h-20 w-16 object-contain transition-transform duration-300 group-hover:scale-110"
                     />
                   </a>
                 ))}

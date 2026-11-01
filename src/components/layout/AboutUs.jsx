@@ -74,13 +74,13 @@ export default function AboutUs() {
             About Us
           </span>
 
-          <h2 className="mt-8 max-w-[520px] font-['Merriweather'] text-3xl font-medium leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-8 max-w-[472px] font-['Merriweather'] text-3xl font-normal leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-[38px]">
             We transform outdated digital systems into fast, intuitive, and{" "}
             <span className={DIM}>scalable experiences.</span>
           </h2>
 
           <p
-            className={`mt-7 max-w-[800px] font-['Merriweather'] text-3xl font-normal leading-[1.15] tracking-tight sm:text-4xl lg:text-[38px] ${DIM}`}
+            className={`mt-7 max-w-[800px] font-['Merriweather'] text-3xl font-normal leading-[1.15] tracking-tight sm:text-4xl lg:text-[36px] ${DIM}`}
           >
             By combining strategy, design, engineering, and performance, we build digital solutions that work better for your business and your users.
           </p>
