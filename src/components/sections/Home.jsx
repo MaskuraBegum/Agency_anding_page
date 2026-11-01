@@ -18,9 +18,10 @@ import GiantLogoSection from "../layout/LogoSection";
 export default function Home() {
   return (
    <div className="overflow-x-clip bg-black">
-    <main className="relative mx-auto w-full max-w-[1237px] bg-black min-[1238px]:border-x min-[1238px]:border-white/20">
+    <Navbar />
+    <main className=" min-[1238px]:border-x min-[1238px]:border-white/20">
 
-        <Navbar />
+        
         <Hero />
         <TrustedBy />
         <AboutUs />

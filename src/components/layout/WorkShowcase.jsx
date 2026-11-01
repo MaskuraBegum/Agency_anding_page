@@ -1,67 +1,84 @@
-
 import { motion, useReducedMotion } from "motion/react";
+import { frame } from "./layout"// adjust the path to where layout.js lives
+
+import project1 from "../../assets/projects/project1.png";
+import project2 from "../../assets/projects/project2.png";
+import project3 from "../../assets/projects/project3.png";
+import project4 from "../../assets/projects/project4.png";
+import project5 from "../../assets/projects/project5.png";
+import project6 from "../../assets/projects/project6.png";
+import project7 from "../../assets/projects/project7.png";
+import project8 from "../../assets/projects/project8.png";
+import project9 from "../../assets/projects/project9.png";
 
 const projects = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&auto=format&fit=crop&q=80",
+    image: project1,
     title: "Project 1",
+    background: "linear-gradient(180deg, #975BFF 0%, #000000 100%)",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=700&auto=format&fit=crop&q=80",
+    image: project2,
     title: "Project 2",
+    background: "linear-gradient(180deg, #34D771 0%, #000000 103.06%)",
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=700&auto=format&fit=crop&q=80",
+    image: project3,
     title: "Project 3",
+    background: "linear-gradient(178.98deg, #FFF100 -1.89%, #000000 102.13%)",
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=700&auto=format&fit=crop&q=80",
+    image: project4,
     title: "Project 4",
+    background: "linear-gradient(180deg, #3B50FF 0%, #000000 103.06%)",
   },
   {
     id: 5,
-    image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=700&auto=format&fit=crop&q=80",
+    image: project5,
     title: "Project 5",
+    background: "linear-gradient(180deg, #FFCEA7 0%, #000000 100%)",
   },
   {
     id: 6,
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=700&auto=format&fit=crop&q=80",
+    image: project6,
     title: "Project 6",
+    background: "linear-gradient(180deg, #F4C152 0%, #000000 100%)",
   },
   {
     id: 7,
-    image: "https://images.unsplash.com/photo-1487014679447-9f8336841d58?w=700&auto=format&fit=crop&q=80",
+    image: project7,
     title: "Project 7",
+    background: "linear-gradient(180deg, #69D9FF 0%, #000000 100%)",
   },
   {
     id: 8,
-    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=700&auto=format&fit=crop&q=80",
+    image: project8,
     title: "Project 8",
+    background: "linear-gradient(180deg, #FF7028 0%, #000000 100%)",
   },
   {
     id: 9,
-    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=700&auto=format&fit=crop&q=80",
+    image: project9,
     title: "Project 9",
+    background: "linear-gradient(180deg, #772BFF 0%, #000000 103.06%)",
   },
 ];
 
 export default function WorkShowcase() {
   const prefersReducedMotion = useReducedMotion();
 
-  // Duplicate projects to create the continuous scrolling effect.
   const gallery = [...projects, ...projects];
 
   return (
-    <section
-      id="work"
-      className="bg-black text-white"
-    >
-      {/* Heading */}
-      <div className="mx-auto flex max-w-[1237px] flex-col items-center border-t border-white/20 px-5 pb-8 pt-16 text-center sm:pb-10 sm:pt-20 lg:pb-16 lg:pt-24">
+    <section id="work" className="overflow-hidden bg-black text-white">
+      {/* Heading (shared frame) */}
+      <div
+        className={`${frame} flex flex-col items-center border-x border-t border-white/20 px-5 pb-8 pt-16 text-center sm:pb-10 sm:pt-20 lg:pb-16 lg:pt-24`}
+      >
         <motion.span
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -77,48 +94,65 @@ export default function WorkShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="mt-6 max-w-full font-serif text-4xl leading-tight tracking-tight sm:mt-7 sm:text-5xl lg:text-[52px]"
+          className="mt-6 max-w-full font-serif text-3xl leading-tight tracking-tight sm:mt-7 sm:text-5xl lg:text-[52px]"
         >
           Some of Our Recent Projects
         </motion.h2>
       </div>
 
-      {/* Infinite scrolling gallery */}
-      <div className="mx-auto max-w-[1237px] overflow-hidden border-y border-white/20">
-        <motion.div
-          className="flex w-max gap-[22px]"
-          animate={
-            prefersReducedMotion ? { x: 0 } : { x: ["0%", "-50%"] }
-          }
-          transition={
-            prefersReducedMotion
-              ? { duration: 0 }
-              : {
-                  duration: 35,
-                  ease: "linear",
-                  repeat: Infinity,
-                  repeatType: "loop",
-                }
-          }
+      {/* Infinite Scrolling Gallery: full-width lines, content clipped to the frame */}
+      <div className="">
+        <div
+          className={`${frame} overflow-hidden border-x border-white/20 py-3 sm:py-4`}
         >
-          {gallery.map((project, index) => (
-            <div
-              key={`${project.id}-${index}`}
-              className="h-[300px] w-[230px] shrink-0 overflow-hidden bg-[#171717] sm:h-[380px] sm:w-[280px] lg:h-[393px] lg:w-[310px]"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                loading={index < 5 ? "eager" : "lazy"}
-                draggable="false"
-                className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
-              />
-            </div>
-          ))}
-        </motion.div>
-        
+          <motion.div
+            className="flex w-max gap-[22px]"
+            animate={prefersReducedMotion ? { x: 0 } : { x: ["0%", "-50%"] }}
+            transition={
+              prefersReducedMotion
+                ? { duration: 0 }
+                : {
+                    duration: 35,
+                    ease: "linear",
+                    repeat: Infinity,
+                    repeatType: "loop",
+                  }
+            }
+          >
+            {gallery.map((project, index) => (
+              <div
+                key={`${project.id}-${index}`}
+                className="
+                  relative aspect-[299.8/380]
+                  w-[220px] shrink-0 overflow-hidden
+                  sm:w-[260px]
+                  lg:w-[299.8px]
+                "
+                style={{
+                  background: project.background,
+                }}
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  loading={index < 9 ? "eager" : "lazy"}
+                  draggable="false"
+                  className="
+                    absolute left-[8%] top-[6.31%]
+                    h-auto w-[84.1%] max-w-none
+                    select-none
+                    transition-transform duration-500
+                    hover:scale-[1.02]
+                  "
+                />
+              </div>
+            ))}
+            
+          </motion.div>
+          
+        </div>
       </div>
-      <div className="bleed-line" />
+
     </section>
   );
 }

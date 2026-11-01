@@ -6,12 +6,32 @@ import {
   useTransform,
 } from "motion/react";
 import { ArrowRight, X, CheckCircle2 } from "lucide-react";
+import { frame } from "./layout";
+
+// Service images
+import sticky1 from "../../assets/sticky/sticky1.png";
+import sticky2 from "../../assets/sticky/sticky2.png";
+import sticky3 from "../../assets/sticky/sticky3.png";
+import sticky4 from "../../assets/sticky/sticky4.png";
+
+// Number badge images
+import number1 from "../../assets/sticky/number1.png";
+import number2 from "../../assets/sticky/number2.png";
+import number3 from "../../assets/sticky/number3.png";
+import number4 from "../../assets/sticky/number4.png";
 
 const CONTACT_EMAIL = "hello@youragency.com"; // Change this to your email
+
+const CARD_GRADIENT =
+  "linear-gradient(180deg, #02307f 0%, #05509a 28%, #0480b8 55%, #03354f 80%, #010a10 100%)";
+
+const TEAL_GRADIENT =
+  "linear-gradient(180deg, #1EC2B6 0%, #02729E 38.46%, #010101 100%)";
 
 const services = [
   {
     number: "01",
+    numberImage: number1,
     title: "UI/UX Engineering & Redesign",
     description:
       "We combine user-centered design with frontend engineering to create interfaces that look refined, feel effortless, and support your business goals.",
@@ -25,11 +45,12 @@ const services = [
     ],
     button: "Improve My Experience",
     placeholder: "Tell us about your website and what you'd like to improve...",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&q=80",
+    image: sticky1,
+    gradient: CARD_GRADIENT,
   },
   {
     number: "02",
+    numberImage: number2,
     title: "Logo & Branding",
     description:
       "We create distinctive logos and brand identities that communicate your value, build trust, and keep your brand consistent.",
@@ -43,11 +64,12 @@ const services = [
     ],
     button: "Build My Brand Now",
     placeholder: "Tell us about your business and the brand you want to build...",
-    image:
-      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1000&q=80",
+    image: sticky2,
+    gradient: TEAL_GRADIENT,
   },
   {
     number: "03",
+    numberImage: number3,
     title: "CMS & E-Commerce Infrastructure",
     description:
       "We build and optimize CMS and e-commerce experiences that make it easier for your team to manage content, products, and customer journeys.",
@@ -61,27 +83,40 @@ const services = [
     ],
     button: "Scale My Website",
     placeholder: "Tell us about your store or platform and your growth goals...",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1000&q=80",
+    image: sticky3,
+    gradient: CARD_GRADIENT,
+  },
+  {
+    number: "04",
+    numberImage: number4,
+    title: "Framer & Webflow Development",
+    description:
+      "We build fast, responsive Framer and Webflow websites that bring your designs to life and deliver a smooth experience on every device.",
+    features: [
+      "Framer Development",
+      "Webflow Development",
+      "Responsive Design",
+      "CMS Integration",
+      "Interactions & Animations",
+      "Performance Optimization",
+    ],
+    button: "Build My Website",
+    placeholder: "Tell us about your website and what you'd like to build...",
+    image: sticky4,
+    gradient: TEAL_GRADIENT,
   },
 ];
 
-const CARD_GRADIENT =
-  "linear-gradient(180deg, #02307f 0%, #05509a 28%, #0480b8 55%, #03354f 80%, #010a10 100%)";
-
 /* ---------- Number badge ---------- */
 
-function NumberBadge({ number }) {
+function NumberBadge({ image, number }) {
   return (
-    <div className="relative size-[54px] md:size-[62px]">
-      <span className="absolute -left-1 -top-1 size-2 border-l border-t border-white/80" />
-      <span className="absolute -right-1 -top-1 size-2 border-r border-t border-white/80" />
-      <span className="absolute -bottom-1 -left-1 size-2 border-b border-l border-white/80" />
-      <span className="absolute -bottom-1 -right-1 size-2 border-b border-r border-white/80" />
-
-      <div className="flex size-full items-center justify-center bg-[#1e4f95] font-serif text-[28px] leading-none text-white md:text-[34px]">
-        {number}
-      </div>
+    <div className="relative size-[54px] shrink-0 md:size-[62px]">
+      <img
+        src={image}
+        alt={`Service ${number}`}
+        className="size-full object-contain"
+      />
     </div>
   );
 }
@@ -148,8 +183,8 @@ function InquiryModal({ service, onClose }) {
         exit={{ opacity: 0, y: 20, scale: 0.97 }}
         transition={{ duration: 0.25 }}
         onClick={(e) => e.stopPropagation()}
-        className="relative max-h-[90vh] w-full max-w-[520px] overflow-y-auto rounded-2xl border border-white/20 p-6 text-white shadow-[0_30px_80px_rgba(0,0,0,0.7)] sm:p-8"
-        style={{ background: CARD_GRADIENT }}
+        className="relative max-h-[90vh] w-full max-w-[520px] overflow-y-auto border border-white/20 p-6 text-white shadow-[0_30px_80px_rgba(0,0,0,0.7)] sm:p-8"
+        style={{ background: service.gradient }}
       >
         <button
           type="button"
@@ -164,7 +199,7 @@ function InquiryModal({ service, onClose }) {
           <div className="flex flex-col items-center py-8 text-center">
             <CheckCircle2 className="size-12 text-white" />
 
-            <h4 className="mt-4 font-serif text-2xl">
+            <h4 className="mt-4 font-['Merriweather'] text-2xl">
               Thank you!
             </h4>
 
@@ -187,7 +222,7 @@ function InquiryModal({ service, onClose }) {
               Start a project
             </p>
 
-            <h4 className="font-serif text-2xl leading-tight">
+            <h4 className="font-['Merriweather'] text-2xl leading-tight">
               {service.title}
             </h4>
 
@@ -220,7 +255,7 @@ function InquiryModal({ service, onClose }) {
 
             <button
               type="submit"
-              className="group flex w-full items-center justify-center gap-2 rounded-md border border-white bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-transparent hover:text-white"
+              className="group flex w-full items-center justify-center gap-2 border border-white bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-transparent hover:text-white"
             >
               Send Inquiry
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
@@ -253,26 +288,29 @@ function StackedCard({ service, index, total, progress, onCta }) {
       style={{ paddingTop: 24 + index * 28 }}
     >
       <motion.article
-        style={{ scale, background: CARD_GRADIENT }}
-        className="relative h-[min(540px,calc(100vh-110px))] w-full origin-top overflow-hidden rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.55)] ring-1 ring-white/15"
+        style={{ scale, background: service.gradient }}
+        className="relative h-[min(540px,calc(100vh-110px))] w-full origin-top overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.55)] ring-1 ring-white/15"
       >
         <div className="flex h-full flex-col gap-3 overflow-y-auto px-5 py-5 sm:gap-6 sm:px-10 sm:py-7 md:flex-row md:items-center md:gap-12 md:overflow-hidden md:px-12 md:py-10">
           {/* LEFT CONTENT */}
 
           <div className="flex min-w-0 flex-1 flex-col justify-center">
-            <NumberBadge number={service.number} />
+            <NumberBadge
+              image={service.numberImage}
+              number={service.number}
+            />
 
-            <h3 className="mt-4 font-serif text-xl leading-tight tracking-tight text-white sm:mt-7 sm:text-2xl md:text-[30px]">
+            <h3 className="mt-4 font-['Merriweather'] text-xl leading-tight tracking-tight text-white sm:mt-7 sm:text-2xl md:text-[30px]">
               {service.title}
             </h3>
 
-            <p className="mt-2 max-w-[560px] text-xs leading-5 text-white/90 sm:mt-3 sm:text-sm sm:leading-6 md:text-base md:leading-7">
+            <p className="mt-2 max-w-[560px] font-['Inter'] text-xs leading-5 text-white sm:mt-3 sm:text-sm sm:leading-6 md:text-[16px] font-extralight md:leading-7">
               {service.description}
             </p>
 
             {/* MOBILE IMAGE */}
 
-            <div className="mt-3 h-[85px] w-full shrink-0 overflow-hidden rounded-sm bg-white/10 ring-1 ring-white/20 sm:mt-4 sm:h-[110px] md:hidden">
+            <div className="mt-3 h-[85px] w-full shrink-0 overflow-hidden bg-white/10 ring-1 ring-white/20 sm:mt-4 sm:h-[110px] md:hidden">
               <img
                 src={service.image}
                 alt={service.title}
@@ -281,15 +319,15 @@ function StackedCard({ service, index, total, progress, onCta }) {
               />
             </div>
 
-            <p className="mt-3 text-xs font-medium text-white/90 sm:mt-5 sm:text-sm">
+            <p className="mt-3 text-[17px] font-['Inter'] font-medium text-white sm:mt-5 sm:text-sm">
               Includes:
             </p>
 
-            <ul className="mt-2 grid grid-cols-2 gap-x-3 gap-y-1 sm:gap-y-1.5 md:grid-cols-1">
+            <ul className="mt-2 grid grid-cols-2 gap-x-3 gap-y-2 sm:gap-y-1.5 md:grid-cols-1">
               {service.features.map((feature) => (
                 <li
                   key={feature}
-                  className="flex items-center gap-2 text-[11px] text-white/90 sm:gap-3 sm:text-sm md:text-[15px]"
+                  className="flex items-center gap-0 text-[11px] text-white sm:gap-3 sm:text-sm md:text-[14px] font-extraliight ml-2 md:ml-6"
                 >
                   <span className="size-1 shrink-0 rounded-full bg-white/90" />
                   {feature}
@@ -297,10 +335,12 @@ function StackedCard({ service, index, total, progress, onCta }) {
               ))}
             </ul>
 
+            {/* TRANSPARENT WHITE CTA BUTTON */}
+
             <button
               type="button"
               onClick={() => onCta(service)}
-              className="group mt-4 inline-flex w-full max-w-[450px] shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md border border-white/50 bg-black/25 px-4 py-2.5 text-xs font-semibold text-white backdrop-blur transition-all duration-300 hover:border-white hover:bg-white hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 active:scale-[0.98] sm:mt-7 sm:px-5 sm:py-3 sm:text-sm"
+              className="group mt-2 inline-flex w-full max-w-[450px] shrink-0 cursor-pointer items-center justify-center gap-2 border border-white/70 bg-white/10 px-4 py-2.5 text-xs font-light text-white backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 active:scale-[0.98] sm:mt-7 sm:px-5 sm:py-3 sm:text-sm"
             >
               {service.button}
 
@@ -310,7 +350,7 @@ function StackedCard({ service, index, total, progress, onCta }) {
 
           {/* DESKTOP IMAGE */}
 
-          <div className="hidden h-full max-h-[440px] w-[42%] shrink-0 self-center overflow-hidden rounded-lg bg-white shadow-[0_10px_40px_rgba(0,0,0,0.4)] ring-1 ring-white/20 md:block">
+          <div className="hidden h-full max-h-[440px] w-[42%] shrink-0 self-center overflow-hidden bg-white shadow-[0_10px_40px_rgba(0,0,0,0.4)] ring-1 ring-white/20 md:block">
             <img
               src={service.image}
               alt={service.title}
@@ -337,8 +377,11 @@ export default function ServicesSection() {
   });
 
   return (
-    <section id="services" className="bg-black text-white">
-      <div className="mx-auto max-w-[1237px]">
+    <section
+      id="services"
+      className="bg-black font-['Inter'] text-white"
+    >
+      <div className={`${frame} border-x border-white/20`}>
         {/* HEADER */}
 
         <div className="px-6 pb-10 pt-14 sm:px-10 md:pb-12 md:pt-16 lg:px-[44px]">
@@ -346,7 +389,7 @@ export default function ServicesSection() {
             What We Do
           </span>
 
-          <h2 className="mt-6 max-w-[760px] font-serif text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-[56px]">
+          <h2 className="mt-6 max-w-[760px] font-['Merriweather'] text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-[56px]">
             Everything You Need to Build Digital That Performs
           </h2>
 

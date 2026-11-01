@@ -1,15 +1,43 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowRight, X, Calendar, Clock, CheckCircle2 } from "lucide-react";
+import {
+  ArrowRight,
+  X,
+  Calendar,
+  Clock,
+  CheckCircle2,
+} from "lucide-react";
+import { frame } from "./layout";
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.3 } },
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.3,
+    },
+  },
 };
 
 const item = {
   hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const timeSlots = ["09:00 AM", "10:30 AM", "01:00 PM", "02:30 PM", "04:00 PM"];
+
+const initialFormData = {
+  name: "",
+  email: "",
+  company: "",
+  message: "",
 };
 
 export default function Hero() {
@@ -17,126 +45,161 @@ export default function Hero() {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("10:00 AM");
   const [bookingSubmitted, setBookingSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", company: "", message: "" });
-
-  const timeSlots = ["09:00 AM", "10:30 AM", "01:00 PM", "02:30 PM", "04:00 PM"];
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleBookingSubmit = (e) => {
     e.preventDefault();
     setBookingSubmitted(true);
+  };
+
+  const closeBooking = () => {
+    setIsBookingOpen(false);
+
     setTimeout(() => {
       setBookingSubmitted(false);
-      setIsBookingOpen(false);
-      setFormData({ name: "", email: "", company: "", message: "" });
+      setFormData(initialFormData);
       setSelectedDate("");
-    }, 2500);
+      setSelectedTime("10:00 AM");
+    }, 300);
   };
 
   return (
-    <section id="home" className="bg-black pt-[70px] h-screen relative">
-      {/* Framed column with hairline borders */}
-      <div className="w-full">
-        <div className="relative flex min-h-[calc(95svh-70px)] items-end overflow-hidden px-6 pb-10 sm:px-8 sm:pb-12 lg:px-10 lg:pb-16">
-          {/* Animated gradient backdrop */}
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,#38f5e0_0%,#1ab0e8_38%,#0a2a9a_58%,#050c4a_75%,#030620_100%)]" />
+    <section id="home" className="relative overflow-hidden bg-black text-white">
+      {/* Main Hero Frame */}
+      <div
+        className={`${frame} relative h-[760px] min-h-[calc(100svh-80px)] max-h-[900px] overflow-hidden border-x border-white/20`}
+      >
+        {/* Animated Gradient Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#38f5e0_0%,#1ab0e8_38%,#0a2a9a_58%,#050c4a_75%,#030620_100%)]" />
 
-          {/* Waving aurora animations */}
-          <motion.div
-            aria-hidden
-            className="absolute left-[-25%] top-[-10%] h-[85%] w-[90%] bg-[radial-gradient(closest-side,rgba(70,255,240,0.95),transparent)] blur-2xl"
-            animate={{
-              x: ["0%", "35%", "10%", "0%"],
-              y: ["0%", "10%", "-8%", "0%"],
-              scale: [1, 1.2, 0.95, 1],
-              borderRadius: ["50% 50% 50% 50%", "60% 40% 55% 45%", "45% 55% 40% 60%", "50% 50% 50% 50%"],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            aria-hidden
-            className="absolute left-[0%] top-[15%] h-[85%] w-[130%] bg-[radial-gradient(closest-side,rgba(8,30,170,1),rgba(8,30,170,0.7)_55%,transparent)] blur-2xl"
-            animate={{
-              x: ["-20%", "25%", "-30%", "-20%"],
-              y: ["0%", "-12%", "6%", "0%"],
-              rotate: [-12, 14, -18, -12],
-              scale: [1, 1.15, 0.9, 1],
-              borderRadius: ["55% 45% 60% 40%", "40% 60% 45% 55%", "60% 40% 50% 50%", "55% 45% 60% 40%"],
-            }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            aria-hidden
-            className="absolute right-[-30%] top-[-15%] h-[60%] w-[75%] bg-[radial-gradient(closest-side,rgba(90,255,235,0.8),transparent)] blur-3xl"
-            animate={{ x: ["0%", "-40%", "0%"], y: ["0%", "25%", "0%"], rotate: [0, 25, 0] }}
-            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-[#030620]/80" />
+        {/* Aurora Animation 1 */}
+        <motion.div
+          aria-hidden="true"
+          className="absolute left-[-25%] top-[-10%] h-[85%] w-[90%] bg-[radial-gradient(closest-side,rgba(70,255,240,0.95),transparent)] blur-2xl"
+          animate={{
+            x: ["0%", "35%", "10%", "0%"],
+            y: ["0%", "10%", "-8%", "0%"],
+            scale: [1, 1.2, 0.95, 1],
+            borderRadius: [
+              "50% 50% 50% 50%",
+              "60% 40% 55% 45%",
+              "45% 55% 40% 60%",
+              "50% 50% 50% 50%",
+            ],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
 
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="relative z-10 max-w-[620px]"
+        {/* Aurora Animation 2 */}
+        <motion.div
+          aria-hidden="true"
+          className="absolute left-0 top-[15%] h-[85%] w-[130%] bg-[radial-gradient(closest-side,rgba(8,30,170,1),rgba(8,30,170,0.7)_55%,transparent)] blur-2xl"
+          animate={{
+            x: ["-20%", "25%", "-30%", "-20%"],
+            y: ["0%", "-12%", "6%", "0%"],
+            rotate: [-12, 14, -18, -12],
+            scale: [1, 1.15, 0.9, 1],
+            borderRadius: [
+              "55% 45% 60% 40%",
+              "40% 60% 45% 55%",
+              "60% 40% 50% 50%",
+              "55% 45% 60% 40%",
+            ],
+          }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Aurora Animation 3 */}
+        <motion.div
+          aria-hidden="true"
+          className="absolute right-[-30%] top-[-15%] h-[60%] w-[75%] bg-[radial-gradient(closest-side,rgba(90,255,235,0.8),transparent)] blur-3xl"
+          animate={{
+            x: ["0%", "-40%", "0%"],
+            y: ["0%", "25%", "0%"],
+            rotate: [0, 25, 0],
+          }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Bottom Dark Overlay */}
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-[#030620]/80" />
+
+        {/* Hero Text Content */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="absolute bottom-[80px] left-[40px] z-10 w-[calc(100%-80px)] max-w-[900px]"
+        >
+          {/* Label */}
+          <motion.span
+            variants={item}
+            className="inline-flex min-h-[17px] items-center bg-white/15 px-1.5 py-1 font-['Inter'] text-[14px] font-medium uppercase leading-[100%] tracking-[-0.5px] text-white backdrop-blur-sm"
           >
-            <motion.span
-              variants={item}
-              className="inline-block bg-white/15 px-1.5 py-0.5 text-xs uppercase tracking-wide backdrop-blur-sm text-white"
+            Design • Development • Growth
+          </motion.span>
+
+          {/* Main Heading */}
+          <motion.h1
+            variants={item}
+            className="mt-4 w-full max-w-[1250px] font-['Merriweather'] text-[36px] font-normal leading-[1.12] tracking-[-1px] text-white sm:text-[48px] lg:text-[68px] lg:leading-[1.05]"
+          >
+            Turn Digital Infrastructure Into Business Growth
+          </motion.h1>
+
+          {/* Description */}
+          <motion.p
+            variants={item}
+            className="mt-5 w-full max-w-[800px] font-['Inter'] text-[14px] font-medium leading-[22px] tracking-[-0.5px] text-white/90 sm:text-[15px] sm:leading-[24px] lg:text-[20px] lg:leading-[26px]"
+          >
+            We design, develop, and optimize high-performance digital
+            experiences that help ambitious businesses operate better, convert
+            more customers, and scale with confidence.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            variants={item}
+            className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-[18px]"
+          >
+            {/* Primary Button */}
+            <motion.button
+              type="button"
+              onClick={() => setIsBookingOpen(true)}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="group flex h-[41px] w-full shrink-0 cursor-pointer items-center justify-center gap-[6px] bg-white px-5 text-center font-['Inter'] text-[16px] font-medium leading-[26px] tracking-[-1px] text-black transition-colors hover:bg-white/90 sm:w-[198px]"
             >
-              Design • Development • Growth
-            </motion.span>
+              <span className="whitespace-nowrap">Book a Consultation</span>
+              <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
+            </motion.button>
 
-            <motion.h1
-              variants={item}
-              className="mt-4 font-serif leading-[1.1] w-90 md:w-3xl tracking-tight text-white text-3xl md:text-7xl"
+            {/* Secondary Button */}
+            <motion.a
+              href="#work"
+              whileHover={{
+                scale: 1.03,
+                backgroundColor: "rgba(255,255,255,0.18)",
+              }}
+              whileTap={{ scale: 0.97 }}
+              className="flex h-[41px] w-full shrink-0 items-center justify-center gap-[6px] bg-white/10 px-5 text-center font-['Inter'] text-[16px] font-medium leading-[26px] tracking-[-1px] text-white backdrop-blur-sm transition-colors sm:w-[159px]"
             >
-              Turn Digital Infrastructure Into Business Growth
-            </motion.h1>
-
-            <motion.p
-              variants={item}
-              className="mt-5 max-w-[330px] md:max-w-[600px] text-[15px] leading-[1.45] text-white/90"
-            >
-              We design, develop, and optimize high-performance digital
-              experiences that help ambitious businesses operate better,
-              convert more customers, and scale with confidence.
-            </motion.p>
-
-            <div>
-              <motion.div variants={item} className="mt-6 flex flex-wrap w-[200px] md:w-full gap-3 flex-col md:flex-row">
-                <motion.button
-                  onClick={() => setIsBookingOpen(true)}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="group flex items-center justify-center gap-2 bg-white px-4 py-2.5 text-sm font-medium text-black cursor-pointer"
-                >
-                  Book a Consultation
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-                </motion.button>
-
-                <motion.a
-                  href="#work"
-                  whileHover={{ scale: 1.03, backgroundColor: "rgba(255,255,255,0.18)" }}
-                  whileTap={{ scale: 0.97 }}
-                  className="bg-white/10 px-4 py-2.5 text-sm font-medium backdrop-blur-sm text-white text-center"
-                >
-                  Explore Our Work
-                </motion.a>
-              </motion.div>
-            </div>
+              <span className="whitespace-nowrap">Explore Our Work</span>
+            </motion.a>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Booking Modal */}
       <AnimatePresence>
         {isBookingOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-            {/* Backdrop */}
+          <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-4">
+            {/* Modal Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsBookingOpen(false)}
+              onClick={closeBooking}
               className="absolute inset-0 bg-black/80 backdrop-blur-sm"
             />
 
@@ -146,62 +209,90 @@ export default function Hero() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-xl bg-[#0a0a0a] border border-white/20 p-6 sm:p-8 text-white shadow-2xl z-10 max-h-[90vh] overflow-y-auto"
+              className="relative z-10 max-h-[90dvh] w-full max-w-xl overflow-y-auto border border-white/20 bg-[#0a0a0a] p-5 text-white shadow-2xl sm:p-8"
             >
+              {/* Close Button */}
               <button
-                onClick={() => setIsBookingOpen(false)}
-                className="absolute right-5 top-5 rounded-full p-2 bg-white/10 hover:bg-white/20 transition-colors cursor-pointer"
+                type="button"
+                onClick={closeBooking}
+                className="absolute right-4 top-4 cursor-pointer rounded-full bg-white/10 p-2 transition-colors hover:bg-white/20"
                 aria-label="Close modal"
               >
                 <X className="size-5" />
               </button>
 
               {bookingSubmitted ? (
-                <div className="py-12 text-center flex flex-col items-center">
-                  <CheckCircle2 className="size-16 text-emerald-500 mb-4 animate-bounce" />
-                  <h3 className="font-serif text-2xl font-medium">Consultation Scheduled!</h3>
-                  <p className="mt-2 text-sm text-white/70 max-w-md">
-                    We’ve reserved your spot for <span className="text-white font-medium">{selectedDate}</span> at <span className="text-white font-medium">{selectedTime}</span>. A calendar invitation has been sent to your email.
+                <div className="flex flex-col items-center py-12 text-center">
+                  <CheckCircle2 className="mb-4 size-16 text-emerald-500" />
+
+                  <h3 className="font-['Merriweather'] text-2xl font-medium">
+                    Request Submitted!
+                  </h3>
+
+                  <p className="mt-2 max-w-md text-sm text-white/70">
+                    Thank you, {formData.name}. Your consultation request for{" "}
+                    <span className="font-medium text-white">
+                      {selectedDate}
+                    </span>{" "}
+                    at{" "}
+                    <span className="font-medium text-white">
+                      {selectedTime}
+                    </span>{" "}
+                    has been recorded in this demo.
                   </p>
+
+                  <button
+                    type="button"
+                    onClick={closeBooking}
+                    className="mt-6 bg-white px-6 py-2.5 text-sm font-medium text-black hover:bg-white/90"
+                  >
+                    Close
+                  </button>
                 </div>
               ) : (
                 <>
-                  <span className="bg-[#1ab0e8]/20 text-[#38f5e0] border border-[#1ab0e8]/40 px-2 py-1 text-xs uppercase leading-none font-medium">
+                  {/* Modal Heading */}
+                  <span className="inline-block border border-[#1ab0e8]/40 bg-[#1ab0e8]/20 px-2 py-1 text-xs font-medium uppercase leading-none text-[#38f5e0]">
                     1-on-1 Strategy Session
                   </span>
 
-                  <h3 className="mt-4 font-serif text-2xl sm:text-3xl tracking-tight">
+                  <h3 className="mt-4 font-['Inter'] text-2xl font-medium tracking-tight sm:text-3xl">
                     Book Your Consultation
                   </h3>
+
                   <p className="mt-1 text-sm text-white/70">
                     Select a date and time that works best for your team.
                   </p>
 
                   <form onSubmit={handleBookingSubmit} className="mt-6 space-y-4">
-                    {/* Date and Time Pickers */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Date and Time */}
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <div>
-                        <label className="block text-xs uppercase tracking-wider text-white/60 mb-1 flex items-center gap-1.5">
-                          <Calendar className="size-3.5 text-[#38f5e0]" /> Select Date
+                        <label className="mb-1 flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/60">
+                          <Calendar className="size-3.5 text-[#38f5e0]" />
+                          Select Date
                         </label>
+
                         <input
                           type="date"
                           required
-                          min={new Date().toISOString().split("T")[0]}
+                          min={new Date().toLocaleDateString("en-CA")}
                           value={selectedDate}
                           onChange={(e) => setSelectedDate(e.target.value)}
-                          className="w-full bg-white/5 border border-white/20 px-3 py-2 text-sm text-white focus:border-white focus:outline-none transition-colors [color-scheme:dark]"
+                          className="w-full border border-white/20 bg-white/5 px-3 py-2 text-sm text-white transition-colors [color-scheme:dark] focus:border-[#38f5e0] focus:outline-none"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-xs uppercase tracking-wider text-white/60 mb-1 flex items-center gap-1.5">
-                          <Clock className="size-3.5 text-[#38f5e0]" /> Preferred Time
+                        <label className="mb-1 flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/60">
+                          <Clock className="size-3.5 text-[#38f5e0]" />
+                          Preferred Time
                         </label>
+
                         <select
                           value={selectedTime}
                           onChange={(e) => setSelectedTime(e.target.value)}
-                          className="w-full bg-[#141414] border border-white/20 px-3 py-2 text-sm text-white focus:border-white focus:outline-none transition-colors"
+                          className="w-full border border-white/20 bg-[#141414] px-3 py-2 text-sm text-white focus:border-[#38f5e0] focus:outline-none"
                         >
                           {timeSlots.map((slot) => (
                             <option key={slot} value={slot}>
@@ -212,66 +303,84 @@ export default function Hero() {
                       </div>
                     </div>
 
-                    {/* Personal Information */}
+                    {/* Full Name */}
                     <div>
-                      <label className="block text-xs uppercase tracking-wider text-white/60 mb-1">
+                      <label className="mb-1 block text-xs uppercase tracking-wider text-white/60">
                         Full Name
                       </label>
+
                       <input
                         type="text"
                         required
                         value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
                         placeholder="John Doe"
-                        className="w-full bg-white/5 border border-white/20 px-4 py-2.5 text-sm text-white placeholder-white/30 focus:border-white focus:outline-none transition-colors"
+                        className="w-full border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 transition-colors focus:border-[#38f5e0] focus:outline-none"
                       />
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Email and Company */}
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <div>
-                        <label className="block text-xs uppercase tracking-wider text-white/60 mb-1">
+                        <label className="mb-1 block text-xs uppercase tracking-wider text-white/60">
                           Work Email
                         </label>
+
                         <input
                           type="email"
                           required
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                          }
                           placeholder="john@company.com"
-                          className="w-full bg-white/5 border border-white/20 px-4 py-2.5 text-sm text-white placeholder-white/30 focus:border-white focus:outline-none transition-colors"
+                          className="w-full border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 focus:border-[#38f5e0] focus:outline-none"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-xs uppercase tracking-wider text-white/60 mb-1">
+                        <label className="mb-1 block text-xs uppercase tracking-wider text-white/60">
                           Company / Website
                         </label>
+
                         <input
                           type="text"
                           value={formData.company}
-                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              company: e.target.value,
+                            })
+                          }
                           placeholder="Acme Inc."
-                          className="w-full bg-white/5 border border-white/20 px-4 py-2.5 text-sm text-white placeholder-white/30 focus:border-white focus:outline-none transition-colors"
+                          className="w-full border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 focus:border-[#38f5e0] focus:outline-none"
                         />
                       </div>
                     </div>
 
+                    {/* Message */}
                     <div>
-                      <label className="block text-xs uppercase tracking-wider text-white/60 mb-1">
+                      <label className="mb-1 block text-xs uppercase tracking-wider text-white/60">
                         What would you like to discuss?
                       </label>
+
                       <textarea
                         rows={2}
                         value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, message: e.target.value })
+                        }
                         placeholder="Briefly describe your project or key challenges..."
-                        className="w-full bg-white/5 border border-white/20 px-4 py-2 text-sm text-white placeholder-white/30 focus:border-white focus:outline-none transition-colors resize-none"
+                        className="w-full resize-none border border-white/20 bg-white/5 px-4 py-2 text-sm text-white placeholder-white/30 focus:border-[#38f5e0] focus:outline-none"
                       />
                     </div>
 
+                    {/* Submit */}
                     <button
                       type="submit"
-                      className="mt-4 w-full inline-flex items-center justify-center gap-2 bg-white text-black py-3 px-5 text-sm font-medium hover:bg-white/90 transition-colors cursor-pointer"
+                      className="mt-4 inline-flex w-full cursor-pointer items-center justify-center gap-2 bg-white px-5 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90"
                     >
                       Confirm Booking
                       <ArrowRight className="size-4" />
@@ -283,7 +392,8 @@ export default function Hero() {
           </div>
         )}
       </AnimatePresence>
-      <div className="h-px w-full bg-white/20" />
+
+      {/* Bottom Border */}
     </section>
   );
 }

@@ -1,12 +1,19 @@
-
 import { motion } from "motion/react";
-import {
-  Video,
-  Palette,
-  Rocket,
-  BarChart3,
-  Workflow,
-} from "lucide-react";
+import { frame } from "./layout";
+
+// Main process images
+import sol1 from "../../assets/sol1.png";
+import sol2 from "../../assets/sol2.png";
+import sol3 from "../../assets/sol3.png";
+
+// Seven floating logo images
+import bubble1 from "../../assets/bubble1.png";
+import bubble2 from "../../assets/bubble2.png";
+import bubble3 from "../../assets/bubble3.png";
+import bubble4 from "../../assets/bubble4.png";
+import bubble5 from "../../assets/bubble5.png";
+import bubble6 from "../../assets/bubble6.png";
+import bubble7 from "../../assets/bubble7.png";
 
 const steps = [
   {
@@ -14,11 +21,16 @@ const steps = [
     title: "Strategy & Discovery",
     description:
       "We learn about your business, users, goals, and challenges to create a clear strategy and project roadmap.",
-    image:
-      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85",
-    tools: [
-      { name: "Meet", icon: Video },
-      { name: "Slack", label: "S" },
+    image: sol1,
+    bubbles: [
+      {
+        image: bubble1,
+        position: "left-[5%] top-[10%]",
+      },
+      {
+        image: bubble2,
+        position: "right-[5%] bottom-[10%]",
+      },
     ],
   },
   {
@@ -26,11 +38,20 @@ const steps = [
     title: "Design & Development",
     description:
       "We turn strategy into thoughtful designs and reliable digital solutions, with clear communication throughout.",
-    image:
-      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1000&q=85",
-    tools: [
-      { name: "Figma", icon: Palette },
-      { name: "Workflow", icon: Workflow },
+    image: sol2,
+    bubbles: [
+      {
+        image: bubble3,
+        position: "left-[5%] top-[10%]",
+      },
+      {
+        image: bubble5,
+        position: "right-[5%] top-[42%]",
+      },
+      {
+        image: bubble4,
+        position: "left-[8%] bottom-[8%]",
+      },
     ],
   },
   {
@@ -38,33 +59,35 @@ const steps = [
     title: "Launch & Optimize",
     description:
       "We test, refine, and launch your project with a focus on performance, usability, and long-term growth.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=85",
-    tools: [
-      { name: "Launch", icon: Rocket },
-      { name: "Analytics", icon: BarChart3 },
+    image: sol3,
+    bubbles: [
+      {
+        image: bubble7,
+        position: "right-[5%] top-[35%]",
+      },
+      {
+        image: bubble6,
+        position: "left-[5%] bottom-[8%]",
+      },
     ],
   },
 ];
 
-function ToolBadge({ tool, className = "" }) {
-  const Icon = tool.icon;
+/* ---------- Floating logos ---------- */
 
+function FloatingLogo({ image, position }) {
   return (
-    <div
-      title={tool.name}
-      className={`absolute z-10 flex size-12 items-center justify-center rounded-full bg-white text-black shadow-lg sm:size-[50px] ${className}`}
-    >
-      {Icon ? (
-        <Icon size={23} strokeWidth={2.2} />
-      ) : (
-        <span className="text-xl font-bold text-emerald-500">
-          {tool.label}
-        </span>
-      )}
-    </div>
+    <img
+      src={image}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      className={`absolute z-10 size-12 object-contain sm:size-[61px] ${position}`}
+    />
   );
 }
+
+/* ---------- Process card ---------- */
 
 function ProcessCard({ step, index }) {
   return (
@@ -72,33 +95,45 @@ function ProcessCard({ step, index }) {
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.6, delay: index * 0.12 }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.12,
+      }}
       className="min-w-0 border-b border-white/20 lg:border-b-0 lg:border-r lg:last:border-r-0"
     >
       {/* Image panel */}
-      <div className="relative flex h-[230px] items-center justify-center overflow-hidden bg-[linear-gradient(180deg,#073b91_0%,#0789b7_50%,#071015_100%)] px-8 sm:h-[270px] lg:h-[256px]">
+
+      <div className="relative flex h-[230px] items-center justify-center overflow-hidden bg-[linear-gradient(180deg,#073b91_0%,#0789b7_50%,#071015_100%)] px-5 sm:h-[270px] sm:px-8 lg:h-[256px]">
         <img
           src={step.image}
           alt={`${step.title} preview`}
           loading="lazy"
-          className="h-[78%] w-[88%] rounded-[3px] object-cover shadow-xl"
+          className="relative z-[1] h-[78%] w-[88%] object-cover"
         />
 
-        {/* Subtle image overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
+        {/* Image overlay */}
 
-        {/* Floating tool icons */}
-        <ToolBadge tool={step.tools[0]} className="left-[5%] top-[8%]" />
-        <ToolBadge tool={step.tools[1]} className="bottom-[12%] right-[7%]" />
+        <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-black/20 via-transparent to-black/10" />
+
+        {/* Floating logos */}
+
+        {step.bubbles.map((bubble, bubbleIndex) => (
+          <FloatingLogo
+            key={bubbleIndex}
+            image={bubble.image}
+            position={bubble.position}
+          />
+        ))}
       </div>
 
       {/* Step details */}
+
       <div className="px-6 py-7 text-center sm:px-8 sm:py-8 lg:min-h-[200px] lg:px-6">
-        <p className="text-sm text-white/75">
+        <p className="text-sm font-normal text-white/75">
           STEP {step.number}
         </p>
 
-        <h3 className="mt-3 text-lg font-medium tracking-tight">
+        <h3 className="mt-5 text-lg font-medium tracking-tight text-white">
           {step.title}
         </h3>
 
@@ -110,12 +145,18 @@ function ProcessCard({ step, index }) {
   );
 }
 
+/* ---------- Process section ---------- */
+
 export default function ProcessSection() {
   return (
-    <section id="process" className="bg-black text-white">
-      <div className="mx-auto max-w-[1237px] ">
+    <section
+      id="process"
+      className="bg-black font-['Inter'] text-white"
+    >
+      <div className={`${frame} border-x border-white/20`}>
         {/* Heading */}
-        <div className="flex flex-col items-center border-b border-white/20 px-5 pb-12 pt-16 text-center sm:pb-16 sm:pt-20 lg:pb-[78px] lg:pt-[90px] ">
+
+        <div className="flex flex-col items-center border-b border-white/20 px-5 pb-12 pt-16 text-center sm:pb-16 sm:pt-20 lg:pb-[78px] lg:pt-[56px]">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -131,7 +172,7 @@ export default function ProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8 max-w-[700px] font-serif text-4xl leading-[1.12] tracking-tight sm:text-5xl lg:text-[52px]"
+            className="mt-8 max-w-[700px] font-['Merriweather'] text-4xl leading-[1.12] tracking-tight sm:text-5xl lg:text-[52px]"
           >
             From Digital Challenge to
             <br className="hidden sm:block" /> Scalable Solution
@@ -145,11 +186,12 @@ export default function ProcessSection() {
             className="mt-5 max-w-[650px] text-[15px] leading-relaxed text-white/80 sm:text-base"
           >
             A clear process keeps complex projects focused, transparent, and
-            moving forward
+            moving forward.
           </motion.p>
         </div>
 
-        {/* Three process steps */}
+        {/* Process cards */}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {steps.map((step, index) => (
             <ProcessCard
@@ -160,9 +202,6 @@ export default function ProcessSection() {
           ))}
         </div>
       </div>
-
-      {/* Bottom divider */}
-      <div className="h-px w-full bg-white/20" />
     </section>
   );
 }

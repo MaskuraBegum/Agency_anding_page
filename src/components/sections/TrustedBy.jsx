@@ -1,63 +1,52 @@
-const brands = ["PayPal", "PAYCO", "PayPal", "toss pay", "amazon pay"];
+import paypalLogo from "../../assets/logos/PayPal.png";
+import paycoLogo from "../../assets/logos/PAYCO.png";
+import tossPayLogo from "../../assets/logos/toss pay.png";
+import amazonPayLogo from "../../assets/logos/amazonpay.png";
+import { frame } from "../layout/layout.js"; // adjust the path to where layout.js lives
+
+const brands = [
+  { name: "PayPal", logo: paypalLogo, width: "110px" },
+  { name: "PAYCO", logo: paycoLogo, width: "100px" },
+  { name: "PayPal", logo: paypalLogo, width: "110px" },
+  { name: "toss pay", logo: tossPayLogo, width: "105px" },
+  { name: "amazon pay", logo: amazonPayLogo, width: "115px" },
+];
 
 export default function TrustedBy() {
   return (
-    <div>
-        <div className="bleed-line" />
-        <section
-      aria-label="Trusted by"
-      className="relative bg-black text-white"
-    >
-      <div className="mx-auto flex min-h-[300px] max-w-[1237px] flex-col items-center justify-center px-5 py-16 sm:min-h-[340px] sm:py-20">
-        {/* Section label */}
-        <span className="bg-slate-700/70 px-1.5 py-1 text-xs font-normal uppercase leading-none tracking-wide text-white">
-          They Trusted Us
-        </span>
+    <section aria-label="Trusted by" className="w-full bg-black text-white">
+      <div className={frame}>
+        <div className="relative flex min-h-[362px] w-full flex-col items-center justify-center border-x border-white/20 px-5 py-14 sm:px-10">
+          {/* Section Label */}
+          <span className="bg-slate-700/70 px-1.5 py-1 font-['Inter'] text-xs font-normal uppercase leading-none tracking-wide text-white">
+            They Trusted Us
+          </span>
 
-        {/* Brand names */}
-        <div className="mt-10 grid w-full max-w-[900px] grid-cols-2 items-center sm:mt-11 sm:grid-cols-5">
-          {brands.map((brand, index) => (
-            <div
-              key={`${brand}-${index}`}
-              className={`flex min-h-[58px] items-center justify-center px-2 text-center ${
-                index > 0 ? "sm:border-l sm:border-white/70" : ""
-              } ${
-                index % 2 === 1
-                  ? "border-l border-white/40 sm:border-l"
-                  : ""
-              } ${
-                index >= 2 ? "border-t border-white/30 sm:border-t-0" : ""
-              } ${
-                index === 4 ? "col-span-2 sm:col-span-1" : ""
-              }`}
-            >
-              <span
-                className={`whitespace-nowrap text-base font-bold tracking-tight text-white/45 sm:text-lg ${
-                  brand === "PAYCO" ? "font-black" : ""
-                } ${
-                  brand === "toss pay" ? "font-semibold" : ""
-                }`}
+          {/* Brand Logos */}
+          <div className="mt-12 grid w-full max-w-[900px] grid-cols-2 items-center sm:mt-14 sm:grid-cols-5">
+            {brands.map((brand, index) => (
+              <div
+                key={`${brand.name}-${index}`}
+                className={`
+                  flex min-h-[65px] items-center justify-center px-3
+                  ${index % 2 === 1 ? "border-l border-white/20" : ""}
+                  ${index >= 2 ? "border-t border-white/20 sm:border-t-0" : ""}
+                  ${index > 0 ? "sm:border-l sm:border-white/20" : "sm:border-l-0"}
+                  ${index === 4 ? "col-span-2 sm:col-span-1" : ""}
+                `}
               >
-                {brand === "amazon pay" ? (
-                  <span className="relative inline-block">
-                    amazon pay
-                    <span className="absolute -bottom-1 left-1 h-1 w-7 rounded-full border-b-2 border-white/40" />
-                  </span>
-                ) : brand === "toss pay" ? (
-                  <>
-                    <span className="font-bold">toss</span>
-                    <span className="font-normal"> pay</span>
-                  </>
-                ) : (
-                  brand
-                )}
-              </span>
-            </div>
-          ))}
+                <img
+                  src={brand.logo}
+                  alt={`${brand.name} logo`}
+                  style={{ width: brand.width }}
+                  className="h-auto max-h-[48px] max-w-full object-contain opacity-100 transition-transform duration-300 hover:scale-110"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+    
     </section>
-    <div className="bleed-line" />
-    </div>
   );
 }

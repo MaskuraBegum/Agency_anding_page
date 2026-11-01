@@ -1,139 +1,155 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, Menu, X } from "lucide-react";
+import { frame, inset } from "./layout"; // adjust the path to where layout.js lives
 
-// Section navigation links matching exact IDs across your landing page
-const links = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Services", href: "#services" },
-  { name: "Work", href: "#work" },
-  { name: "FAQ", href: "#faq" },
+const navLinks = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Work", href: "#work" },
+  { label: "FAQ", href: "#faq" },
 ];
 
-export default function Navbar() {
-  const [active, setActive] = useState("Home");
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+const CONTACT_URL = "https://forms.gle/your-google-form-link";
 
+export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState("home");
+
+  // Track which section is in view and mark its nav link as active
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const sections = navLinks
+      .map((link) => document.getElementById(link.href.slice(1)))
+      .filter(Boolean);
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        });
+      },
+      // A section becomes active when it crosses the middle band of the screen
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
-  const handleNavClick = (linkName) => {
-    setActive(linkName);
-    setOpen(false);
-  };
-
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled ? "bg-black/80 backdrop-blur-md" : "bg-black"
-      }`}
-    >
-      <div className="mx-auto w-full max-w-[1237px] min-[1238px]:border-x min-[1238px]:border-white/20">
-      <nav className="mx-auto flex h-[70px] w-full max-w-[1140px] items-center justify-between px-6 sm:px-8 lg:px-12">
-        {/* Text Logo */}
+    <header className="fixed left-0 top-0 z-50 w-full bg-black text-white">
+      <div className={`${frame} flex h-20 items-center justify-between`}>
+        {/* Logo */}
         <a
           href="#home"
-          onClick={() => setActive("Home")}
-          className="font-serif text-2xl tracking-tight text-white"
+          className="font-['Merriweather'] text-2xl font-medium leading-none text-white"
         >
           LOGO
         </a>
 
         {/* Desktop Navigation */}
-        <ul className="hidden items-center gap-6 md:flex">
-          {links.map((link) => (
-            <li key={link.name}>
+        <nav className="hidden items-center gap-[26px] md:flex">
+          {navLinks.map((link) => {
+            const isActive = activeId === link.href.slice(1);
+
+            return (
               <a
+                key={link.label}
                 href={link.href}
-                onClick={() => handleNavClick(link.name)}
-                className={`relative text-sm transition-colors ${
-                  active === link.name
-                    ? "text-white"
-                    : "text-white/70 hover:text-white"
+                onClick={() => setActiveId(link.href.slice(1))}
+                aria-current={isActive ? "page" : undefined}
+                className={`relative py-1 font-['Inter'] text-base font-medium tracking-[-0.5px] transition-colors hover:text-white ${
+                  isActive ? "text-white" : "text-white/75"
                 }`}
               >
-                {link.name}
-                {active === link.name && (
+                {link.label}
+
+                {/* Active underline (slides between links) */}
+                {isActive && (
                   <motion.span
                     layoutId="nav-underline"
-                    className="absolute -bottom-1 left-0 h-px w-full bg-white"
+                    className="absolute -bottom-0.5 left-0 h-px w-full bg-white"
+                    transition={{ type: "spring", stiffness: 500, damping: 40 }}
                   />
                 )}
               </a>
-            </li>
-          ))}
+            );
+          })}
 
-          <li>
-            <motion.a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSei64i0y7IMQl9JlE9cP-StTMGTM8X8bGvRPvpOSixo_Nh5Vg/viewform?usp=publish-editor"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="group flex items-center gap-2 bg-[#2f6bff] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#4a7fff]"
-            >
-              Let's Talk
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-            </motion.a>
-          </li>
-        </ul>
+          <a
+            href={CONTACT_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="flex h-[42px] w-36 items-center justify-center gap-2 bg-gradient-to-b from-[#4a5cf0] to-[#2b8cf5] font-['Inter'] text-sm font-medium text-white transition-opacity hover:opacity-90"
+          >
+            Let's Talk
+            <ArrowRight size={17} />
+          </a>
+        </nav>
 
-        {/* Mobile Toggle Button */}
+        {/* Mobile Menu Toggle */}
         <button
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((value) => !value)}
-          className="text-white md:hidden"
+          type="button"
+          onClick={() => setMenuOpen((open) => !open)}
+          className="flex h-10 w-10 items-center justify-center text-white md:hidden"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
         >
-          {open ? <X /> : <Menu />}
+          {menuOpen ? <X size={23} /> : <Menu size={23} />}
         </button>
-      </nav>
-
-      {/* Grid Border Line Below Navbar */}
-      <div className="bleed-line" />
       </div>
 
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Navigation */}
       <AnimatePresence>
-        {open && (
-          <motion.ul
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden border-b border-white/20 bg-black px-6 md:hidden"
+        {menuOpen && (
+          <motion.nav
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            className="absolute left-0 top-full w-full overflow-hidden border-b border-white/10 bg-[#031b19] md:hidden"
           >
-            {links.map((link) => (
-              <li key={link.name} className="py-3">
-                <a
-                  href={link.href}
-                  onClick={() => handleNavClick(link.name)}
-                  className={
-                    active === link.name ? "text-white" : "text-white/70"
-                  }
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
-            <li className="py-3">
+            <div className={`${frame} ${inset} flex flex-col gap-5 py-6`}>
+              {navLinks.map((link) => {
+                const isActive = activeId === link.href.slice(1);
+
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => {
+                      setActiveId(link.href.slice(1));
+                      setMenuOpen(false);
+                    }}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`w-fit border-b py-0.5 font-['Inter'] text-base transition-colors hover:text-white ${
+                      isActive
+                        ? "border-white text-white"
+                        : "border-transparent text-white/80"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+
               <a
-                href="#socials"
-                onClick={() => setOpen(false)}
-                className="inline-flex items-center gap-2 bg-[#2f6bff] px-4 py-2.5 text-sm font-medium text-white"
+                href={CONTACT_URL}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="flex h-11 w-full items-center justify-center gap-2 bg-gradient-to-b from-[#4a5cf0] to-[#2b8cf5] font-['Inter'] text-sm font-medium text-white"
               >
-                Let's Talk <ArrowRight className="size-4" />
+                Let's Talk
+                <ArrowRight size={17} />
               </a>
-            </li>
-          </motion.ul>
+            </div>
+          </motion.nav>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

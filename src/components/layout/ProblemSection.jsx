@@ -1,44 +1,46 @@
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  Gauge,
-  Paintbrush,
-  Settings2,
-  ChartNoAxesColumnDecreasing,
-  Smartphone,
   ArrowRight,
   X,
   CheckCircle2,
 } from "lucide-react";
+import { frame } from "./layout";
+
+// Replace these filenames with your actual image filenames
+import slowWebsiteIcon from "../../assets/logos/card.png";
+import outdatedDesignIcon from "../../assets/logos/pen.png";
+import complexSystemsIcon from "../../assets/logos/star.png";
+import lowConversionsIcon from "../../assets/logos/arrow.png";
+import mobileExperienceIcon from "../../assets/logos/mobile.png";
 
 const problems = [
   {
-    icon: Gauge,
+    icon: slowWebsiteIcon,
     title: "Slow Website",
     description:
       "Slow pages frustrate users, increase drop-offs, and can cost you valuable customers and business opportunities.",
   },
   {
-    icon: Paintbrush,
+    icon: outdatedDesignIcon,
     title: "Outdated Design",
     description:
       "Your business has grown, but your digital experience no longer reflects your brand, services, or customer expectations.",
   },
   {
-    icon: Settings2,
+    icon: complexSystemsIcon,
     title: "Complex Systems",
     description:
       "Hard-to-manage technology makes updates slower, harder, and more expensive.",
   },
   {
-    icon: ChartNoAxesColumnDecreasing,
+    icon: lowConversionsIcon,
     title: "Low Conversions",
     description:
       "People visit your website, but unclear messaging and poor user journeys can stop them from taking the next step.",
   },
   {
-    icon: Smartphone,
+    icon: mobileExperienceIcon,
     title: "Poor Mobile Experience",
     description:
       "Your website may look good on desktop but still frustrate mobile users with difficult navigation, slow loading, or poor usability.",
@@ -54,33 +56,27 @@ const cardAnimation = {
   },
 };
 
-function ProblemCard({ icon: Icon, title, description }) {
+function ProblemCard({ icon, title, description }) {
   return (
     <motion.article
       variants={cardAnimation}
-      className="flex min-w-0 flex-col items-center text-center border-b border-white/20 p-6 sm:p-7 lg:items-start lg:text-left lg:p-[30px]"
+      className="flex min-w-0 flex-col items-center border-b border-white/20 p-6 text-center sm:p-7 lg:items-start lg:p-[30px] lg:text-left"
     >
       {/* Icon */}
-      <div className="relative flex size-[44px] shrink-0 items-center justify-center border border-blue-400/40 bg-blue-500/15 shadow-[0_0_20px_rgba(59,130,246,0.12)]">
-      <Icon
-    size={29}
-    strokeWidth={1.0}
-    className="text-blue-500"
-    aria-hidden="true"
-  />
+      <div className="flex size-[48px] shrink-0 items-center justify-center">
+        <img
+          src={icon}
+          alt=""
+          className="size-full object-contain"
+          aria-hidden="true"
+        />
+      </div>
 
-  {/* White corner details */}
-  <span className="absolute left-0 top-0 size-2 border-l-2 border-t-2 border-gray-400" />
-  <span className="absolute right-0 top-0 size-2 border-r-2 border-t-2 border-gray-400" />
-  <span className="absolute bottom-0 left-0 size-2 border-b-2 border-l-2 border-gray-400" />
-  <span className="absolute bottom-0 right-0 size-2 border-b-2 border-r-2 border-gray-400" />
-</div>
-
-      <h3 className="mt-7 text-lg font-medium tracking-tight">
+      <h3 className="mt-7 text-[20px] font-medium tracking-tight">
         {title}
       </h3>
 
-      <p className="mx-auto mt-3 max-w-[340px] text-[15px] leading-[1.5] text-white/80 lg:mx-0">
+      <p className="mx-auto mt-3 max-w-[340px] text-[17px] leading-[1.5] text-white/80 lg:mx-0">
         {description}
       </p>
     </motion.article>
@@ -119,11 +115,12 @@ export default function ProblemSection() {
   };
 
   return (
-    <section className="relative mt-0 bg-black text-white">
+    <section className="relative mt-0 bg-black font-['Inter'] text-white">
       {/* Top divider */}
-      <div className="h-px w-full bg-white/20" />
+      <div className={`${frame} h-px bg-white/20`} />
 
-      <div className="mx-auto max-w-[1237px]">
+      {/* Main framed container */}
+      <div className={`${frame} border-x border-white/20`}>
         {/* Heading */}
         <div className="flex flex-col items-center px-5 pb-12 pt-16 text-center sm:pb-16 sm:pt-20 lg:pb-[76px] lg:pt-[90px]">
           <motion.span
@@ -131,7 +128,7 @@ export default function ProblemSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-slate-700/70 px-1.5 py-1 text-xs uppercase leading-none"
+            className="bg-slate-700/70 px-1.5 py-1 text-sm uppercase leading-none"
           >
             Does This Sound Familiar?
           </motion.span>
@@ -141,12 +138,14 @@ export default function ProblemSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8 max-w-[850px] font-serif text-4xl leading-[1.12] tracking-tight sm:text-5xl lg:text-[52px]"
+            className="mt-8 max-w-[850px] text-4xl leading-[1.12] tracking-tight sm:text-5xl lg:text-[52px]"
           >
             Your Digital Infrastructure
             <br className="hidden sm:block" /> Shouldn’t Hold Your Business Back
           </motion.h2>
         </div>
+
+        <div className="h-px w-full bg-white/20" />
 
         {/* Problem cards and CTA */}
         <motion.div
@@ -159,7 +158,7 @@ export default function ProblemSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 border-t border-white/20 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 border-y  border-white/20 sm:grid-cols-2 lg:grid-cols-3"
         >
           {problems.map((problem) => (
             <ProblemCard key={problem.title} {...problem} />
@@ -171,11 +170,11 @@ export default function ProblemSection() {
             className="flex min-h-[245px] flex-col items-center justify-between bg-[linear-gradient(160deg,#073b91_0%,#0784b7_45%,#001014_100%)] p-6 text-center sm:p-7 lg:items-start lg:p-[30px] lg:text-left"
           >
             <div>
-              <h3 className="text-lg font-medium leading-snug">
+              <h3 className="text-[18px] font-medium leading-snug">
                 Ready to Fix What’s Holding You Back?
               </h3>
 
-              <p className="mt-3 text-[15px] leading-[1.5] text-white/95">
+              <p className="mt-3 text-[16px] leading-[1.5] text-white/95">
                 Let’s identify the gaps, improve the experience, and build a
                 digital foundation ready for growth.
               </p>
@@ -192,9 +191,6 @@ export default function ProblemSection() {
         </motion.div>
       </div>
 
-      {/* Bottom divider */}
-      <div className="h-px w-full bg-white/20" />
-
       {/* Conversational Intake Modal */}
       <AnimatePresence>
         {isModalOpen && (
@@ -207,7 +203,6 @@ export default function ProblemSection() {
               onClick={() => setIsModalOpen(false)}
               className="absolute inset-0 bg-black/80 backdrop-blur-sm"
             />
-
             {/* Modal */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -229,7 +224,7 @@ export default function ProblemSection() {
                 <div className="flex flex-col items-center py-12 text-center">
                   <CheckCircle2 className="mb-4 size-16 animate-bounce text-blue-500" />
 
-                  <h3 className="font-serif text-2xl font-medium">
+                  <h3 className="text-2xl font-medium">
                     Audit Request Received!
                   </h3>
 
@@ -248,7 +243,7 @@ export default function ProblemSection() {
                     Quick Digital Assessment
                   </span>
 
-                  <h3 className="mt-4 font-serif text-2xl tracking-tight sm:text-3xl">
+                  <h3 className="mt-4 text-2xl tracking-tight sm:text-3xl">
                     Let’s Talk About Your Experience
                   </h3>
 

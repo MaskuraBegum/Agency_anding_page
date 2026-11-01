@@ -1,5 +1,5 @@
-
 import { motion } from "motion/react";
+import { frame } from "./layout"; // adjust the path to where layout.js lives
 
 const stats = [
   { value: "100+", label: "Project Completed" },
@@ -10,8 +10,10 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="border-t border-white/20 bg-black text-white">
-      <div className="mx-auto grid max-w-[1237px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+    <section className=" bg-black text-white">
+      <div
+        className={`${frame} grid grid-cols-1 border-x border-white/20 sm:grid-cols-2 lg:grid-cols-4`}
+      >
         {stats.map((stat, index) => (
           <motion.div
             key={stat.label}
@@ -40,7 +42,7 @@ export default function Stats() {
         ))}
       </div>
 
-      <div className="bleed-line" />
+      
     </section>
   );
 }
