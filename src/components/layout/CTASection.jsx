@@ -1,11 +1,11 @@
 
 import { motion } from "motion/react";
-import { frame } from "./layout";
+import { extBottom, frame, frame2 } from "./layout";
 
 export default function CTASection() {
   return (
-    <section id="cta" className="bg-black text-white">
-      <div className={`${frame} border-x border-white/20`}>
+    <section id="cta" className="overflow-x-clip bg-black text-white">
+      <div className={`${frame2} ${extBottom}`}>
         {/* Top Header Section */}
         <div className="flex min-h-[278px] flex-col items-center justify-center border-b border-white/20 px-5 py-12 text-center">
           <motion.span
@@ -32,10 +32,10 @@ export default function CTASection() {
         </div>
 
         {/* Horizontal Divider Line */}
-        <div className="bleed-line" />
+       
 
         {/* Embedded Container Section - Matching 3-Column Grid */}
-        <div className="grid grid-cols-1 border-b border-white/20 md:grid-cols-[216px_1fr_216px]">
+        <div className="grid grid-cols-1 md:grid-cols-[216px_1fr_216px]">
           {/* Left empty column */}
           <div className="hidden border-r border-white/20 md:block" />
 
@@ -50,8 +50,7 @@ export default function CTASection() {
           <div className="hidden border-l border-white/20 md:block" />
         </div>
 
-        {/* Bottom Horizontal Divider Line */}
-        <div className="bleed-line" />
+        
       </div>
     </section>
   );

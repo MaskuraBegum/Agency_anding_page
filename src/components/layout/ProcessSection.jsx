@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { frame } from "./layout";
+import { frame2, extTop, extBottom } from "./layout";
 
 // Main process images
 import sol1 from "../../assets/sol1.png";
@@ -23,14 +23,8 @@ const steps = [
       "We learn about your business, users, goals, and challenges to create a clear strategy and project roadmap.",
     image: sol1,
     bubbles: [
-      {
-        image: bubble1,
-        position: "left-[5%] top-[10%]",
-      },
-      {
-        image: bubble2,
-        position: "right-[5%] bottom-[10%]",
-      },
+      { image: bubble1, position: "left-[5%] top-[10%]" },
+      { image: bubble2, position: "right-[5%] bottom-[10%]" },
     ],
   },
   {
@@ -40,18 +34,9 @@ const steps = [
       "We turn strategy into thoughtful designs and reliable digital solutions, with clear communication throughout.",
     image: sol2,
     bubbles: [
-      {
-        image: bubble3,
-        position: "left-[5%] top-[10%]",
-      },
-      {
-        image: bubble5,
-        position: "right-[5%] top-[42%]",
-      },
-      {
-        image: bubble4,
-        position: "left-[8%] bottom-[8%]",
-      },
+      { image: bubble3, position: "left-[5%] top-[10%]" },
+      { image: bubble5, position: "right-[5%] top-[42%]" },
+      { image: bubble4, position: "left-[8%] bottom-[8%]" },
     ],
   },
   {
@@ -61,14 +46,8 @@ const steps = [
       "We test, refine, and launch your project with a focus on performance, usability, and long-term growth.",
     image: sol3,
     bubbles: [
-      {
-        image: bubble7,
-        position: "right-[5%] top-[35%]",
-      },
-      {
-        image: bubble6,
-        position: "left-[5%] bottom-[8%]",
-      },
+      { image: bubble7, position: "right-[5%] top-[35%]" },
+      { image: bubble6, position: "left-[5%] bottom-[8%]" },
     ],
   },
 ];
@@ -99,7 +78,7 @@ function ProcessCard({ step, index }) {
         duration: 0.6,
         delay: index * 0.12,
       }}
-      className="min-w-0 border-b border-white/20 lg:border-b-0 lg:border-r lg:last:border-r-0"
+      className="min-w-0  border-white/20 lg:border-b-0 lg:border-r lg:last:border-r-0"
     >
       {/* Image panel */}
 
@@ -151,12 +130,14 @@ export default function ProcessSection() {
   return (
     <section
       id="process"
-      className="bg-black font-['Inter'] text-white"
+      className="overflow-x-clip bg-black font-['Inter'] text-white"
     >
-      <div className={`${frame} border-x border-white/20`}>
+      {/* frame2 = vertical borders only. The extended line at the top comes
+          from the end of ProblemSection, so it isn't drawn twice. */}
+      <div className={frame2}>
         {/* Heading */}
 
-        <div className="flex flex-col items-center border-b border-white/20 px-5 pb-12 pt-16 text-center sm:pb-16 sm:pt-20 lg:pb-[78px] lg:pt-[56px]">
+        <div className="flex flex-col items-center px-5 pb-12 pt-16 text-center sm:pb-16 sm:pt-20 lg:pb-[78px] lg:pt-[100px]">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -190,15 +171,13 @@ export default function ProcessSection() {
           </motion.p>
         </div>
 
-        {/* Process cards */}
+        {/* Process cards: extended line before and after the grid */}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          className={`${extTop} ${extBottom} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`}
+        >
           {steps.map((step, index) => (
-            <ProcessCard
-              key={step.number}
-              step={step}
-              index={index}
-            />
+            <ProcessCard key={step.number} step={step} index={index} />
           ))}
         </div>
       </div>

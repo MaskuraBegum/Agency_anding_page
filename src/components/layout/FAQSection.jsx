@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-import { frame } from "./layout";
+import { extBottom, extTop, frame, frame2, frame5 } from "./layout";
 
 const faqs = [
   {
@@ -44,13 +44,10 @@ export default function FAQSection() {
   };
 
   return (
-    <section
-      id="faq"
-      className="scroll-mt-[70px] bg-black text-white"
-    >
-      <div className={`${frame} border-x border-white/20`}>
+    <section id="faq" className="scroll-mt-[70px] overflow-x-clip bg-black text-white">
+  <div className={`${frame2} ${extTop} ${extBottom}`}>
         {/* Top Grid Extension Line */}
-        <div className="bleed-line" />
+        
 
         {/* FAQ Heading */}
         <div className="flex min-h-[278px] flex-col items-center justify-center border-b border-white/20 px-5 py-12 text-center">
@@ -65,17 +62,15 @@ export default function FAQSection() {
           </h2>
         </div>
 
-        {/* Mid Horizontal Grid Extension Line */}
-        <div className="bleed-line" />
 
         {/* FAQ 3-Column Grid Layout */}
-        <div className="grid grid-cols-1 border-b border-white/20 md:grid-cols-[216px_1fr_216px]">
+        <div className="grid grid-cols-1 md:grid-cols-[216px_1fr_216px]">
           {/* Left empty grid column */}
           <div className="hidden border-r border-white/20 md:block" />
 
           {/* Accordion List Center Column */}
           <div>
-            <div className="py-6 md:py-10 font-['Inter']">
+            <div className="py-6 md:py-10 font-['Inter'] max-w-[677px] min-h-[623px]">
               {faqs.map((faq, index) => {
                 const isOpen = openIndex === index;
 
@@ -128,8 +123,7 @@ export default function FAQSection() {
           <div className="hidden border-l border-white/20 md:block" />
         </div>
 
-        {/* Bottom Grid Extension Line */}
-        <div className="bleed-line" />
+        
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
-import { frame } from "./layout"// adjust the path to where layout.js lives
+import { frame, frame2, frame3, frame4, frame5, frame6 } from "./layout"// adjust the path to where layout.js lives
 
 import project1 from "../../assets/projects/project1.png";
 import project2 from "../../assets/projects/project2.png";
@@ -74,10 +74,10 @@ export default function WorkShowcase() {
   const gallery = [...projects, ...projects];
 
   return (
-    <section id="work" className="overflow-hidden bg-black text-white">
+    <section id="work" className="relative overflow-x-clip bg-black text-white">
       {/* Heading (shared frame) */}
       <div
-        className={`${frame} flex flex-col items-center border-x border-t border-white/20 px-5 pb-8 pt-16 text-center sm:pb-10 sm:pt-20 lg:pb-16 lg:pt-24`}
+        className={`${frame3} flex flex-col items-center border-x  border-white/20 px-5 pb-8 pt-16 text-center sm:pb-10 sm:pt-20 lg:pb-16 lg:pt-[100px]`}
       >
         <motion.span
           initial={{ opacity: 0, y: 12 }}
@@ -101,57 +101,44 @@ export default function WorkShowcase() {
       </div>
 
       {/* Infinite Scrolling Gallery: full-width lines, content clipped to the frame */}
-      <div className="">
-        <div
-          className={`${frame} overflow-hidden border-x border-white/20 py-3 sm:py-4`}
-        >
-          <motion.div
-            className="flex w-max gap-[22px]"
-            animate={prefersReducedMotion ? { x: 0 } : { x: ["0%", "-50%"] }}
-            transition={
-              prefersReducedMotion
-                ? { duration: 0 }
-                : {
-                    duration: 35,
-                    ease: "linear",
-                    repeat: Infinity,
-                    repeatType: "loop",
-                  }
+     
+      {/* Infinite Scrolling Gallery */}
+      <div className="relative">
+  <div className="pointer-events-none absolute left-1/2 top-0 z-30 h-px w-[1480px] -translate-x-1/2 bg-white/20" />
+
+  <div className={`${frame2} overflow-hidden`}>
+    <motion.div
+      className="flex w-max gap-[22px]"
+      animate={prefersReducedMotion ? { x: 0 } : { x: ["0%", "-50%"] }}
+      transition={
+        prefersReducedMotion
+          ? { duration: 0 }
+          : {
+              duration: 35,
+              ease: "linear",
+              repeat: Infinity,
+              repeatType: "loop",
             }
-          >
-            {gallery.map((project, index) => (
-              <div
-                key={`${project.id}-${index}`}
-                className="
-                  relative aspect-[299.8/380]
-                  w-[220px] shrink-0 overflow-hidden
-                  sm:w-[260px]
-                  lg:w-[299.8px]
-                "
-                style={{
-                  background: project.background,
-                }}
-              >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  loading={index < 9 ? "eager" : "lazy"}
-                  draggable="false"
-                  className="
-                    absolute left-[8%] top-[6.31%]
-                    h-auto w-[84.1%] max-w-none
-                    select-none
-                    transition-transform duration-500
-                    hover:scale-[1.02]
-                  "
-                />
-              </div>
-            ))}
-            
-          </motion.div>
-          
+      }
+    >
+      {gallery.map((project, index) => (
+        <div
+          key={`${project.id}-${index}`}
+          className="relative aspect-[299.8/380] w-[220px] shrink-0 overflow-hidden sm:w-[260px] lg:w-[299.8px]"
+          style={{ background: project.background }}
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            loading={index < 9 ? "eager" : "lazy"}
+            draggable="false"
+            className="absolute left-[8%] top-[6.31%] h-auto w-[84.1%] max-w-none select-none transition-transform duration-500 hover:scale-[1.02]"
+          />
         </div>
-      </div>
+      ))}
+    </motion.div>
+  </div>
+</div>
 
     </section>
   );

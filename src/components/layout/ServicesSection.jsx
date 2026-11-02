@@ -6,7 +6,7 @@ import {
   useTransform,
 } from "motion/react";
 import { ArrowRight, X, CheckCircle2 } from "lucide-react";
-import { frame } from "./layout";
+import { frame, frame2, frame3, frame4 } from "./layout";
 
 // Service images
 import sticky1 from "../../assets/sticky/sticky1.png";
@@ -283,7 +283,7 @@ function StackedCard({ service, index, total, progress, onCta }) {
   return (
     <div
       className={`sticky top-0 flex items-start justify-center px-3 sm:px-6 ${
-        isLast ? "pb-16" : "h-screen"
+        isLast ? "pb-0" : "h-screen"
       }`}
       style={{ paddingTop: 24 + index * 28 }}
     >
@@ -381,10 +381,10 @@ export default function ServicesSection() {
       id="services"
       className="bg-black font-['Inter'] text-white"
     >
-      <div className={`${frame} border-x border-white/20`}>
+      <div className={`${frame4} `}>
         {/* HEADER */}
 
-        <div className="px-6 pb-10 pt-14 sm:px-10 md:pb-12 md:pt-16 lg:px-[44px]">
+        <div className="px-6 pb-10 pt-14 sm:px-10 md:pb-12 md:pt-[100px] lg:px-[44px]">
           <span className="inline-block bg-white/15 px-1.5 py-0.5 text-[14px] font-['Inter'] font-medium uppercase tracking-wide text-white">
             What We Do
           </span>
@@ -399,7 +399,7 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        <div className="h-px w-full bg-white/15" />
+        
 
         {/* STACKED SERVICES */}
 

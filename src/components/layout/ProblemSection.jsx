@@ -6,7 +6,7 @@ import {
   X,
   CheckCircle2,
 } from "lucide-react";
-import { frame } from "./layout";
+import { frame, frame2, frame3, frame4, frame5, frame6, frameInner } from "./layout";
 
 // Replace these filenames with your actual image filenames
 import slowWebsiteIcon from "../../assets/logos/card.png";
@@ -59,14 +59,24 @@ const cardAnimation = {
 
 function ProblemCard({ icon, title, description, index }) {
   const responsiveBorder = [
+    // Bottom lines: every card on mobile, then removed for the last row at each breakpoint
+    "border-b",
+    index === 4 ? "sm:border-b-0" : "", // last row on 2 columns (with CTA)
+    index === 3 ? "lg:border-b-0" : "", // last row on 3 columns
+    index === 4 ? "lg:border-b-0" : "",
+
+    // Right lines: 2-column layout
     index % 2 === 0 ? "sm:border-r" : "",
+
+    // Right lines: 3-column layout
     index % 3 !== 2 ? "lg:border-r" : "",
+    index === 2 ? "lg:border-r-0" : "", // rightmost card on desktop, the frame already draws this line
   ].join(" ");
 
   return (
     <motion.article
       variants={cardAnimation}
-      className={`flex min-w-0 flex-col items-center border-b border-white/20 p-6 text-center sm:p-7 lg:items-start lg:p-[30px] lg:text-left ${responsiveBorder}`}
+      className={`flex min-w-0 flex-col items-center border-white/20 p-6 text-center sm:p-7 lg:items-start lg:p-[30px] lg:text-left ${responsiveBorder}`}
     >
       {/* Icon */}
       <div className="flex size-[48px] shrink-0 items-center justify-center">
@@ -122,13 +132,11 @@ export default function ProblemSection() {
 
   return (
     <section className="relative mt-0 bg-black font-['Inter'] text-white">
-      {/* Top divider */}
-      <div className={`${frame} h-px bg-white/20`} />
 
       {/* Main framed container */}
-      <div className={`${frame} border-x border-white/20`}>
+      <div className={`${frame6} `}>
         {/* Heading */}
-        <div className="flex flex-col items-center px-5 pb-12 pt-16 text-center sm:pb-16 sm:pt-20 lg:pb-[76px] lg:pt-[90px]">
+        <div className={` flex flex-col items-center px-5 pb-12 pt-16 text-center sm:pb-16 sm:pt-20 lg:pb-[76px] lg:pt-[100px]`}>
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -151,7 +159,6 @@ export default function ProblemSection() {
           </motion.h2>
         </div>
 
-        <div className="h-px w-full bg-white/20" />
 
         {/* Problem cards and CTA */}
         <motion.div
@@ -164,7 +171,7 @@ export default function ProblemSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 border-y border-white/20 sm:grid-cols-2 lg:grid-cols-3 "
+          className={`${frameInner} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`}
         >
           {problems.map((problem, index) => (
             <ProblemCard

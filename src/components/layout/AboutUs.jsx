@@ -1,13 +1,12 @@
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight, X } from "lucide-react";
-import { frame } from "./layout";
+import {  frame3 } from "./layout";
 
-// Replace this with your actual Google Form responder URL
 const GOOGLE_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSei64i0y7IMQl9JlE9cP-StTMGTM8X8bGvRPvpOSixo_Nh5Vg/viewform?usp=publish-editor";
 
-// Colour of the dimmed text in the card
 const DIM = "text-[#115A7C]";
 
 const principles = [
@@ -31,11 +30,17 @@ const principles = [
   },
 ];
 
-// 01 and 03 at the left of the right half, 02 stepped in (from Figma)
 const principlePadding = [
-  "lg:pl-10", // 01
-  "lg:pl-[45%]", // 02
-  "lg:pl-10", // 03
+  "lg:pl-10",
+  "lg:pl-[45%]",
+  "lg:pl-10",
+];
+
+const stats = [
+  { value: "100+", label: "Project Completed" },
+  { value: "14+", label: "Businesses Supported" },
+  { value: "44%", label: "Performance Improvement" },
+  { value: "4+", label: "Years of Experience" },
 ];
 
 const fadeUp = {
@@ -43,14 +48,16 @@ const fadeUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
+    },
   },
 };
 
 export default function AboutUs() {
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
 
-  // Open Google Form instead of opening the contact modal
   const handleOpenContact = () => {
     setIsAboutModalOpen(false);
     window.open(GOOGLE_FORM_URL, "_blank", "noopener,noreferrer");
@@ -58,84 +65,98 @@ export default function AboutUs() {
 
   return (
     <section id="about" className="relative bg-black text-white">
-      {/* Same frame as navbar and hero */}
-      <div
-        className={`${frame} grid grid-cols-1 border-x border-white/20 lg:grid-cols-2`}
-      >
-        {/* Left: About card (text starts 40px inside, aligned with logo and hero text) */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="flex min-h-[660px] flex-col items-center border-b border-white/20 bg-[linear-gradient(180deg,#073b91_0%,#087da7_38%,#07566b_68%,#001014_100%)] px-6 py-10 text-center sm:px-10 sm:py-12 lg:min-h-[800px] lg:items-start lg:border-b-0 lg:border-r lg:px-10 lg:pb-10 lg:pt-10 lg:text-left"
-        >
-          <span className="bg-black px-1.5 py-1 text-sm uppercase leading-none ">
-            About Us
-          </span>
 
-          <h2 className="mt-8 max-w-[472px] font-['Merriweather'] text-3xl font-normal leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-[38px]">
-            We transform outdated digital systems into fast, intuitive, and{" "}
-            <span className={DIM}>scalable experiences.</span>
-          </h2>
+      {/* Shared frame for About Us and Stats */}
+      <div className={`${frame3} border-x border-white/20`}>
 
-          <p
-            className={`mt-7 max-w-[800px] font-['Merriweather'] text-3xl font-normal leading-[1.15] tracking-tight sm:text-4xl lg:text-[36px] ${DIM}`}
+        {/* ================= ABOUT US SECTION ================= */}
+
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+
+          {/* Left: About card */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="flex min-h-[660px]  flex-col items-center  border-white/20 bg-[linear-gradient(180deg,#073b91_0%,#087da7_38%,#07566b_68%,#001014_100%)] px-6 py-10 text-center sm:px-10 sm:py-12 lg:min-h-[800px] lg:items-start lg:border-b-0 lg:border-r lg:px-10 lg:pb-10 lg:pt-10 lg:text-left"
           >
-            By combining strategy, design, engineering, and performance, we build digital solutions that work better for your business and your users.
-          </p>
+            <span className="bg-black px-1.5 py-1 text-sm uppercase leading-none">
+              About Us
+            </span>
 
-          <button
-            type="button"
-            onClick={() => setIsAboutModalOpen(true)}
-            className="mt-12 inline-flex cursor-pointer items-center gap-2 border border-white/70 bg-white/5 px-8 py-3 text-lg text-white transition-colors hover:bg-white hover:text-black"
-          >
-            More About Us
-            <ArrowRight className="size-4" />
-          </button>
-        </motion.div>
+            <h2 className="mt-8 max-w-[472px] font-['Merriweather'] text-3xl font-normal leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-[38px]">
+              We transform outdated digital systems into fast, intuitive, and{" "}
+              <span className={DIM}>scalable experiences.</span>
+            </h2>
 
-        {/* Right: Principles. 800px height, rows 1 and 2 are a fixed 235px. */}
-        <div className="flex flex-col gap-8 px-6 py-10 sm:px-10 sm:py-12 lg:grid lg:min-h-[800px] lg:grid-rows-[235px_235px_1fr] lg:gap-0 lg:p-0">
-          {principles.map((principle, index) => (
-            <motion.article
-              key={principle.number}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.12,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className={`flex flex-col items-center text-center lg:items-start lg:pr-6 lg:pt-10 lg:text-left ${principlePadding[index]}`}
+            <p
+              className={`mt-7 max-w-[800px] font-['Merriweather'] text-3xl font-normal leading-[1.15] tracking-tight sm:text-4xl lg:text-[36px] ${DIM}`}
             >
-              <div className="relative flex size-[70px] shrink-0 items-center justify-center bg-[#111] font-serif text-[36px] leading-none">
-                {principle.number}
+              By combining strategy, design, engineering, and performance, we
+              build digital solutions that work better for your business and
+              your users.
+            </p>
 
-                {/* Corner marks */}
-                <span className="absolute left-0 top-0 h-2 w-2 border-l border-t border-white/70" />
-                <span className="absolute right-0 top-0 h-2 w-2 border-r border-t border-white/70" />
-                <span className="absolute bottom-0 left-0 h-2 w-2 border-b border-l border-white/70" />
-                <span className="absolute bottom-0 right-0 h-2 w-2 border-b border-r border-white/70" />
-              </div>
+            <button
+              type="button"
+              onClick={() => setIsAboutModalOpen(true)}
+              className="mt-12 inline-flex cursor-pointer items-center gap-2 border border-white/70 bg-white/5 px-8 py-3 text-lg text-white transition-colors hover:bg-white hover:text-black"
+            >
+              More About Us
+              <ArrowRight className="size-4" />
+            </button>
+          </motion.div>
 
-              <h3 className="mt-5 text-[20px] font-normal">{principle.title}</h3>
+          {/* Right: Principles */}
+          <div className="flex flex-col gap-8 px-6 py-10 sm:px-10 sm:py-12 lg:grid lg:min-h-[800px] lg:grid-rows-[235px_235px_1fr] lg:gap-0 lg:p-0">
+            {principles.map((principle, index) => (
+              <motion.article
+                key={principle.number}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.12,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className={`flex flex-col items-center text-center lg:items-start lg:pr-6 lg:pt-10 lg:text-left ${principlePadding[index]}`}
+              >
+                <div className="relative flex size-[70px] shrink-0 items-center justify-center bg-[#111] font-['Merriweather'] text-[36px] leading-none">
+                  {principle.number}
 
-              <p className="mt-2 max-w-[300px] text-sm leading-[1.5] text-gray-300">
-                {principle.description}
-              </p>
-            </motion.article>
-          ))}
+                  <span className="absolute left-0 top-0 h-2 w-2 border-l border-t border-white/70" />
+                  <span className="absolute right-0 top-0 h-2 w-2 border-r border-t border-white/70" />
+                  <span className="absolute bottom-0 left-0 h-2 w-2 border-b border-l border-white/70" />
+                  <span className="absolute bottom-0 right-0 h-2 w-2 border-b border-r border-white/70" />
+                </div>
+
+                <h3 className="mt-5 text-[20px] font-normal font-body">
+                  {principle.title}
+                </h3>
+
+                <p className="mt-2 max-w-[300px] text-sm leading-[1.5] text-gray-300 font-body">
+                  {principle.description}
+                </p>
+              </motion.article>
+            ))}
+          </div>
         </div>
+
+        {/* Existing divider */}
+        <div className="bleed-line" />
+
+        
+
       </div>
 
-      <div className="bleed-line" />
+      {/* ================= ABOUT US MODAL ================= */}
 
-      {/* About Us Modal */}
       <AnimatePresence>
         {isAboutModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+
             {/* Modal backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -150,7 +171,10 @@ export default function AboutUs() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.3,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="relative z-10 w-full max-w-2xl border border-white/20 bg-[#0a0a0a] p-8 text-white shadow-2xl sm:p-10"
             >
               <button
@@ -200,6 +224,7 @@ export default function AboutUs() {
           </div>
         )}
       </AnimatePresence>
+
     </section>
   );
 }

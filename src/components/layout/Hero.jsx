@@ -7,7 +7,7 @@ import {
   Clock,
   CheckCircle2,
 } from "lucide-react";
-import { frame } from "./layout";
+import { frame, frame2 } from "./layout";
 
 const container = {
   hidden: {},
@@ -67,7 +67,7 @@ export default function Hero() {
     <section id="home" className="relative overflow-hidden bg-black text-white">
       {/* Main Hero Frame */}
       <div
-        className={`${frame} relative h-[760px] min-h-[calc(100svh-80px)] max-h-[900px] overflow-hidden border-x border-white/20`}
+        className={`${frame2} relative h-[760px] min-h-[calc(100svh-80px)] max-h-[900px] overflow-hidden border-x border-white/20`}
       >
         {/* Animated Gradient Background */}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#38f5e0_0%,#1ab0e8_38%,#0a2a9a_58%,#050c4a_75%,#030620_100%)]" />

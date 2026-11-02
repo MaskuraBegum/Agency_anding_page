@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { frame } from "./layout";
+import { frame2, extTop, extBottom } from "./layout";
 import com1 from "../../assets/com1.png";
 import com2 from "../../assets/com2.png";
 import com3 from "../../assets/com3.png";
@@ -21,14 +21,17 @@ const details = [
 function CommunicationSection() {
   return (
     <div>
-      <div className={`${frame} flex min-h-[105px] items-center justify-center border-y border-white/20 px-6 py-7 text-center`}>
+      {/* Top line comes from the end of ProcessSection, so only a bottom
+          border here (the middle line between the two rows) */}
+      <div className="flex min-h-[105px] items-center justify-center border-b border-white/20 px-6 py-7 text-center">
         <p className="max-w-[900px] text-base font-medium leading-relaxed tracking-tight text-white sm:text-lg">
           Clear communication, regular updates, and check-in calls keep you
           involved from start to finish.
         </p>
       </div>
 
-      <div className={`${frame} grid grid-cols-1 border-b border-white/20 sm:grid-cols-3`}>
+      {/* Bottom line is the extended line */}
+      <div className={`${extBottom} grid grid-cols-1 sm:grid-cols-3`}>
         {communicationTools.map((tool, index) => (
           <div
             key={tool.title}
@@ -155,94 +158,101 @@ function DiagonalBackground() {
 
 export default function LaunchSection() {
   return (
-    <section id="launch" className="bg-black font-['Inter'] text-white">
-      <div className={`${frame} border-x border-white/20`}>
+    <section
+      id="launch"
+      className="overflow-x-clip bg-black font-['Inter'] text-white"
+    >
+      {/* frame2 = vertical borders only */}
+      <div className={frame2}>
         <div className="mb-20">
           <CommunicationSection />
         </div>
 
-        <div className="relative isolate overflow-hidden bg-[#f1f2f4] text-black">
-          <DiagonalBackground />
+        {/* Extended lines at the start and end of the big block.
+            They sit on this wrapper, not on the overflow-hidden block,
+            so they aren't clipped. */}
+        <div className={`${extTop} ${extBottom}`}>
+          <div className="relative isolate overflow-hidden bg-[#f1f2f4] text-black">
+            <DiagonalBackground />
 
-          <div className="relative z-10 grid gap-12 px-6 py-12 sm:px-8 sm:py-14 lg:min-h-[680px] lg:grid-cols-[1.55fr_0.85fr] lg:items-center lg:gap-8 lg:px-[42px] lg:py-[60px]">
-            <div className="flex h-full flex-col items-start">
-              <span className="bg-[#202938] px-1.5 py-1 text-xs font-normal uppercase leading-none text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] sm:text-sm">
-                Launch Without the Long Wait
-              </span>
+            <div className="relative z-10 grid gap-12 px-6 py-12 sm:px-8 sm:py-14 lg:min-h-[680px] lg:grid-cols-[1.55fr_0.85fr] lg:items-center lg:gap-8 lg:px-[42px] lg:py-[60px]">
+              <div className="flex h-full flex-col items-start">
+                <span className="bg-[#202938] px-1.5 py-1 text-xs font-normal uppercase leading-none text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] sm:text-sm">
+                  Launch Without the Long Wait
+                </span>
 
-              <h2 className="mt-7 font-heading font-light text-[88px] leading-[0.99] tracking-[-0.055em]">
-                $1,112
-                <br />
-                From Idea to
-                <br />
-                Live Website
-              </h2>
+                <h2 className="mt-7 font-heading font-light text-[88px] leading-[0.99] tracking-[-0.055em]">
+                  $1,112
+                  <br />
+                  From Idea to
+                  <br />
+                  Live Website
+                </h2>
 
-              <div className="mt-16 max-w-[610px] lg:mt-auto lg:pt-16">
-                <h3 className="text-lg font-semibold leading-[1.4] tracking-[-0.035em] sm:text-xl">
-                  48 hours. One complete landing page. Ready to launch.
-                </h3>
+                <div className="mt-16 max-w-[610px] lg:mt-auto lg:pt-16">
+                  <h3 className="text-lg font-semibold leading-[1.4] tracking-[-0.035em] sm:text-xl">
+                    48 hours. One complete landing page. Ready to launch.
+                  </h3>
 
-                <p className="mt-3 text-[15px] font-normal leading-[1.55] tracking-[-0.025em] sm:text-[17px]">
-                  We handle the full process, from Figma UX/UI design and
-                  conversion-focused layout to Framer or Webflow development,
-                  responsive optimization, and final launch.
-                </p>
+                  <p className="mt-3 text-[15px] font-normal leading-[1.55] tracking-[-0.025em] sm:text-[17px]">
+                    We handle the full process, from Figma UX/UI design and
+                    conversion-focused layout to Framer or Webflow development,
+                    responsive optimization, and final launch.
+                  </p>
 
-                <p className="mt-4 text-[15px] font-semibold leading-relaxed tracking-[-0.025em] sm:text-[17px]">
-                  $1,112 flat. One focused project. Designed to convert.
-                  Built to launch.
-                </p>
-              </div>
-            </div>
-
-            <div className="z-10 mx-auto w-full max-w-[305px] bg-white p-1.5 shadow-[0_14px_35px_rgba(0,0,0,0.17)] sm:max-w-[340px] lg:mt-8">
-              <div className="h-[195px] overflow-hidden bg-[#052c83] sm:h-[215px]">
-                <img
-                  src={card1}
-                  alt="Website landing page preview"
-                  loading="lazy"
-                  className="h-full w-full object-cover object-top"
-                />
+                  <p className="mt-4 text-[15px] font-semibold leading-relaxed tracking-[-0.025em] sm:text-[17px]">
+                    $1,112 flat. One focused project. Designed to convert.
+                    Built to launch.
+                  </p>
+                </div>
               </div>
 
-              <div className="px-3 pb-3 pt-4 sm:px-4">
-                <h3 className="text-sm font-medium uppercase tracking-[-0.03em] text-black sm:text-[15px]">
-                  Landing Page Live
-                </h3>
-
-                <div className="mt-3">
-                  {details.map(([label, value]) => (
-                    <div
-                      key={label}
-                      className="flex items-center justify-between gap-3 border-b border-black/15 py-2 text-xs tracking-[-0.02em] text-[#777] sm:text-[13px]"
-                    >
-                      <span>
-                        <span className="mr-2">•</span>
-                        {label}
-                      </span>
-                      <span className="font-semibold text-[#858585]">
-                        {value}
-                      </span>
-                    </div>
-                  ))}
+              <div className="z-10 mx-auto w-full max-w-[305px] bg-white p-1.5 shadow-[0_14px_35px_rgba(0,0,0,0.17)] sm:max-w-[340px] lg:mt-8">
+                <div className="h-[195px] overflow-hidden bg-[#052c83] sm:h-[215px]">
+                  <img
+                    src={card1}
+                    alt="Website landing page preview"
+                    loading="lazy"
+                    className="h-full w-full object-cover object-top"
+                  />
                 </div>
 
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSei64i0y7IMQl9JlE9cP-StTMGTM8X8bGvRPvpOSixo_Nh5Vg/viewform?usp=publish-editor"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 flex min-h-[39px] items-center justify-center gap-2 bg-[linear-gradient(90deg,#4945ff,#0ba9ed)] px-3 py-2 text-center text-xs font-medium tracking-[-0.02em] text-white transition-opacity hover:opacity-90 sm:text-sm"
-                >
-                  Book Your Free Call
-                  <ArrowRight className="size-4" />
-                </a>
+                <div className="px-3 pb-3 pt-4 sm:px-4">
+                  <h3 className="text-sm font-medium uppercase tracking-[-0.03em] text-black sm:text-[15px]">
+                    Landing Page Live
+                  </h3>
+
+                  <div className="mt-3">
+                    {details.map(([label, value]) => (
+                      <div
+                        key={label}
+                        className="flex items-center justify-between gap-3 border-b border-black/15 py-2 text-xs tracking-[-0.02em] text-[#777] sm:text-[13px]"
+                      >
+                        <span>
+                          <span className="mr-2">•</span>
+                          {label}
+                        </span>
+                        <span className="font-semibold text-[#858585]">
+                          {value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSei64i0y7IMQl9JlE9cP-StTMGTM8X8bGvRPvpOSixo_Nh5Vg/viewform?usp=publish-editor"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 flex min-h-[39px] items-center justify-center gap-2 bg-[linear-gradient(90deg,#4945ff,#0ba9ed)] px-3 py-2 text-center text-xs font-medium tracking-[-0.02em] text-white transition-opacity hover:opacity-90 sm:text-sm"
+                  >
+                    Book Your Free Call
+                    <ArrowRight className="size-4" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div className="bleed-line" />
       </div>
     </section>
   );
