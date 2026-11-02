@@ -178,8 +178,8 @@ export default function Hero() {
             <motion.a
               href="#work"
               whileHover={{
-                scale: 1.03,
-                backgroundColor: "rgba(255,255,255,0.18)",
+                backgroundColor: "#FFFFFF",
+                color: "#000000",
               }}
               whileTap={{ scale: 0.97 }}
               className="flex h-[41px] w-full shrink-0 items-center justify-center gap-[6px] bg-white/10 px-5 text-center font-['Inter'] text-[16px] font-medium leading-[26px] tracking-[-1px] text-white backdrop-blur-sm transition-colors sm:w-[159px]"

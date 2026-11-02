@@ -152,7 +152,7 @@ export default function ProblemSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8 max-w-[850px] text-4xl leading-[1.12] tracking-tight sm:text-5xl lg:text-[52px]"
+            className="mt-8 max-w-[850px] font-heading text-4xl leading-[1.12] tracking-tight sm:text-5xl lg:text-[48px]"
           >
             Your Digital Infrastructure
             <br className="hidden sm:block" /> Shouldn’t Hold Your Business Back

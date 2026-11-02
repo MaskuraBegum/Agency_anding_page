@@ -83,7 +83,7 @@ export default function Navbar() {
             href={CONTACT_URL}
             target="_blank"
             rel="noreferrer"
-            className="flex h-[42px] w-36 items-center justify-center gap-2 bg-gradient-to-b from-[#4a5cf0] to-[#2b8cf5] font-['Inter'] text-sm font-medium text-white transition-opacity hover:opacity-90"
+            className="flex h-[36px] w-[124px] items-center justify-center gap-2 bg-[linear-gradient(358.13deg,#00DBF5_-49.55%,#3A4DE9_98.42%)] font-['Inter'] text-[16px] font-medium text-white transition-opacity hover:opacity-90"
           >
             Let's Talk
             <ArrowRight size={17} />

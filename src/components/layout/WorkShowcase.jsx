@@ -114,7 +114,7 @@ export default function WorkShowcase() {
         prefersReducedMotion
           ? { duration: 0 }
           : {
-              duration: 35,
+              duration: 45,
               ease: "linear",
               repeat: Infinity,
               repeatType: "loop",
