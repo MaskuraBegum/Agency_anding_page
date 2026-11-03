@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { frame2, extTop, extBottom } from "./layout";
+import { frame2, extTop, extBottom, frame4 } from "./layout";
 
 // Main process images
 import sol1 from "../../assets/sol1.png";

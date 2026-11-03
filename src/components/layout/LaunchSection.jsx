@@ -31,31 +31,29 @@ function CommunicationSection() {
       </div>
 
       {/* Bottom line is the extended line */}
-      <div className={`${extBottom} grid grid-cols-1 sm:grid-cols-3`}>
-        {communicationTools.map((tool, index) => (
-          <div
-            key={tool.title}
-            className={`flex min-h-[90px] items-center justify-center gap-2 px-4 py-4 sm:min-h-[100px] ${
-              index === 1 ? "bg-white/[0.09]" : "bg-transparent"
-            } ${
-              index !== 2
-                ? "border-b border-white/20 sm:border-b-0 sm:border-r"
-                : ""
-            }`}
-          >
-            <img
-              src={tool.image}
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              className="size-16 shrink-0 object-contain sm:size-[68px]"
-            />
-            <p className="-ml-4 text-base font-medium tracking-tight text-white sm:text-[17px]">
-              {tool.title}
-            </p>
-          </div>
-        ))}
-      </div>
+      <div className={`${extBottom} grid grid-cols-1 bg-black sm:grid-cols-3`}>
+  {communicationTools.map((tool, index) => (
+    <div
+      key={tool.title}
+      className={`group flex min-h-[60px] items-center justify-center gap-2 bg-black px-4 py-0 transition-colors duration-300 hover:bg-white/[0.09] sm:min-h-[60px] ${
+        index !== 2
+          ? "border-b border-white/20 sm:border-b-0 sm:border-r"
+          : ""
+      }`}
+    >
+      <img
+        src={tool.image}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        className="size-12 shrink-0 object-contain sm:size-[68px]"
+      />
+      <p className="-ml-4 text-[14px] font-medium tracking-tight text-white md:text-[10px] lg:text-[18px] text-center">
+        {tool.title}
+      </p>
+    </div>
+  ))}
+</div>
     </div>
   );
 }

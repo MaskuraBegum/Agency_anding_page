@@ -150,7 +150,7 @@ export default function Hero() {
           {/* Description */}
           <motion.p
             variants={item}
-            className="mt-5 w-full max-w-[800px] font-['Inter'] text-[14px] font-medium leading-[22px] tracking-[-0.5px] text-white/90 sm:text-[15px] sm:leading-[24px] lg:text-[18px] lg:leading-[26px]"
+            className="mt-5 w-full max-w-[671px] font-['Inter'] text-[14px] font-medium leading-[22px] tracking-[-0.5px] text-white/90 sm:text-[15px] sm:leading-[24px] lg:text-[16px] lg:leading-[26px]"
           >
             We design, develop, and optimize high-performance digital
             experiences that help ambitious businesses operate better, convert

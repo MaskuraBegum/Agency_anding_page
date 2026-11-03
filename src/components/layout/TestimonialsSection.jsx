@@ -124,7 +124,7 @@ export default function TestimonialsSection() {
 
               {/* Scrollable cards */}
               <div
-                className="flex h-[430px] snap-y snap-mandatory flex-col gap-5 overflow-y-auto overscroll-contain pb-6 [mask-image:linear-gradient(to_bottom,black_88%,transparent)] [scrollbar-width:none] sm:h-[480px] lg:h-[440px] [&::-webkit-scrollbar]:hidden"
+                className="flex h-[430px] snap-y snap-mandatory flex-col gap-5 overflow-y-auto overscroll-auto pb-6 [mask-image:linear-gradient(to_bottom,black_88%,transparent)] [scrollbar-width:none] sm:h-[480px] lg:h-[440px] [&::-webkit-scrollbar]:hidden"
                 tabIndex={0}
                 aria-label="Client testimonials"
               >

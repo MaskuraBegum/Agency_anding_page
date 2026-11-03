@@ -282,14 +282,14 @@ function StackedCard({ service, index, total, progress, onCta }) {
 
   return (
     <div
-      className={`sticky top-0 flex items-start justify-center px-3 sm:px-6 ${
-        isLast ? "pb-0" : "h-screen"
+      className={`sticky top-0 flex items-start justify-center px-3 sm:px-0 ${
+        isLast ? "pb-1" : "h-screen"
       }`}
       style={{ paddingTop: 24 + index * 28 }}
     >
       <motion.article
         style={{ scale, background: service.gradient }}
-        className="relative h-[min(540px,calc(100vh-110px))] w-full origin-top overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.55)] ring-1 ring-white/15"
+        className="relative  h-[min(540px,calc(100vh-110px))] w-full origin-top overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.55)] ring-1 ring-white/15"
       >
         <div className="flex h-full flex-col gap-3 overflow-y-auto px-5 py-5 sm:gap-6 sm:px-10 sm:py-7 md:flex-row md:items-center md:gap-12 md:overflow-hidden md:px-12 md:py-10">
           {/* LEFT CONTENT */}

@@ -2,7 +2,6 @@
 import Navbar from "../layout/Navbar";
 import Hero from "../layout/Hero";
 import TrustedBy from "./TrustedBy";
-import AboutUs from "../layout/AboutUs";
 import Stats from "../layout/Stats";
 import WorkShowcase from "../layout/WorkShowcase";
 import ProblemSection from "../layout/ProblemSection";
@@ -14,6 +13,7 @@ import FAQSection from "../layout/FAQSection";
 import CTASection from "../layout/CTASection";
 import FooterSection from "../layout/socialLinks";
 import GiantLogoSection from "../layout/LogoSection";
+import AboutUs2 from "../layout/Aboutus2";
 
 export default function Home() {
   return (
@@ -24,7 +24,8 @@ export default function Home() {
         
         <Hero />
         <TrustedBy />
-        <AboutUs />
+
+        <AboutUs2></AboutUs2>
         <Stats />
         <WorkShowcase />
         <ProblemSection />
