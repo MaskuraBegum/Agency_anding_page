@@ -393,7 +393,7 @@ export default function ServicesSection() {
             Everything You Need to Build Digital That Performs
           </h2>
 
-          <p className="mt-6 max-w-[601px] font-body font-medium text-base leading-7 text-white/70 md:text-[16px] text-[#CACACA]">
+          <p className="mt-6 max-w-[601px] font-body font-medium leading-[22px] traking-[-0.5px] text-base leading-7 md:text-[16px] text-[#CACACA]">
             From a complete redesign to deep technical optimization, we solve
             digital challenges across strategy, experience, and engineering.
           </p>

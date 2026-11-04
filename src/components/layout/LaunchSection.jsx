@@ -236,7 +236,7 @@ export default function LaunchSection() {
                     {details.map(([label, value]) => (
                       <div
                         key={label}
-                        className="flex items-center justify-between gap-3 border-b border-black/15  py-2 font-['Inter'] text-[12px] leading-[20px] tracking-[-0.5px] text-[#636363] sm:text-[13px]">
+                        className="flex items-center justify-between gap-3 border-b border-black/15  py-2 font-['Inter'] text-[12px] leading-[20px] tracking-[-0.5px] text-[#636363] sm:text-[12px]">
                         <span>
                           <span className="mr-2 font-medium">•</span>
                           {label}

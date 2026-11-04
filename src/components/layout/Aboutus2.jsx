@@ -232,7 +232,7 @@ export default function AboutUs2() {
               style={{ background: ABOUT_BG }}
               className="flex min-h-[660px] flex-col items-center border-white/20 px-6 py-10 text-center sm:px-10 sm:py-12 lg:min-h-[800px] lg:items-start lg:border-b-0 lg:border-r lg:px-10 lg:pb-10 lg:pt-10 lg:text-left"
             >
-              <span className="bg-black px-1.5 py-1 text-sm uppercase leading-none">
+              <span className="bg-black px-1.5 font-body font-normal py-1 text-14 uppercase leading-none tracking-[-0.5px]">
                 About Us
               </span>
 
