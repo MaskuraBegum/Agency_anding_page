@@ -22,9 +22,10 @@ const steps = [
     description:
       "We learn about your business, users, goals, and challenges to create a clear strategy and project roadmap.",
     image: sol1,
+    imageAlt: "Strategy and discovery illustration showing project planning and user research roadmap",
     bubbles: [
-      { image: bubble1, position: "left-[5%] top-[10%]" },
-      { image: bubble2, position: "right-[5%] bottom-[10%]" },
+      { image: bubble1, alt: "Figma icon", position: "left-[5%] top-[10%]" },
+      { image: bubble2, alt: "Analytics icon", position: "right-[5%] bottom-[10%]" },
     ],
   },
   {
@@ -33,10 +34,11 @@ const steps = [
     description:
       "We turn strategy into thoughtful designs and reliable digital solutions, with clear communication throughout.",
     image: sol2,
+    imageAlt: "Design and development illustration showing website UI layout and code structure",
     bubbles: [
-      { image: bubble3, position: "left-[5%] top-[10%]" },
-      { image: bubble5, position: "right-[5%] top-[42%]" },
-      { image: bubble4, position: "left-[8%] bottom-[8%]" },
+      { image: bubble3, alt: "React icon", position: "left-[5%] top-[10%]" },
+      { image: bubble5, alt: "Tailwind CSS icon", position: "right-[5%] top-[42%]" },
+      { image: bubble4, alt: "Framer icon", position: "left-[8%] bottom-[8%]" },
     ],
   },
   {
@@ -45,21 +47,21 @@ const steps = [
     description:
       "We test, refine, and launch your project with a focus on performance, usability, and long-term growth.",
     image: sol3,
+    imageAlt: "Launch and optimization illustration showing performance metrics and live site deployment",
     bubbles: [
-      { image: bubble7, position: "right-[5%] top-[35%]" },
-      { image: bubble6, position: "left-[5%] bottom-[8%]" },
+      { image: bubble7, alt: "Webflow icon", position: "right-[5%] top-[35%]" },
+      { image: bubble6, alt: "SEO optimization icon", position: "left-[5%] bottom-[8%]" },
     ],
   },
 ];
 
 /* ---------- Floating logos ---------- */
 
-function FloatingLogo({ image, position }) {
+function FloatingLogo({ image, alt, position }) {
   return (
     <img
       src={image}
-      alt=""
-      aria-hidden="true"
+      alt={alt}
       loading="lazy"
       className={`absolute z-10 size-12 object-contain sm:size-[61px] ${position}`}
     />
@@ -78,14 +80,14 @@ function ProcessCard({ step, index }) {
         duration: 0.6,
         delay: index * 0.12,
       }}
-      className="min-w-0  border-white/20 lg:border-b-0 lg:border-r lg:last:border-r-0"
+      className="min-w-0 border-white/20 lg:border-b-0 lg:border-r lg:last:border-r-0"
     >
       {/* Image panel */}
 
       <div className="relative flex h-[230px] items-center justify-center overflow-hidden bg-[linear-gradient(180deg,#073b91_0%,#0789b7_50%,#071015_100%)] px-5 sm:h-[270px] sm:px-8 lg:h-[256px]">
         <img
           src={step.image}
-          alt={`${step.title} preview`}
+          alt={step.imageAlt}
           loading="lazy"
           className="relative z-[1] h-[78%] w-[88%] object-cover"
         />
@@ -100,6 +102,7 @@ function ProcessCard({ step, index }) {
           <FloatingLogo
             key={bubbleIndex}
             image={bubble.image}
+            alt={bubble.alt}
             position={bubble.position}
           />
         ))}
@@ -108,7 +111,7 @@ function ProcessCard({ step, index }) {
       {/* Step details */}
 
       <div className="px-6 py-7 text-center sm:px-8 sm:py-8 lg:min-h-[200px] lg:px-6">
-        <p className="text-sm font-normal text-white/75">
+        <p className="font-body text-[16px] font-medium text-[#CACACA]">
           STEP {step.number}
         </p>
 
@@ -116,7 +119,7 @@ function ProcessCard({ step, index }) {
           {step.title}
         </h3>
 
-        <p className="mx-auto mt-3 max-w-[360px] text-[15px] leading-[1.5] text-white/80">
+        <p className="mx-auto mt-3 max-w-[336px] font-body text-[16px] font-medium leading-[1.5] text-[#CACACA]">
           {step.description}
         </p>
       </div>
@@ -153,7 +156,7 @@ export default function ProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-6 max-w-[700px] font-['Merriweather'] text-3xl leading-[1.12] tracking-tight sm:text-5xl lg:text-[48px]"
+            className="mt-8 max-w-[600px] font-['Merriweather'] text-3xl font-normal leading-14 tracking-[-1px] sm:text-3xl md:text-[48px]"
           >
             From Digital Challenge to
             <br className="hidden sm:block" /> Scalable Solution
@@ -164,7 +167,7 @@ export default function ProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-5 max-w-[650px] font-['Inter'] text-[15px] leading-relaxed text-white/80 sm:text-base"
+            className="mt-5 max-w-[650px] font-['Inter'] text-[15px] font-medium leading-relaxed text-[#CACACA] sm:text-[16px]"
           >
             A clear process keeps complex projects focused, transparent, and
             moving forward.

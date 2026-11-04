@@ -35,11 +35,11 @@ export default function Stats() {
                 : ""
             } hover:bg-white/[0.10]`}
           >
-            <p className="font-serif text-5xl leading-none tracking-tight sm:text-[52px]">
+            <p className="font-heading text-[44px] font-normal text-[#FFFFFF] leading-none tracking-tight sm:text-[48px]">
               {stat.value}
             </p>
 
-            <p className="mt-5 text-base tracking-tight text-white/80">
+            <p className="mt-5 font-body font-medium text-[14px] lg:text-[18px] tracking-tight text-[#CACACA]">
               {stat.label}
             </p>
           </motion.div>

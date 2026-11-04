@@ -41,7 +41,7 @@ const PANEL_GRADIENT =
 
 function ReviewCard({ item }) {
   return (
-    <article className="shrink-0 snap-start bg-white p-5 text-black sm:p-6">
+    <article className="shrink-0 snap-start bg-white p-5 text-black sm:p-6 max-w-[498px]">
       {/* Stars */}
       <div className="flex items-center gap-1">
         {[1, 2, 3, 4, 5].map((star) => (
@@ -57,16 +57,16 @@ function ReviewCard({ item }) {
       </div>
 
       {/* Quote */}
-      <p className="mt-5 font-['Merriweather'] text-[17px] leading-[1.35] tracking-tight text-black sm:mt-6 sm:text-[22px] lg:text-2xl">
+      <p className="mt-5 font-['Merriweather'] max-w-[447px] fornt-normal leading-8 tracking-[-1px] text-[17px] text-[#010101] sm:mt-6 sm:text-[24px] lg:text-[24px]">
         “{item.quote}”
       </p>
 
       {/* Author */}
       <div className="mt-6 sm:mt-8">
-        <h3 className="font-['Merriweather'] text-base font-normal text-black sm:text-lg">
+        <h3 className="font-['Merriweather'] text-base font-normal  leading-[28px] tracking-[-0.5px] text-[#010101] sm:text-[18px]">
           {item.name}
         </h3>
-        <p className="mt-1 font-['Inter'] text-[13px] text-black/70 sm:text-sm">
+        <p className=" font-['Inter'] font-medium  leading-[22px] tracking-[-0.5px] text-[#3B3B3B] text-[12px] sm:text-[14px]">
           {item.role}
         </p>
       </div>
@@ -82,13 +82,13 @@ export default function TestimonialsSection() {
       {/* Vertical borders only. The line at the top comes from the end of LaunchSection. */}
       <div className={frame2}>
         {/* Heading */}
-        <div className="flex flex-col items-center px-5 pb-12 pt-16 text-center sm:pb-14 sm:pt-20 lg:pb-[72px] lg:pt-[90px]">
+        <div className="flex flex-col items-center px-5 pb-12 pt-16 text-center sm:pb-14 sm:pt-20 lg:pb-[72px] lg:pt-[100px]">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-slate-700/70 px-1.5 py-1 text-[14px] uppercase leading-none"
+            className="bg-slate-700/70 shadow-[0px_4px_16px_0px_#00000026] px-1.5 py-1 font-normal leading-none tracking-[-0.5px] text-[14px] uppercase"
           >
             Client Experiences
           </motion.span>
@@ -98,7 +98,7 @@ export default function TestimonialsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8 font-['Merriweather'] text-3xl leading-tight tracking-tight sm:text-4xl md:text-5xl"
+            className="mt-8 max-w-[680px] font-['Merriweather'] font-normal text-3xl leading-14 tracking-[-1px] sm:text-3xl md:text-[48px]"
           >
             Don’t Just Take Our Word for It
           </motion.h2>
@@ -111,13 +111,13 @@ export default function TestimonialsSection() {
             className="mx-auto w-full border-white/20 lg:w-[76%] lg:border-x"
             style={{ background: PANEL_GRADIENT }}
           >
-            <div className="grid grid-cols-1 gap-8 px-4 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,540px)_1fr] lg:gap-10 lg:px-11 lg:py-11">
+            <div className="grid grid-cols-1 gap-8 px-4 py-8 sm:px-4 sm:py-10 lg:grid-cols-[minmax(0,540px)_1fr] lg:gap-2 lg:px-10 lg:py-11">
               {/* Stat: first on mobile, right column on desktop */}
-              <div className="order-first text-left lg:order-last">
-                <p className="font-['Merriweather'] text-5xl leading-none tracking-tight sm:text-6xl lg:text-[56px]">
+              <div className="order-first text-left lg:order-last font-['Merriweather'] px-[-4px] ">
+                <p className="font-['Merriweather'] font-normal text-5xl sm:text-6xl lg:text-[48px]">
                   40%
                 </p>
-                <p className="mt-4 max-w-[260px] font-['Merriweather'] text-base leading-snug text-white/90 sm:text-lg">
+                <p className="mt-4 max-w-[260px] font-['Merriweather'] leading-[26px] tracking-[-0.5px] text-base leading-snug text-white sm:text-[18px] font-medium ">
                   Marked improvement in financial efficiency and performance.
                 </p>
               </div>

@@ -6,9 +6,21 @@ import com3 from "../../assets/com3.png";
 import card1 from "../../assets/card1.png";
 
 const communicationTools = [
-  { image: com1, title: "For Communication" },
-  { image: com2, title: "For Daily Updates" },
-  { image: com3, title: "For Check-in calls" },
+  { 
+    image: com1, 
+    title: "For Communication", 
+    alt: "Slack logo representing team communication" 
+  },
+  { 
+    image: com2, 
+    title: "For Daily Updates", 
+    alt: "Notion logo representing daily project updates" 
+  },
+  { 
+    image: com3, 
+    title: "For Check-in calls", 
+    alt: "Google Meet logo representing check-in calls" 
+  },
 ];
 
 const details = [
@@ -43,7 +55,7 @@ function CommunicationSection() {
     >
       <img
         src={tool.image}
-        alt=""
+        alt={tool.alt}
         aria-hidden="true"
         loading="lazy"
         className="size-12 shrink-0 object-contain sm:size-[68px]"
@@ -162,7 +174,7 @@ export default function LaunchSection() {
     >
       {/* frame2 = vertical borders only */}
       <div className={frame2}>
-        <div className="mb-20">
+        <div className="mb-30">
           <CommunicationSection />
         </div>
 
@@ -179,44 +191,44 @@ export default function LaunchSection() {
                   Launch Without the Long Wait
                 </span>
 
-                <h2 className="mt-7 font-heading font-light text-[88px] leading-[0.99] tracking-[-0.055em]">
+                <h2 className="mt-7 text-[#010101] font-heading font-normal text-[40px] md:text-[60px] lg:text-[80px] leading-[86px] tracking-[-1px] mt-10">
                   $1,112
                   <br />
-                  From Idea to
+                  <span className="inline-block my-1">From Idea to</span>
                   <br />
                   Live Website
                 </h2>
 
-                <div className="mt-16 max-w-[610px] lg:mt-auto lg:pt-16">
-                  <h3 className="text-lg font-semibold leading-[1.4] tracking-[-0.035em] sm:text-xl">
+                <div className="mt-16 max-w-[565px] lg:mt-auto lg:pt-16">
+                  <h3 className="text-lg font-body font-semibold leading-[1.4] tracking-[-0.035em] sm:text-[18px] text-[#010101]leading-[26px] tracking-[-1px]">
                     48 hours. One complete landing page. Ready to launch.
                   </h3>
 
-                  <p className="mt-3 text-[15px] font-normal leading-[1.55] tracking-[-0.025em] sm:text-[17px]">
+                  <p className="mt-3 text-[15px] font-medium sm:text-[18px] text-[#010101] leading-[26px] tracking-[-1px]">
                     We handle the full process, from Figma UX/UI design and
                     conversion-focused layout to Framer or Webflow development,
                     responsive optimization, and final launch.
                   </p>
 
-                  <p className="mt-4 text-[15px] font-semibold leading-relaxed tracking-[-0.025em] sm:text-[17px]">
+                  <p className="mt-4 text-[15px] font-semibold font-body text-[#010101] sm:text-[18px] leading-[26px] tracking-[-1px]">
                     $1,112 flat. One focused project. Designed to convert.
                     Built to launch.
                   </p>
                 </div>
               </div>
 
-              <div className="z-10 mx-auto w-full max-w-[305px] bg-white p-1.5 shadow-[0_14px_35px_rgba(0,0,0,0.17)] sm:max-w-[340px] lg:mt-8">
+              <div className="z-10 mx-auto w-full max-w-[305px] bg-white  shadow-[0_14px_35px_rgba(0,0,0,0.17)] sm:max-w-[310px] lg:mt-8">
                 <div className="h-[195px] overflow-hidden bg-[#052c83] sm:h-[215px]">
                   <img
                     src={card1}
-                    alt="Website landing page preview"
+                    alt="Preview of a modern landing page design for a financial dashboard featuring headline Transform Cash Into Lasting Growth"
                     loading="lazy"
                     className="h-full w-full object-cover object-top"
                   />
                 </div>
 
                 <div className="px-3 pb-3 pt-4 sm:px-4">
-                  <h3 className="text-sm font-medium uppercase tracking-[-0.03em] text-black sm:text-[15px]">
+                  <h3 className="text-sm font-['Inter'] font-medium  leading-[20.62px] tracking-[-0.74px] uppercase  text-[#000000] sm:text-[13.26px]]">
                     Landing Page Live
                   </h3>
 
@@ -224,13 +236,12 @@ export default function LaunchSection() {
                     {details.map(([label, value]) => (
                       <div
                         key={label}
-                        className="flex items-center justify-between gap-3 border-b border-black/15 py-2 text-xs tracking-[-0.02em] text-[#777] sm:text-[13px]"
-                      >
+                        className="flex items-center justify-between gap-3 border-b border-black/15  py-2 font-['Inter'] text-[12px] leading-[20px] tracking-[-0.5px] text-[#636363] sm:text-[13px]">
                         <span>
-                          <span className="mr-2">•</span>
+                          <span className="mr-2 font-medium">•</span>
                           {label}
                         </span>
-                        <span className="font-semibold text-[#858585]">
+                        <span className="font-bold text-[#858585]">
                           {value}
                         </span>
                       </div>
@@ -241,7 +252,7 @@ export default function LaunchSection() {
                     href="https://docs.google.com/forms/d/e/1FAIpQLSei64i0y7IMQl9JlE9cP-StTMGTM8X8bGvRPvpOSixo_Nh5Vg/viewform?usp=publish-editor"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 flex min-h-[39px] items-center justify-center gap-2 bg-[linear-gradient(90deg,#4945ff,#0ba9ed)] px-3 py-2 text-center text-xs font-medium tracking-[-0.02em] text-white transition-opacity hover:opacity-90 sm:text-sm"
+                    className="mt-4 flex min-h-[39px] items-center justify-center gap-2 bg-[linear-gradient(358.13deg,#00DBF5_-49.55%,#3A4DE9_98.42%)] px-3 py-2 text-center text-xs font-medium leading-[26px] tracking-[-1px] text-[#FFFFFF] transition-opacity hover:opacity-90 sm:text-[14px]"
                   >
                     Book Your Free Call
                     <ArrowRight className="size-4" />

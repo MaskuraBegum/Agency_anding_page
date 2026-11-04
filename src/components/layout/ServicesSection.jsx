@@ -6,7 +6,7 @@ import {
   useTransform,
 } from "motion/react";
 import { ArrowRight, X, CheckCircle2 } from "lucide-react";
-import { frame, frame2, frame3, frame4 } from "./layout";
+import { extBottom, frame, frame2, frame3, frame4 } from "./layout";
 
 // Service images
 import sticky1 from "../../assets/sticky/sticky1.png";
@@ -111,7 +111,7 @@ const services = [
 
 function NumberBadge({ image, number }) {
   return (
-    <div className="relative size-[54px] shrink-0 md:size-[62px]">
+    <div className="relative size-[40px] shrink-0 md:size-[48px]">
       <img
         src={image}
         alt={`Service ${number}`}
@@ -300,11 +300,11 @@ function StackedCard({ service, index, total, progress, onCta }) {
               number={service.number}
             />
 
-            <h3 className="mt-4 font-['Merriweather'] text-xl leading-tight tracking-tight text-white sm:mt-7 sm:text-2xl md:text-[30px]">
+            <h3 className="mt-4 font-['Merriweather'] font-medium text-xl leading-tight tracking-tight text-[#FFFFFF] sm:mt-7 sm:text-2xl md:text-[24px]">
               {service.title}
             </h3>
 
-            <p className="mt-2 max-w-[560px] font-['Inter'] text-xs leading-5 text-white sm:mt-3 sm:text-sm sm:leading-6 md:text-[16px] font-extralight md:leading-7">
+            <p className="mt-2 max-w-[680px] font-['Inter'] font-medium text-xs leading-5 text-[#F1F2F5] sm:mt-3 sm:text-sm sm:leading-[16px] md:text-[16px] font-medium md:leading-[22px] tracking-[-0.5px">
               {service.description}
             </p>
 
@@ -323,11 +323,11 @@ function StackedCard({ service, index, total, progress, onCta }) {
               Includes:
             </p>
 
-            <ul className="mt-2 grid grid-cols-2 gap-x-3 gap-y-2 sm:gap-y-1.5 md:grid-cols-1">
+            <ul className="mt-2 grid grid-cols-2 gap-x-3 gap-y-2 sm:gap-y-0.5 md:grid-cols-1">
               {service.features.map((feature) => (
                 <li
                   key={feature}
-                  className="flex items-center gap-0 text-[11px] text-white sm:gap-3 sm:text-sm md:text-[14px] font-extraliight ml-2 md:ml-6"
+                  className="flex items-center gap-0 text-[11px] traking-[-0.5px] leading-[22px] font-medium text-[#F1F2F5] sm:gap-3 sm:text-sm md:text-[14px] font-extraliight ml-2 md:ml-6"
                 >
                   <span className="size-1 shrink-0 rounded-full bg-white/90" />
                   {feature}
@@ -340,7 +340,7 @@ function StackedCard({ service, index, total, progress, onCta }) {
             <button
               type="button"
               onClick={() => onCta(service)}
-              className="group mt-2 inline-flex w-full max-w-[450px] shrink-0 cursor-pointer items-center justify-center gap-2 border border-white/70 bg-white/10 px-4 py-2.5 text-xs font-light text-white backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 active:scale-[0.98] sm:mt-7 sm:px-5 sm:py-3 sm:text-sm"
+              className="group mt-2 inline-flex w-full max-w-[428px] shrink-0 cursor-pointer items-center justify-center gap-2 border border-white/70 bg-white/10 px-4 py-2.5 text-xs font-medium font-body leading-[26px] tracking-[-1px] text-[#FFFFFF] backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 active:scale-[0.98] sm:mt-7 sm:px-5 sm:py-3 sm:text-[16px]"
             >
               {service.button}
 
@@ -384,16 +384,16 @@ export default function ServicesSection() {
       <div className={`${frame4} `}>
         {/* HEADER */}
 
-        <div className="px-6 pb-10 pt-14 sm:px-10 md:pb-12 md:pt-[100px] lg:px-[44px]">
-          <span className="inline-block bg-white/15 px-1.5 py-0.5 text-[14px] font-['Inter'] font-medium uppercase tracking-wide text-white">
+        <div className={`${extBottom} px-6 pb-10 pt-14 sm:px-10 md:pb-12 md:pt-[100px] lg:px-[44px]`}>
+          <span className="inline-block bg-white/15 px-1.5 py-0.5 text-[14px] font-['Inter'] font-normal uppercase tracking-wide text-white">
             What We Do
           </span>
 
-          <h2 className="mt-6 max-w-[760px] font-['Merriweather'] text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-[56px]">
+          <h2 className="mt-8 max-w-[760px] font-['Merriweather'] font-normal text-4xl leading-14 tracking-[-1px] sm:text-5xl lg:text-[48px] text-[#FFFFFF]">
             Everything You Need to Build Digital That Performs
           </h2>
 
-          <p className="mt-6 max-w-[680px] text-base leading-7 text-white/70 md:text-lg">
+          <p className="mt-6 max-w-[601px] font-body font-medium text-base leading-7 text-white/70 md:text-[16px] text-[#CACACA]">
             From a complete redesign to deep technical optimization, we solve
             digital challenges across strategy, experience, and engineering.
           </p>
@@ -403,7 +403,7 @@ export default function ServicesSection() {
 
         {/* STACKED SERVICES */}
 
-        <div ref={containerRef} className="relative">
+        <div ref={containerRef} className="relative -mt-6">
           {services.map((service, i) => (
             <StackedCard
               key={service.number}

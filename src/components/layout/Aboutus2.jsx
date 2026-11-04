@@ -68,7 +68,7 @@ const fadeUp = {
 
 // One shared text style for the heading and intro paragraph.
 const ABOUT_TEXT =
-  "font-['Merriweather'] text-3xl font-normal leading-[1.15] tracking-tight sm:text-4xl lg:text-[36px]";
+  "font-['Merriweather'] text-3xl font-normal leading-[1.25] tracking-tight sm:text-4xl lg:text-[36px]";
 
 // Background of the whole left column
 const ABOUT_BG =
@@ -260,7 +260,7 @@ export default function AboutUs2() {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(true)}
-                className="mt-12 w-[168px] h-[41px] font-body inline-flex shrink-0 cursor-pointer items-center gap-2 border border-white/70 bg-white/5 px-3.5 py-1 text-[16px] text-white transition-colors hover:bg-white hover:text-black"
+                className="mt-12 w-[168px] h-[41px] font-body font-medium leading-[26px] tracking-[-1px] inline-flex shrink-0 cursor-pointer items-center gap-2 border border-white/70 bg-white/5 pl-5 px-3.5 py-1 text-[16px] text-white transition-colors hover:bg-white hover:text-black"
               >
                 More About Us
                 <ArrowRight className="size-4" />

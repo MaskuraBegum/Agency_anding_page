@@ -150,7 +150,7 @@ export default function Hero() {
           {/* Description */}
           <motion.p
             variants={item}
-            className="mt-5 w-full max-w-[671px] font-['Inter'] text-[14px] font-medium leading-[22px] tracking-[-0.5px] text-white/90 sm:text-[15px] sm:leading-[24px] lg:text-[16px] lg:leading-[26px]"
+            className="mt-5 w-full max-w-[671px] font-['Inter'] text-[14px] font-medium leading-[26px] tracking-[-0.5px] text-[#F1F2F5] sm:text-[15px] sm:leading-[24px] lg:text-[16px] lg:leading-[26px]"
           >
             We design, develop, and optimize high-performance digital
             experiences that help ambitious businesses operate better, convert
@@ -168,7 +168,7 @@ export default function Hero() {
               onClick={() => setIsBookingOpen(true)}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="group flex h-[41px] w-full shrink-0 cursor-pointer items-center justify-center gap-[6px] bg-white px-5 text-center font-['Inter'] text-[16px] font-medium leading-[26px] tracking-[-1px] text-black transition-colors hover:bg-white/90 sm:w-[198px]"
+              className="group flex h-[41px] w-full shrink-0 cursor-pointer items-center justify-center gap-[6px] bg-white px-5 text-center font-['Inter'] text-[16px] font-medium leading-[26px] tracking-[-1px] text-[#010101] transition-colors hover:bg-white/90 sm:w-[198px]"
             >
               <span className="whitespace-nowrap">Book a Consultation</span>
               <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />

@@ -7,24 +7,24 @@ export default function CTASection() {
     <section id="cta" className="overflow-x-clip bg-black text-white">
       <div className={`${frame2} ${extBottom}`}>
         {/* Top Header Section */}
-        <div className="flex min-h-[278px] flex-col items-center justify-center border-b border-white/20 px-5 py-12 text-center">
+        <div className="flex min-h-[278px] flex-col items-center justify-center border-b border-white/20 px-5 py-12 text-center lg:pt-[100px]">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-slate-700/80 text-[14px] uppercase leading-none"
+            className="bg-[#242D3C] font-body shadow-[0px_4px_16px_0px_#00000026] px-1.5 py-1 font-normal leading-none tracking-[-0.5px] text-[14px] uppercase"
           >
             LET'S BUILD WHAT'S NEXT
           </motion.span>
 
-          <h2 className="mt-8 max-w-[600px] font-['Merriweather'] text-4xl leading-[1.12] tracking-tight sm:text-5xl md:text-[52px]">
+          <h2 className="mt-8 max-w-[600px] font-['Merriweather'] font-normal text-3xl leading-14 tracking-[-1px] sm:text-3xl md:text-[48px]">
             Ready to Elevate Your
             <br />
             Digital Presence?
           </h2>
 
-          <p className="mt-6 max-w-[660px] text-sm leading-relaxed text-white/75 sm:text-[16px]">
+          <p className="mt-6 max-w-[620px] font-body font-medium leading-[22px] tracking-[-0.5px] text-sm text-[#CACACA] sm:text-[16px]">
             Tell us where your digital experience stands today, what's holding
             it back, and where you want to take it next. We'll help you identify
             the right path forward.
@@ -40,8 +40,8 @@ export default function CTASection() {
           <div className="hidden border-r border-white/20 md:block" />
 
           {/* Center Content / Embed Container */}
-          <div className="flex min-h-[350px] items-center justify-center px-5 py-16 text-center md:py-24">
-            <p className="text-base font-light text-white/80 sm:text-lg">
+          <div className="flex min-h-[450px] items-center justify-center px-5 py-16 text-center md:py-24">
+            <p className="text-base text-center font-['Inter'] font-medium  leading-[22px] tracking-[-0.5px] text-[#CACACA] sm:text-[24px]">
               We’ll add the Call.com/Calendly link here.
             </p>
           </div>

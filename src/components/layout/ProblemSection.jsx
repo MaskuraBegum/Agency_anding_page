@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -18,30 +17,35 @@ import mobileExperienceIcon from "../../assets/logos/mobile.png";
 const problems = [
   {
     icon: slowWebsiteIcon,
+    alt: "Speedometer icon representing slow website performance",
     title: "Slow Website",
     description:
       "Slow pages frustrate users, increase drop-offs, and can cost you valuable customers and business opportunities.",
   },
   {
     icon: outdatedDesignIcon,
+    alt: "Design pen icon representing outdated branding and interface design",
     title: "Outdated Design",
     description:
       "Your business has grown, but your digital experience no longer reflects your brand, services, or customer expectations.",
   },
   {
     icon: complexSystemsIcon,
+    alt: "Star icon representing complex and hard-to-manage technical systems",
     title: "Complex Systems",
     description:
       "Hard-to-manage technology makes updates slower, harder, and more expensive.",
   },
   {
     icon: lowConversionsIcon,
+    alt: "Arrow icon representing low conversion rates and poor user journeys",
     title: "Low Conversions",
     description:
       "People visit your website, but unclear messaging and poor user journeys can stop them from taking the next step.",
   },
   {
     icon: mobileExperienceIcon,
+    alt: "Mobile phone icon representing poor mobile usability and navigation",
     title: "Poor Mobile Experience",
     description:
       "Your website may look good on desktop but still frustrate mobile users with difficult navigation, slow loading, or poor usability.",
@@ -57,7 +61,7 @@ const cardAnimation = {
   },
 };
 
-function ProblemCard({ icon, title, description, index }) {
+function ProblemCard({ icon, alt, title, description, index }) {
   const responsiveBorder = [
     // Bottom lines: every card on mobile, then removed for the last row at each breakpoint
     "border-b",
@@ -76,23 +80,22 @@ function ProblemCard({ icon, title, description, index }) {
   return (
     <motion.article
       variants={cardAnimation}
-      className={`flex min-w-0 flex-col items-center border-white/20 p-6 text-center sm:p-7 lg:items-start lg:p-[30px] lg:text-left ${responsiveBorder}`}
+      className={`flex min-w-0 flex-col items-center border-white/20 p-6 text-center sm:p-7 lg:items-start lg:p-[24px] lg:text-left ${responsiveBorder}`}
     >
       {/* Icon */}
       <div className="flex size-[48px] shrink-0 items-center justify-center">
         <img
           src={icon}
-          alt=""
+          alt={alt}
           className="size-full object-contain"
-          aria-hidden="true"
         />
       </div>
 
-      <h3 className="mt-7 text-[20px] font-medium tracking-tight">
+      <h3 className="mt-7 text-[18px] font-medium font-body text-[#FFFFFF] tracking-tight">
         {title}
       </h3>
 
-      <p className="mx-auto mt-3 max-w-[340px] text-[17px] leading-[1.5] text-white/80 lg:mx-0">
+      <p className="mx-auto mt-3 max-w-[334px] text-[16px] font-medium text-[#CACACA] leading-[1.5]  lg:mx-0">
         {description}
       </p>
     </motion.article>
@@ -152,7 +155,7 @@ export default function ProblemSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8 max-w-[850px] font-heading text-4xl leading-[1.12] tracking-tight sm:text-5xl lg:text-[48px]"
+            className="mt-8  font-['Merriweather'] font-normal text-3xl leading-14 tracking-[-1px] sm:text-3xl md:text-[48px]"
           >
             Your Digital Infrastructure
             <br className="hidden sm:block" /> Shouldn’t Hold Your Business Back
@@ -185,14 +188,14 @@ export default function ProblemSection() {
           {/* CTA card */}
           <motion.div
             variants={cardAnimation}
-            className="flex min-h-[245px] flex-col items-center justify-between bg-[linear-gradient(160deg,#073b91_0%,#0784b7_45%,#001014_100%)] p-6 text-center sm:p-7 lg:items-start lg:p-[30px] lg:text-left"
+            className="flex min-h-[245px] flex-col items-center justify-between bg-[linear-gradient(160deg,#073b91_0%,#0784b7_45%,#001014_100%)] p-6 text-center sm:p-7 lg:items-start lg:p-[27px] lg:text-left"
           >
             <div>
-              <h3 className="text-[18px] font-medium leading-snug">
+              <h3 className="text-[18px] font-medium leading-snug text-[#FFFFFF]">
                 Ready to Fix What’s Holding You Back?
               </h3>
 
-              <p className="mt-3 text-[16px] leading-[1.5] font-medium text-white/95">
+              <p className="mt-3 text-[16px] leading-[1.5] font-medium text-[#F1F2F5]">
                 Let’s identify the gaps, improve the experience, and build a
                 digital foundation ready for growth.
               </p>
@@ -200,7 +203,7 @@ export default function ProblemSection() {
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="mt-8 inline-flex w-full cursor-pointer items-center justify-center gap-2 bg-white px-4 py-3 text-center text-sm font-medium tracking-tight text-black transition-colors hover:bg-white/85"
+              className="mt-8 inline-flex w-full cursor-pointer items-center justify-center gap-2 bg-white px-4 py-3 text-center text-[16px] font-medium tracking-tight text-black transition-colors hover:bg-white/85 text-[#010101]"
             >
               Let’s Improve Your Digital Experience
               <ArrowRight className="size-4 shrink-0" />

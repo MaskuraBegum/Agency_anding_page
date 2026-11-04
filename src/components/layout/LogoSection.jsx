@@ -17,15 +17,15 @@ export default function GiantLogoSection() {
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#006080] via-[#002d40]/70 to-transparent" />
 
           {/* Ultra-Thin, Dissolving LOGO Text */}
-          <h1 className="relative z-10 -mb-3 select-none bg-gradient-to-b from-white/90 via-[#80d0e8]/70 to-transparent bg-clip-text text-center font-['Merriweather'] text-[160px] font-[100] uppercase leading-[0.72] tracking-tight text-transparent sm:-mb-5 sm:text-[240px] md:-mb-8 md:text-[320px] lg:text-[400px] xl:text-[470px]">
+          <h1 className="relative z-10 font-heading -mb-3 select-none bg-gradient-to-b from-white/90 via-[#80d0e8]/70 to-transparent bg-clip-text text-center font-['Merriweather'] text-[160px] font-[100] uppercase leading-[0.72] tracking-tight text-transparent sm:-mb-5 sm:text-[240px] md:-mb-8 md:text-[320px] lg:text-[400px] xl:text-[470px]">
             LOGO
           </h1>
 
         </div>
 
         {/* Bottom Bar: Copyright & Legal Links */}
-        <div className="flex items-center justify-between font-['Inter'] text-xs text-white sm:text-[16px]">
-          <div className="border-r border-white/20 px-5 py-3">
+        <div className="flex items-center justify-between font-['Inter'] font-normal leading[26px] tracking-[-0.5px] text-xs text-white sm:text-[16px]">
+          <div className="border-r border-white/20 px-5 py-3 ">
             ©2026 Logo Inc. All right reserved.
           </div>
 
