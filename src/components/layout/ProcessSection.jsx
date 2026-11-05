@@ -146,7 +146,7 @@ export default function ProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-slate-700/70 px-1.5 py-1 text-[14px] uppercase leading-none"
+            className="bg-slate-700/70 px-1.5 py-1 text-[11px] md:text-[14px] uppercase leading-none"
           >
             How We Work
           </motion.span>
@@ -156,7 +156,7 @@ export default function ProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8 max-w-[600px] font-['Merriweather'] text-3xl font-normal leading-14 tracking-[-1px] sm:text-3xl md:text-[48px]"
+            className="mt-8 max-w-[600px] font-['Merriweather'] text-[24px] font-normal leading-8 md:leading-14 tracking-[-1px] sm:text-3xl md:text-[48px]"
           >
             From Digital Challenge to
             <br className="hidden sm:block" /> Scalable Solution

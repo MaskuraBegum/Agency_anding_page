@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { extBottom, extTop, frame2 } from "./layout";
@@ -43,52 +44,59 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="scroll-mt-[70px] overflow-x-clip bg-black text-white">
+    <section
+      id="faq"
+      className="scroll-mt-[70px] overflow-x-clip bg-black text-white"
+    >
       <div className={`${frame2} ${extTop} ${extBottom}`}>
         {/* FAQ Heading */}
-        <div className="flex min-h-[278px] flex-col items-center justify-center border-b border-white/20 px-5 pt-12 text-center">
-          <span className="bg-[#242D3C] shadow-[0px_4px_16px_0px_#00000026] font-body font-normal px-1.5 py-1 text-[14px] uppercase leading-none tracking[-0.5px] text-white">
+        <div className="flex min-h-[230px] flex-col items-center justify-center border-b border-white/20 px-4 pt-10 text-center sm:min-h-[278px] sm:px-5 sm:pt-12">
+          <span className="bg-[#242D3C] px-1.5 py-1 font-body text-[11px] md:text-[14px] font-normal uppercase leading-none tracking-[-0.5px] text-white shadow-[0px_4px_16px_0px_#00000026]">
             FAQ
           </span>
 
-          <h2 className="mt-8 max-w-[600px] font-['Merriweather'] font-normal text-3xl leading-14 tracking-[-1px] sm:text-3xl md:text-[48px]">
+          <h2 className="mt-6 max-w-[340px] font-['Merriweather'] text-[24px] font-normal leading-[1.3] tracking-[-0.8px] sm:mt-8 sm:max-w-[600px] sm:text-3xl sm:leading-14 sm:tracking-[-1px] md:text-[48px]">
             Questions Before We
-            <br />
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
             Get Started?
           </h2>
         </div>
 
-        {/* FAQ 3-Column Grid Layout
-            Center: up to 677px. Left and right share the remaining space equally. */}
+        {/* FAQ Grid */}
         <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,677px)_minmax(0,1fr)]">
-          {/* Left empty grid column (stretches) */}
+          {/* Left border column */}
           <div className="hidden border-r border-white/20 md:block" />
 
-          {/* Accordion List Center Column */}
+          {/* Accordion */}
           <div>
-            <div className="pt-6 lg:pt-20 font-['Inter'] min-h-[603px]">
+            <div className="min-h-0 pt-5 font-['Inter'] sm:pt-6 md:min-h-[603px] md:pt-6 lg:pt-20">
               {faqs.map((faq, index) => {
                 const isOpen = openIndex === index;
 
                 return (
                   <div
-                  key={faq.question}
-                  className={`${index === faqs.length - 1 ? "border-b-0" : "border-b"} border-white/20 transition-colors ${
-                    isOpen ? "bg-[#1A1A1A]" : "bg-black"
-                  }`}
-                >
+                    key={faq.question}
+                    className={`${
+                      index === faqs.length - 1
+                        ? "border-b-0"
+                        : "border-b"
+                    } border-white/20 transition-colors ${
+                      isOpen ? "bg-[#1A1A1A]" : "bg-black"
+                    }`}
+                  >
                     <button
                       type="button"
                       onClick={() => toggleFAQ(index)}
                       aria-expanded={isOpen}
-                      className="flex w-full items-center justify-between gap-5 px-5 py-5 text-left sm:px-6"
+                      className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left sm:gap-5 sm:px-6 sm:py-5"
                     >
-                      <span className="text-base font-body font-medium leading-[28px] tracking-[-1px] text-white sm:text-[18px]">
+                      <span className="min-w-0 flex-1 font-body text-[14px] font-medium leading-[1.5] tracking-[-0.4px] text-white sm:text-base sm:leading-[28px] sm:tracking-[-1px] sm:text-[18px]">
                         {faq.question}
                       </span>
 
                       <span
-                        className={`flex size-[34px] shrink-0 items-center justify-center border transition-colors ${
+                        className={`flex size-[30px] shrink-0 items-center justify-center border transition-colors sm:size-[34px] ${
                           isOpen
                             ? "border-white bg-white text-black"
                             : "border-white/20 bg-transparent text-white"
@@ -103,8 +111,8 @@ export default function FAQSection() {
                     </button>
 
                     {isOpen && (
-                      <div className="px-5 pb-5 sm:px-6 sm:pr-14 max-w-[655px]">
-                        <p className="text-[18px] font-body font font-medium leading-[22px] tracking-[-0.5px] leading-[1.5] text-[#CACACA] sm:text-base">
+                      <div className="max-w-[655px] px-4 pb-4 sm:px-6 sm:pb-5 sm:pr-14">
+                        <p className="font-body text-[13px] font-medium leading-[1.6] tracking-[-0.2px] text-[#CACACA] sm:text-base sm:leading-[1.5] sm:tracking-[-0.5px]">
                           {faq.answer}
                         </p>
                       </div>
@@ -115,7 +123,7 @@ export default function FAQSection() {
             </div>
           </div>
 
-          {/* Right empty grid column (stretches) */}
+          {/* Right border column */}
           <div className="hidden border-l border-white/20 md:block" />
         </div>
       </div>

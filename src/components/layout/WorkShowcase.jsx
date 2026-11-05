@@ -84,7 +84,7 @@ export default function WorkShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-slate-700/70 px-1.5 py-1 font-body font-normal text-[14px] uppercase leading-none"
+          className="bg-slate-700/70 px-1.5 py-1 font-body font-normal text-[11px] md:text-[14px] uppercase leading-none"
         >
           Work Showcase
         </motion.span>
@@ -94,7 +94,7 @@ export default function WorkShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="mt-6 max-w-full font-heading font-normal text-3xl leading-tight tracking-tight sm:mt-7 sm:text-4xl lg:text-[48px]"
+          className="mt-6 max-w-full font-heading font-normal text-[24px] leading-tight tracking-tight sm:mt-7 sm:text-4xl lg:text-[48px]"
         >
           Some of Our Recent Projects
         </motion.h2>

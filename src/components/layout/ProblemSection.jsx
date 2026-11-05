@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -5,9 +6,17 @@ import {
   X,
   CheckCircle2,
 } from "lucide-react";
-import { frame, frame2, frame3, frame4, frame5, frame6, frameInner } from "./layout";
+import {
+  frame,
+  frame2,
+  frame3,
+  frame4,
+  frame5,
+  frame6,
+  frameInner,
+} from "./layout";
 
-// Replace these filenames with your actual image filenames
+// Images
 import slowWebsiteIcon from "../../assets/logos/card.png";
 import outdatedDesignIcon from "../../assets/logos/pen.png";
 import complexSystemsIcon from "../../assets/logos/star.png";
@@ -57,33 +66,45 @@ const cardAnimation = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    },
   },
 };
 
-function ProblemCard({ icon, alt, title, description, index }) {
+function ProblemCard({
+  icon,
+  alt,
+  title,
+  description,
+  index,
+}) {
   const responsiveBorder = [
-    // Bottom lines: every card on mobile, then removed for the last row at each breakpoint
     "border-b",
-    index === 4 ? "sm:border-b-0" : "", // last row on 2 columns (with CTA)
-    index === 3 ? "lg:border-b-0" : "", // last row on 3 columns
+    index === 4 ? "sm:border-b-0" : "",
+    index === 3 ? "lg:border-b-0" : "",
     index === 4 ? "lg:border-b-0" : "",
-
-    // Right lines: 2-column layout
     index % 2 === 0 ? "sm:border-r" : "",
-
-    // Right lines: 3-column layout
     index % 3 !== 2 ? "lg:border-r" : "",
-    index === 2 ? "lg:border-r-0" : "", // rightmost card on desktop, the frame already draws this line
+    index === 2 ? "lg:border-r-0" : "",
   ].join(" ");
 
   return (
     <motion.article
       variants={cardAnimation}
-      className={`flex min-w-0 flex-col items-center border-white/20 p-6 text-center sm:p-7 lg:items-start lg:p-[24px] lg:text-left ${responsiveBorder}`}
+      className={`
+        flex min-w-0 flex-col items-center
+        border-white/20
+        p-5 text-center
+        max-sm:py-8
+        sm:p-7
+        lg:items-start lg:p-[24px] lg:text-left
+        ${responsiveBorder}
+      `}
     >
       {/* Icon */}
-      <div className="flex size-[48px] shrink-0 items-center justify-center">
+      <div className="flex size-[44px] shrink-0 items-center justify-center sm:size-[48px]">
         <img
           src={icon}
           alt={alt}
@@ -91,11 +112,13 @@ function ProblemCard({ icon, alt, title, description, index }) {
         />
       </div>
 
-      <h3 className="mt-7 text-[18px] font-medium font-body text-[#FFFFFF] tracking-tight">
+      {/* Title */}
+      <h3 className="mt-5 text-[18px] font-medium font-body text-[#FFFFFF] tracking-tight sm:mt-7">
         {title}
       </h3>
 
-      <p className="mx-auto mt-3 max-w-[334px] text-[16px] font-medium text-[#CACACA] leading-[1.5]  lg:mx-0">
+      {/* Description */}
+      <p className="mx-auto mt-2 max-w-[334px] text-[15px] font-medium text-[#CACACA] leading-[1.6] sm:mt-3 sm:text-[16px] lg:mx-0">
         {description}
       </p>
     </motion.article>
@@ -137,15 +160,24 @@ export default function ProblemSection() {
     <section className="relative mt-0 bg-black font-['Inter'] text-white">
 
       {/* Main framed container */}
-      <div className={`${frame6} `}>
+      <div className={`${frame6}`}>
+
         {/* Heading */}
-        <div className={` flex flex-col items-center px-5 pb-12 pt-16 text-center sm:pb-16 sm:pt-20 lg:pb-[76px] lg:pt-[100px]`}>
+        <div
+          className="
+            flex flex-col items-center
+            px-4 pb-10 pt-14
+            text-center
+            sm:px-5 sm:pb-16 sm:pt-20
+            lg:pb-[76px] lg:pt-[100px]
+          "
+        >
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-slate-700/70 px-1.5 py-1 text-sm uppercase leading-none"
+            className="bg-slate-700/70 px-1.5 py-1 text-[11px] lg:text-sm uppercase leading-none"
           >
             Does This Sound Familiar?
           </motion.span>
@@ -155,13 +187,22 @@ export default function ProblemSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8  font-['Merriweather'] font-normal text-3xl leading-14 tracking-[-1px] sm:text-3xl md:text-[48px]"
+            className="
+              mt-7
+              max-w-[360px]
+              font-['Merriweather']
+              text-[24px] font-normal
+              leading-[1.35]
+              tracking-[-1px]
+              sm:mt-8 sm:max-w-none
+              sm:text-3xl sm:leading-14
+              md:text-[48px]
+            "
           >
             Your Digital Infrastructure
             <br className="hidden sm:block" /> Shouldn’t Hold Your Business Back
           </motion.h2>
         </div>
-
 
         {/* Problem cards and CTA */}
         <motion.div
@@ -174,7 +215,12 @@ export default function ProblemSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className={`${frameInner} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`}
+          className={`
+            ${frameInner}
+            grid grid-cols-1
+            sm:grid-cols-2
+            lg:grid-cols-3
+          `}
         >
           {problems.map((problem, index) => (
             <ProblemCard
@@ -188,14 +234,22 @@ export default function ProblemSection() {
           {/* CTA card */}
           <motion.div
             variants={cardAnimation}
-            className="flex min-h-[245px] flex-col items-center justify-between bg-[linear-gradient(160deg,#073b91_0%,#0784b7_45%,#001014_100%)] p-6 text-center sm:p-7 lg:items-start lg:p-[27px] lg:text-left"
+            className="
+              flex min-h-[245px]
+              flex-col items-center justify-between
+              bg-[linear-gradient(160deg,#073b91_0%,#0784b7_45%,#001014_100%)]
+              p-5 text-center
+              max-sm:gap-7
+              sm:p-7
+              lg:items-start lg:p-[27px] lg:text-left
+            "
           >
-            <div>
+            <div className="w-full">
               <h3 className="text-[18px] font-medium leading-snug text-[#FFFFFF]">
                 Ready to Fix What’s Holding You Back?
               </h3>
 
-              <p className="mt-3 text-[16px] leading-[1.5] font-medium text-[#F1F2F5]">
+              <p className="mt-3 text-[15px] leading-[1.6] font-medium text-[#F1F2F5] sm:text-[16px]">
                 Let’s identify the gaps, improve the experience, and build a
                 digital foundation ready for growth.
               </p>
@@ -203,7 +257,18 @@ export default function ProblemSection() {
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="mt-8 inline-flex w-full cursor-pointer items-center justify-center gap-2 bg-white px-4 py-3 text-center text-[16px] font-medium tracking-tight text-black transition-colors hover:bg-white/85 text-[#010101]"
+              className="
+                mt-6 inline-flex w-full
+                cursor-pointer items-center justify-center
+                gap-2
+                bg-white px-4 py-3
+                text-center text-[14px] font-medium
+                leading-snug tracking-tight
+                text-black
+                transition-colors hover:bg-white/85
+                sm:text-[16px]
+                lg:mt-8
+              "
             >
               Let’s Improve Your Digital Experience
               <ArrowRight className="size-4 shrink-0" />
@@ -215,7 +280,8 @@ export default function ProblemSection() {
       {/* Conversational Intake Modal */}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-3 py-4 sm:px-4">
+
             {/* Background overlay */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -230,13 +296,26 @@ export default function ProblemSection() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 max-h-[90vh] w-full max-w-lg overflow-y-auto border border-white/20 bg-[#0a0a0a] p-6 text-white shadow-2xl sm:p-8"
+              transition={{
+                duration: 0.3,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="
+                relative z-10
+                max-h-[90vh] max-h-[90dvh]
+                w-full max-w-lg
+                overflow-y-auto
+                border border-white/20
+                bg-[#0a0a0a]
+                p-5 text-white
+                shadow-2xl
+                sm:p-8
+              "
             >
               {/* Close button */}
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="absolute right-5 top-5 cursor-pointer rounded-full bg-white/10 p-2 transition-colors hover:bg-white/20"
+                className="absolute right-4 top-4 cursor-pointer rounded-full bg-white/10 p-2 transition-colors hover:bg-white/20 sm:right-5 sm:top-5"
                 aria-label="Close modal"
               >
                 <X className="size-5" />
@@ -261,20 +340,23 @@ export default function ProblemSection() {
                 </div>
               ) : (
                 <>
-                  <span className="border border-blue-500/30 bg-[#073b91]/40 px-2 py-1 text-xs font-medium uppercase leading-none text-blue-400">
+                  <span className="inline-block border border-blue-500/30 bg-[#073b91]/40 px-2 py-1 text-xs font-medium uppercase leading-none text-blue-400">
                     Quick Digital Assessment
                   </span>
 
-                  <h3 className="mt-4 text-2xl tracking-tight sm:text-3xl">
+                  <h3 className="mt-4 pr-6 text-xl tracking-tight sm:text-3xl">
                     Let’s Talk About Your Experience
                   </h3>
 
-                  <p className="mt-1 text-sm text-white/70">
+                  <p className="mt-2 text-sm leading-relaxed text-white/70">
                     Tell us a bit about your current setup so we can tailor our
                     recommendations.
                   </p>
 
-                  <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="mt-6 space-y-4"
+                  >
                     {/* Main issue */}
                     <div>
                       <label className="mb-1 block text-xs uppercase tracking-wider text-white/60">
@@ -289,7 +371,15 @@ export default function ProblemSection() {
                             primaryIssue: e.target.value,
                           })
                         }
-                        className="w-full border border-white/20 bg-[#141414] px-3 py-2.5 text-sm text-white transition-colors focus:border-white focus:outline-none"
+                        className="
+                          w-full min-w-0
+                          border border-white/20
+                          bg-[#141414]
+                          px-3 py-3
+                          text-sm text-white
+                          transition-colors
+                          focus:border-white focus:outline-none
+                        "
                       >
                         {problems.map((p) => (
                           <option key={p.title} value={p.title}>
@@ -301,7 +391,7 @@ export default function ProblemSection() {
 
                     {/* Name and email */}
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <div>
+                      <div className="min-w-0">
                         <label className="mb-1 block text-xs uppercase tracking-wider text-white/60">
                           Your Name
                         </label>
@@ -317,11 +407,20 @@ export default function ProblemSection() {
                             })
                           }
                           placeholder="John Doe"
-                          className="w-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-white transition-colors placeholder:text-white/30 focus:border-white focus:outline-none"
+                          className="
+                            w-full min-w-0
+                            border border-white/20
+                            bg-white/5
+                            px-4 py-3
+                            text-sm text-white
+                            transition-colors
+                            placeholder:text-white/30
+                            focus:border-white focus:outline-none
+                          "
                         />
                       </div>
 
-                      <div>
+                      <div className="min-w-0">
                         <label className="mb-1 block text-xs uppercase tracking-wider text-white/60">
                           Work Email
                         </label>
@@ -337,7 +436,16 @@ export default function ProblemSection() {
                             })
                           }
                           placeholder="john@company.com"
-                          className="w-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-white transition-colors placeholder:text-white/30 focus:border-white focus:outline-none"
+                          className="
+                            w-full min-w-0
+                            border border-white/20
+                            bg-white/5
+                            px-4 py-3
+                            text-sm text-white
+                            transition-colors
+                            placeholder:text-white/30
+                            focus:border-white focus:outline-none
+                          "
                         />
                       </div>
                     </div>
@@ -358,7 +466,16 @@ export default function ProblemSection() {
                           })
                         }
                         placeholder="https://yourcompany.com"
-                        className="w-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-white transition-colors placeholder:text-white/30 focus:border-white focus:outline-none"
+                        className="
+                          w-full min-w-0
+                          border border-white/20
+                          bg-white/5
+                          px-4 py-3
+                          text-sm text-white
+                          transition-colors
+                          placeholder:text-white/30
+                          focus:border-white focus:outline-none
+                        "
                       />
                     </div>
 
@@ -378,14 +495,31 @@ export default function ProblemSection() {
                           })
                         }
                         placeholder="Tell us what you want to achieve..."
-                        className="w-full resize-none border border-white/20 bg-white/5 px-4 py-2 text-sm text-white transition-colors placeholder:text-white/30 focus:border-white focus:outline-none"
+                        className="
+                          w-full min-w-0
+                          resize-none
+                          border border-white/20
+                          bg-white/5
+                          px-4 py-3
+                          text-sm text-white
+                          transition-colors
+                          placeholder:text-white/30
+                          focus:border-white focus:outline-none
+                        "
                       />
                     </div>
 
                     {/* Submit */}
                     <button
                       type="submit"
-                      className="mt-2 inline-flex w-full cursor-pointer items-center justify-center gap-2 bg-white px-5 py-3 text-sm font-medium text-black transition-colors hover:bg-white/90"
+                      className="
+                        mt-2 inline-flex w-full
+                        cursor-pointer items-center justify-center
+                        gap-2
+                        bg-white px-5 py-3
+                        text-sm font-medium text-black
+                        transition-colors hover:bg-white/90
+                      "
                     >
                       Request Free Audit
                       <ArrowRight className="size-4" />

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   ArrowRight,
@@ -47,6 +47,18 @@ export default function Hero() {
   const [bookingSubmitted, setBookingSubmitted] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
 
+  // Stop the page from scrolling behind the modal
+  useEffect(() => {
+    if (!isBookingOpen) return;
+
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [isBookingOpen]);
+
   const handleBookingSubmit = (e) => {
     e.preventDefault();
     setBookingSubmitted(true);
@@ -67,7 +79,7 @@ export default function Hero() {
     <section id="home" className="relative overflow-hidden bg-black text-white">
       {/* Main Hero Frame */}
       <div
-        className={`${frame2} relative h-[760px] min-h-[calc(100svh-80px)] max-h-[900px] overflow-hidden border-x border-white/20`}
+        className={`${frame2} relative h-[680px] min-h-[calc(100svh-80px)] max-h-[900px] overflow-hidden border-x border-white/20 sm:h-[760px]`}
       >
         {/* Animated Gradient Background */}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#38f5e0_0%,#1ab0e8_38%,#0a2a9a_58%,#050c4a_75%,#030620_100%)]" />
@@ -129,12 +141,12 @@ export default function Hero() {
           variants={container}
           initial="hidden"
           animate="show"
-          className="absolute bottom-[80px] left-[40px] z-10 w-[calc(100%-80px)] max-w-[900px]"
+          className="absolute bottom-10 left-5 z-10 w-[calc(100%-40px)] max-w-[900px] sm:bottom-[80px] sm:left-[40px] sm:w-[calc(100%-80px)]"
         >
           {/* Label */}
           <motion.span
             variants={item}
-            className="inline-flex min-h-[17px] items-center bg-white/15 px-1.5 py-1 font-['Inter'] font-medium text-[14px] font-medium uppercase leading-[100%] tracking-[-0.5px] text-white backdrop-blur-sm"
+            className="inline-flex min-h-[17px] items-center bg-white/15 px-1.5 py-1 font-['Inter'] font-medium text-[11px] uppercase leading-[100%] tracking-[-0.5px] text-white backdrop-blur-sm sm:text-[14px]"
           >
             Design • Development • Growth
           </motion.span>
@@ -142,7 +154,7 @@ export default function Hero() {
           {/* Main Heading */}
           <motion.h1
             variants={item}
-            className="mt-4 w-full max-w-[1250px] font-['Merriweather'] text-[36px] font-normal leading-[1.12] tracking-[-1px] text-white sm:text-[48px] lg:text-[64px] lg:leading-[1.05]"
+            className="mt-3 w-full max-w-[1250px] font-['Merriweather'] text-[30px] font-normal leading-[1.12] tracking-[-1px] text-white sm:mt-4 sm:text-[48px] lg:text-[64px] lg:leading-[1.05]"
           >
             Turn Digital Infrastructure Into Business Growth
           </motion.h1>
@@ -150,7 +162,7 @@ export default function Hero() {
           {/* Description */}
           <motion.p
             variants={item}
-            className="mt-5 w-full max-w-[671px] font-['Inter'] text-[14px] font-medium leading-[26px] tracking-[-0.5px] text-[#F1F2F5] sm:text-[15px] sm:leading-[24px] lg:text-[16px] lg:leading-[26px]"
+            className="mt-4 w-full max-w-[671px] font-['Inter'] text-[14px] font-medium leading-[22px] tracking-[-0.5px] text-[#F1F2F5] sm:mt-5 sm:text-[15px] sm:leading-[24px] lg:text-[16px] lg:leading-[26px]"
           >
             We design, develop, and optimize high-performance digital
             experiences that help ambitious businesses operate better, convert
@@ -209,7 +221,7 @@ export default function Hero() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 max-h-[90dvh] w-full max-w-xl overflow-y-auto border border-white/20 bg-[#0a0a0a] p-5 text-white shadow-2xl sm:p-8"
+              className="relative z-10 max-h-[90dvh] w-full max-w-xl overflow-y-auto overscroll-contain border border-white/20 bg-[#0a0a0a] p-5 text-white shadow-2xl sm:p-8"
             >
               {/* Close Button */}
               <button
@@ -256,7 +268,7 @@ export default function Hero() {
                     1-on-1 Strategy Session
                   </span>
 
-                  <h3 className="mt-4 font-['Inter'] text-2xl font-medium tracking-tight sm:text-3xl">
+                  <h3 className="mt-4 pr-8 font-['Inter'] text-2xl font-medium tracking-tight sm:pr-0 sm:text-3xl">
                     Book Your Consultation
                   </h3>
 
@@ -267,7 +279,7 @@ export default function Hero() {
                   <form onSubmit={handleBookingSubmit} className="mt-6 space-y-4">
                     {/* Date and Time */}
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <div>
+                      <div className="min-w-0">
                         <label className="mb-1 flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/60">
                           <Calendar className="size-3.5 text-[#38f5e0]" />
                           Select Date
@@ -279,11 +291,11 @@ export default function Hero() {
                           min={new Date().toLocaleDateString("en-CA")}
                           value={selectedDate}
                           onChange={(e) => setSelectedDate(e.target.value)}
-                          className="w-full border border-white/20 bg-white/5 px-3 py-2 text-sm text-white transition-colors [color-scheme:dark] focus:border-[#38f5e0] focus:outline-none"
+                          className="block w-full min-w-0 border border-white/20 bg-white/5 px-3 py-2 text-base text-white transition-colors [color-scheme:dark] focus:border-[#38f5e0] focus:outline-none sm:text-sm"
                         />
                       </div>
 
-                      <div>
+                      <div className="min-w-0">
                         <label className="mb-1 flex items-center gap-1.5 text-xs uppercase tracking-wider text-white/60">
                           <Clock className="size-3.5 text-[#38f5e0]" />
                           Preferred Time
@@ -292,7 +304,7 @@ export default function Hero() {
                         <select
                           value={selectedTime}
                           onChange={(e) => setSelectedTime(e.target.value)}
-                          className="w-full border border-white/20 bg-[#141414] px-3 py-2 text-sm text-white focus:border-[#38f5e0] focus:outline-none"
+                          className="block w-full min-w-0 border border-white/20 bg-[#141414] px-3 py-2 text-base text-white focus:border-[#38f5e0] focus:outline-none sm:text-sm"
                         >
                           {timeSlots.map((slot) => (
                             <option key={slot} value={slot}>
@@ -317,7 +329,7 @@ export default function Hero() {
                           setFormData({ ...formData, name: e.target.value })
                         }
                         placeholder="John Doe"
-                        className="w-full border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 transition-colors focus:border-[#38f5e0] focus:outline-none"
+                        className="w-full border border-white/20 bg-white/5 px-4 py-2.5 text-base text-white placeholder-white/30 transition-colors focus:border-[#38f5e0] focus:outline-none sm:text-sm"
                       />
                     </div>
 
@@ -336,7 +348,7 @@ export default function Hero() {
                             setFormData({ ...formData, email: e.target.value })
                           }
                           placeholder="john@company.com"
-                          className="w-full border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 focus:border-[#38f5e0] focus:outline-none"
+                          className="w-full border border-white/20 bg-white/5 px-4 py-2.5 text-base text-white placeholder-white/30 focus:border-[#38f5e0] focus:outline-none sm:text-sm"
                         />
                       </div>
 
@@ -355,7 +367,7 @@ export default function Hero() {
                             })
                           }
                           placeholder="Acme Inc."
-                          className="w-full border border-white/20 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 focus:border-[#38f5e0] focus:outline-none"
+                          className="w-full border border-white/20 bg-white/5 px-4 py-2.5 text-base text-white placeholder-white/30 focus:border-[#38f5e0] focus:outline-none sm:text-sm"
                         />
                       </div>
                     </div>
@@ -373,7 +385,7 @@ export default function Hero() {
                           setFormData({ ...formData, message: e.target.value })
                         }
                         placeholder="Briefly describe your project or key challenges..."
-                        className="w-full resize-none border border-white/20 bg-white/5 px-4 py-2 text-sm text-white placeholder-white/30 focus:border-[#38f5e0] focus:outline-none"
+                        className="w-full resize-none border border-white/20 bg-white/5 px-4 py-2 text-base text-white placeholder-white/30 focus:border-[#38f5e0] focus:outline-none sm:text-sm"
                       />
                     </div>
 

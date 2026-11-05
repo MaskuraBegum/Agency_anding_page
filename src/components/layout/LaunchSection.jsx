@@ -187,14 +187,14 @@ export default function LaunchSection() {
 
             <div className="relative z-10 grid gap-12 px-6 py-12 sm:px-8 sm:py-14 lg:min-h-[680px] lg:grid-cols-[1.55fr_0.85fr] lg:items-center lg:gap-8 lg:px-[42px] lg:py-[60px]">
               <div className="flex h-full flex-col items-start">
-                <span className="bg-[#202938] px-1.5 py-1 text-xs font-normal uppercase leading-none text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] sm:text-sm">
+                <span className="bg-[#202938] px-1.5 py-1 text-[11px] font-normal uppercase leading-none text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] sm:text-sm">
                   Launch Without the Long Wait
                 </span>
 
-                <h2 className="mt-7 text-[#010101] font-heading font-normal text-[40px] md:text-[60px] lg:text-[80px] leading-[86px] tracking-[-1px] mt-10">
+                <h2 className=" text-[#010101] font-heading font-normal text-[40px] md:text-[60px] lg:text-[80px] leading-[43px] md:leading-[86px] tracking-[-1px] mt-10">
                   $1,112
                   <br />
-                  <span className="inline-block my-1">From Idea to</span>
+                  <span className="inline-block my-0 md:my-1">From Idea to</span>
                   <br />
                   Live Website
                 </h2>
@@ -210,7 +210,7 @@ export default function LaunchSection() {
                     responsive optimization, and final launch.
                   </p>
 
-                  <p className="mt-4 text-[15px] font-semibold font-body text-[#010101] sm:text-[18px] leading-[26px] tracking-[-1px]">
+                  <p className="mt-4 text-[18px] font-semibold font-body text-[#010101] sm:text-[18px] leading-[26px] tracking-[-1px]">
                     $1,112 flat. One focused project. Designed to convert.
                     Built to launch.
                   </p>

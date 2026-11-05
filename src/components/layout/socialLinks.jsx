@@ -1,4 +1,4 @@
-import { extBottom, frame, frame2 } from "./layout";
+import { extBottom, frame2 } from "./layout";
 
 import dribbble from "../../assets/Dribbble.png";
 import instagram from "../../assets/Instagram.png";
@@ -8,41 +8,41 @@ import facebook from "../../assets/Facebook.png";
 import x from "../../assets/X.png";
 
 const socialLinks = [
-  { 
-    name: "Dribbble", 
-    icon: dribbble, 
-    alt: "Dribbble logo representing our design portfolio", 
-    href: "#" 
+  {
+    name: "Dribbble",
+    icon: dribbble,
+    alt: "Dribbble logo representing our design portfolio",
+    href: "#",
   },
-  { 
-    name: "Instagram", 
-    icon: instagram, 
-    alt: "Instagram logo representing our social media profile", 
-    href: "#" 
+  {
+    name: "Instagram",
+    icon: instagram,
+    alt: "Instagram logo representing our social media profile",
+    href: "#",
   },
-  { 
-    name: "Behance", 
-    icon: behance, 
-    alt: "Behance logo representing our creative case studies", 
-    href: "#" 
+  {
+    name: "Behance",
+    icon: behance,
+    alt: "Behance logo representing our creative case studies",
+    href: "#",
   },
-  { 
-    name: "LinkedIn", 
-    icon: linkedin, 
-    alt: "LinkedIn logo representing our professional network", 
-    href: "#" 
+  {
+    name: "LinkedIn",
+    icon: linkedin,
+    alt: "LinkedIn logo representing our professional network",
+    href: "#",
   },
-  { 
-    name: "Facebook", 
-    icon: facebook, 
-    alt: "Facebook logo representing our community page", 
-    href: "#" 
+  {
+    name: "Facebook",
+    icon: facebook,
+    alt: "Facebook logo representing our community page",
+    href: "#",
   },
-  { 
-    name: "X (Twitter)", 
-    icon: x, 
-    alt: "X logo representing our official social channel", 
-    href: "#" 
+  {
+    name: "X (Twitter)",
+    icon: x,
+    alt: "X logo representing our official social channel",
+    href: "#",
   },
 ];
 
@@ -66,37 +66,37 @@ export default function FooterSection() {
           {/* Main Footer */}
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left Contact Block */}
-            <div className="flex min-h-[360px] flex-col justify-end border-b border-white/20 bg-[#181818] p-6 sm:p-10 md:p-12 lg:min-h-[440px] lg:border-b-0 lg:border-r">
-              <h3 className="max-w-[600px] font-['Merriweather'] text-2xl font-normal text-white sm:text-[24px] leading-tight traciking[-1px]">
+            <div className="flex min-h-[300px] flex-col justify-end border-b border-white/20 bg-[#181818] p-5 sm:min-h-[360px] sm:p-10 md:p-12 lg:min-h-[440px] lg:border-b-0 lg:border-r">
+              <h3 className="max-w-[600px] font-['Merriweather'] text-[21px] font-normal leading-tight tracking-[-1px] text-white sm:text-[24px]">
                 Let’s turn your idea into a digital experience that works for
                 your business.
               </h3>
 
               <a
                 href="mailto:hello@logo.com"
-                className="mt-5 w-fit break-all font-['Merriweather'] font-normal text-2xl text-[#A4A4A4] underline decoration-white/40 underline-offset-8 transition-colors hover:decoration-white sm:text-3xl md:text-4xl lg:text-[36px]"
+                className="mt-4 w-fit break-all font-['Merriweather'] text-[21px] font-normal text-[#A4A4A4] underline decoration-white/40 underline-offset-8 transition-colors hover:decoration-white sm:mt-5 sm:text-3xl md:text-4xl lg:text-[36px]"
               >
                 hello@logo.com
               </a>
             </div>
 
             {/* Right Brand Block */}
-            <div className="flex min-h-[360px] flex-col justify-between p-6 sm:p-10 md:p-12 lg:min-h-[440px]">
+            <div className="flex min-h-[300px] flex-col justify-between p-5 sm:min-h-[360px] sm:p-10 md:p-12 lg:min-h-[440px]">
               {/* Logo & Tagline */}
               <div>
                 <a href="#home" className="inline-block">
-                  <h2 className="font-['Merriweather'] font-500 text-3xl uppercase tracking-tight text-white sm:text-[34px]">
+                  <h2 className="font-['Merriweather'] text-[27px] font-medium uppercase tracking-tight text-white sm:text-[34px]">
                     LOGO
                   </h2>
                 </a>
 
-                <p className="mt-4 max-w-[320px] font-['Inter'] font-medium text-base leading-[28px] tracking[-1px] text-white sm:text-[18px]">
+                <p className="mt-3 max-w-[320px] font-['Inter'] text-[14px] font-medium leading-[24px] tracking-[-0.5px] text-white sm:mt-4 sm:text-[18px] sm:leading-[28px] sm:tracking-[-1px]">
                   Digital transformation for businesses ready to move forward.
                 </p>
               </div>
 
               {/* Navigation */}
-              <nav className="mt-12 flex flex-wrap items-center justify-center gap-x-5 gap-y-4 font-['Inter'] font-medium leading[26px] tracking[-0.5px] text-[14px] text-[#CACACA] sm:gap-x-7 sm:text-[16px] lg:mt-10 lg:justify-between">
+              <nav className="mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 font-['Inter'] text-[12px] font-medium leading-[22px] tracking-[-0.3px] text-[#CACACA] sm:mt-12 sm:gap-x-7 sm:gap-y-4 sm:text-[16px] sm:leading-[26px] sm:tracking-[-0.5px] lg:mt-10 lg:justify-between">
                 {navLinks.map((link) => (
                   <a
                     key={link.label}
@@ -127,7 +127,7 @@ export default function FooterSection() {
                 aria-label={social.name}
                 title={social.name}
                 className={[
-                  "group flex min-h-[64px] items-center justify-center -gap-6 border-white/20 px-2 transition-colors hover:bg-white/[0.04] sm:min-h-[72px] leading",
+                  "group flex min-h-[60px] items-center justify-center gap-2 border-white/20 px-2 transition-colors hover:bg-white/[0.04] sm:min-h-[72px]",
                   index % 2 === 0 ? "border-r" : "",
                   index % 3 !== 2 ? "sm:border-r" : "",
                   index < 4 ? "border-b" : "border-b-0",
@@ -135,13 +135,18 @@ export default function FooterSection() {
                 ].join(" ")}
               >
                 <img
-                  src={social.icon}
-                  alt={social.alt}
-                  sizes="32"
-                  className="h-14 w-14 shrink-0 object-contain transition-transform duration-300 group-hover:scale-110 sm:h-16 sm:w-14"
-                />
+  src={social.icon}
+  alt={social.alt}
+  className={`h-10 w-10 shrink-0 object-contain transition-transform duration-300 sm:h-16 sm:w-14 group-hover:scale-110 ${
+    social.name === "LinkedIn"
+      ? "max-sm:-translate-x-1"
+      : social.name === "X (Twitter)"
+        ? "max-sm:translate-x-1"
+        : ""
+  }`}
+/>
 
-                <span className="font-body font-medium text-sm text-white sm:text-[16px] leading-[28px]">
+                <span className="font-body text-[12px] font-medium leading-[20px] text-white sm:text-[16px] sm:leading-[28px]">
                   {social.name}
                 </span>
               </a>

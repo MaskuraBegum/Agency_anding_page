@@ -1,3 +1,4 @@
+
 import { motion } from "motion/react";
 import { Star } from "lucide-react";
 import { frame2, extTop, extBottom } from "./layout";
@@ -31,7 +32,6 @@ const testimonials = [
     quote:
       "From strategy to launch, everything felt intentional. They brought strong design thinking and technical execution to every part of the project.",
   },
-  
 ];
 
 const PANEL_GRADIENT =
@@ -41,7 +41,7 @@ const PANEL_GRADIENT =
 
 function ReviewCard({ item }) {
   return (
-    <article className="shrink-0 snap-start bg-white p-5 text-black sm:p-6 max-w-[498px]">
+    <article className="max-sm:w-full max-sm:max-w-none shrink-0 snap-start bg-white p-4 text-black sm:p-6 max-w-[498px]">
       {/* Stars */}
       <div className="flex items-center gap-1">
         {[1, 2, 3, 4, 5].map((star) => (
@@ -57,16 +57,17 @@ function ReviewCard({ item }) {
       </div>
 
       {/* Quote */}
-      <p className="mt-5 font-['Merriweather'] max-w-[447px] fornt-normal leading-8 tracking-[-1px] text-[17px] text-[#010101] sm:mt-6 sm:text-[24px] lg:text-[24px]">
+      <p className="mt-4 max-w-[447px] font-['Merriweather'] font-normal text-[15px] leading-[1.7] tracking-[-0.4px] text-[#010101] sm:mt-6 sm:text-[24px] sm:leading-8 sm:tracking-[-1px] lg:text-[24px]">
         “{item.quote}”
       </p>
 
       {/* Author */}
-      <div className="mt-6 sm:mt-8">
-        <h3 className="font-['Merriweather'] text-base font-normal  leading-[28px] tracking-[-0.5px] text-[#010101] sm:text-[18px]">
+      <div className="mt-5 sm:mt-8">
+        <h3 className="font-['Merriweather'] text-base font-normal leading-[28px] tracking-[-0.5px] text-[#010101] sm:text-[18px]">
           {item.name}
         </h3>
-        <p className=" font-['Inter'] font-medium  leading-[22px] tracking-[-0.5px] text-[#3B3B3B] text-[12px] sm:text-[14px]">
+
+        <p className="font-['Inter'] text-[11px] font-medium leading-[22px] tracking-[-0.3px] text-[#3B3B3B] sm:text-[14px] sm:tracking-[-0.5px]">
           {item.role}
         </p>
       </div>
@@ -79,16 +80,15 @@ function ReviewCard({ item }) {
 export default function TestimonialsSection() {
   return (
     <section className="overflow-x-clip bg-black font-['Inter'] text-white">
-      {/* Vertical borders only. The line at the top comes from the end of LaunchSection. */}
       <div className={frame2}>
         {/* Heading */}
-        <div className="flex flex-col items-center px-5 pb-12 pt-16 text-center sm:pb-14 sm:pt-20 lg:pb-[72px] lg:pt-[100px]">
+        <div className="flex flex-col items-center px-4 pb-10 pt-14 text-center sm:px-5 sm:pb-14 sm:pt-20 lg:pb-[72px] lg:pt-[100px]">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-slate-700/70 shadow-[0px_4px_16px_0px_#00000026] px-1.5 py-1 font-normal leading-none tracking-[-0.5px] text-[14px] uppercase"
+            className="bg-slate-700/70 px-1.5 py-1 text-[11px] md:text-[14px] font-normal uppercase leading-none tracking-[-0.5px] text-white shadow-[0px_4px_16px_0px_#00000026]"
           >
             Client Experiences
           </motion.span>
@@ -98,7 +98,7 @@ export default function TestimonialsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8 max-w-[680px] font-['Merriweather'] font-normal text-3xl leading-14 tracking-[-1px] sm:text-3xl md:text-[48px]"
+            className="mt-7 max-w-[340px] font-['Merriweather'] text-[24px] font-normal leading-[1.3] tracking-[-0.8px] sm:mt-8 sm:max-w-[680px] sm:text-3xl sm:leading-14 sm:tracking-[-1px] md:text-[48px]"
           >
             Don’t Just Take Our Word for It
           </motion.h2>
@@ -106,25 +106,26 @@ export default function TestimonialsSection() {
 
         {/* Extended lines at the top and bottom of the panel */}
         <div className={`${extTop} ${extBottom}`}>
-          {/* Inset gradient panel with its own vertical borders on desktop */}
+          {/* Gradient panel */}
           <div
             className="mx-auto w-full border-white/20 lg:w-[76%] lg:border-x"
             style={{ background: PANEL_GRADIENT }}
           >
-            <div className="grid grid-cols-1 gap-8 px-4 py-8 sm:px-4 sm:py-10 lg:grid-cols-[minmax(0,540px)_1fr] lg:gap-2 lg:px-10 lg:py-11">
-              {/* Stat: first on mobile, right column on desktop */}
-              <div className="order-first text-left lg:order-last font-['Merriweather'] px-[-4px] ">
-                <p className="font-['Merriweather'] font-normal text-5xl sm:text-6xl lg:text-[48px]">
+            <div className="grid grid-cols-1 gap-6 px-4 py-7 sm:gap-8 sm:px-4 sm:py-10 lg:grid-cols-[minmax(0,540px)_1fr] lg:gap-2 lg:px-10 lg:py-11">
+              {/* Stat */}
+              <div className="order-first px-0 text-left font-['Merriweather'] lg:order-last">
+                <p className="font-['Merriweather'] text-[44px] font-normal leading-none sm:text-6xl lg:text-[48px]">
                   40%
                 </p>
-                <p className="mt-4 max-w-[260px] font-['Merriweather'] leading-[26px] tracking-[-0.5px] text-base leading-snug text-white sm:text-[18px] font-medium ">
+
+                <p className="mt-3 max-w-[300px] font-['Merriweather'] text-[14px] font-medium leading-[1.5] tracking-[-0.3px] text-white sm:mt-4 sm:max-w-[260px] sm:text-base sm:leading-[26px] sm:tracking-[-0.5px] sm:text-[18px]">
                   Marked improvement in financial efficiency and performance.
                 </p>
               </div>
 
               {/* Scrollable cards */}
               <div
-                className="flex h-[430px] snap-y snap-mandatory flex-col gap-5 overflow-y-auto overscroll-auto pb-6 [mask-image:linear-gradient(to_bottom,black_88%,transparent)] [scrollbar-width:none] sm:h-[480px] lg:h-[440px] [&::-webkit-scrollbar]:hidden"
+                className="flex h-[390px] snap-y snap-mandatory flex-col gap-4 overflow-y-auto overscroll-auto pb-6 [mask-image:linear-gradient(to_bottom,black_88%,transparent)] [scrollbar-width:none] sm:h-[480px] sm:gap-5 lg:h-[440px] [&::-webkit-scrollbar]:hidden"
                 tabIndex={0}
                 aria-label="Client testimonials"
               >
@@ -135,8 +136,6 @@ export default function TestimonialsSection() {
             </div>
           </div>
         </div>
-
-        
       </div>
     </section>
   );

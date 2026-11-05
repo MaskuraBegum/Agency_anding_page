@@ -6,7 +6,7 @@ import {
   useTransform,
 } from "motion/react";
 import { ArrowRight, X, CheckCircle2 } from "lucide-react";
-import { extBottom, frame, frame2, frame3, frame4 } from "./layout";
+import { extBottom, frame4 } from "./layout";
 
 // Service images
 import sticky1 from "../../assets/sticky/sticky1.png";
@@ -20,7 +20,7 @@ import number2 from "../../assets/sticky/number2.png";
 import number3 from "../../assets/sticky/number3.png";
 import number4 from "../../assets/sticky/number4.png";
 
-const CONTACT_EMAIL = "hello@youragency.com"; // Change this to your email
+const CONTACT_EMAIL = "hello@youragency.com";
 
 const CARD_GRADIENT =
   "linear-gradient(180deg, #02307f 0%, #05509a 28%, #0480b8 55%, #03354f 80%, #010a10 100%)";
@@ -111,7 +111,7 @@ const services = [
 
 function NumberBadge({ image, number }) {
   return (
-    <div className="relative size-[40px] shrink-0 md:size-[48px]">
+    <div className="relative size-[36px] shrink-0 sm:size-[40px] md:size-[48px]">
       <img
         src={image}
         alt={`Service ${number}`}
@@ -282,65 +282,67 @@ function StackedCard({ service, index, total, progress, onCta }) {
 
   return (
     <div
-      className={`sticky top-0 flex items-start justify-center px-3 sm:px-0 ${
-        isLast ? "pb-1" : "h-screen"
-      }`}
+    className={`sticky top-0 flex items-start justify-center px-3 sm:px-0 ${
+      isLast
+        ? "pb-1"
+        : "h-[90svh] max-[375px]:h-[min(680px,calc(100dvh-20px))] md:h-screen"
+    }`}
       style={{ paddingTop: 24 + index * 28 }}
     >
       <motion.article
         style={{ scale, background: service.gradient }}
-        className="relative  h-[min(540px,calc(100vh-110px))] w-full origin-top overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.55)] ring-1 ring-white/15"
+        className="relative h-[min(600px,calc(100dvh-100px))] w-full origin-top overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.55)] ring-1 ring-white/15 md:h-[min(540px,calc(100vh-110px))]"
       >
-        <div className="flex h-full flex-col gap-3 overflow-y-auto px-5 py-5 sm:gap-6 sm:px-10 sm:py-7 md:flex-row md:items-center md:gap-12 md:overflow-hidden md:px-12 md:py-10">
+       <div className="flex h-full flex-col gap-3 overflow-y-auto px-4 pb-4 pt-8 max-[375px]:gap-2 max-[375px]:px-3 max-[375px]:pb-3 max-[375px]:pt-4 sm:gap-6 sm:px-10 sm:py-7 md:flex-row md:items-center md:gap-12 md:overflow-hidden md:px-12 md:py-10">
           {/* LEFT CONTENT */}
 
-          <div className="flex min-w-0 flex-1 flex-col justify-center">
+          <div className="flex min-w-0 flex-1 flex-col justify-start sm:justify-center">
             <NumberBadge
               image={service.numberImage}
               number={service.number}
             />
 
-            <h3 className="mt-4 font-['Merriweather'] font-medium text-xl leading-tight tracking-tight text-[#FFFFFF] sm:mt-7 sm:text-2xl md:text-[24px]">
+            <h3 className="mt-4 max-[375px]:mt-2 font-['Merriweather'] font-medium text-xl max-[375px]:text-lg leading-tight tracking-tight text-[#FFFFFF] sm:mt-7 sm:text-2xl md:text-[24px]">
               {service.title}
             </h3>
 
-            <p className="mt-2 max-w-[680px] font-['Inter'] font-medium text-xs leading-5 text-[#F1F2F5] sm:mt-3 sm:text-sm sm:leading-[16px] md:text-[16px] font-medium md:leading-[22px] tracking-[-0.5px">
+            <p className="mt-2 max-w-[680px] font-['Inter'] font-medium text-xs max-[375px]:text-[11px] leading-5 max-[375px]:leading-4 text-[#F1F2F5] sm:mt-3 sm:text-sm sm:leading-[16px] md:text-[16px] md:leading-[22px] tracking-[-0.5px]">
               {service.description}
             </p>
 
             {/* MOBILE IMAGE */}
 
-            <div className="mt-3 h-[85px] w-full shrink-0 overflow-hidden bg-white/10 ring-1 ring-white/20 sm:mt-4 sm:h-[110px] md:hidden">
+            <div className="mt-2.5 h-[240px] max-[375px]:h-[200px] w-full shrink-0 overflow-hidden bg-white/10 ring-1 ring-white/20 sm:mt-4 sm:h-[110px] md:hidden">
               <img
                 src={service.image}
                 alt={service.title}
                 loading="lazy"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover object-top"
               />
             </div>
 
-            <p className="mt-3 text-[17px] font-['Inter'] font-medium text-white sm:mt-5 sm:text-sm">
+            <p className="mt-2.5 max-[375px]:mt-2 text-[11px] max-[375px]:text-[15px] font-['Inter'] font-medium text-white sm:mt-5 sm:text-sm">
               Includes:
             </p>
 
-            <ul className="mt-2 grid grid-cols-2 gap-x-3 gap-y-2 sm:gap-y-0.5 md:grid-cols-1">
+            <ul className="mt-1.5 grid grid-cols-2 max-[376px]:grid-cols-1 gap-x-3 gap-y-1.5 max-[375px]:gap-y-1 sm:mt-2 sm:gap-x-4 sm:gap-y-2 md:grid-cols-1 md:gap-y-0.5">
               {service.features.map((feature) => (
                 <li
                   key={feature}
-                  className="flex items-center gap-0 text-[11px] traking-[-0.5px] leading-[22px] font-medium text-[#F1F2F5] sm:gap-3 sm:text-sm md:text-[14px] font-extraliight ml-2 md:ml-6"
+                  className="flex min-w-0 items-start gap-1.5 text-[11px] max-[375px]:text-[10px] font-medium leading-4 max-[375px]:leading-[14px] sm:leading-[22px] tracking-[-0.3px] text-[#F1F2F5] sm:gap-2 sm:text-sm md:text-[14px]"
                 >
-                  <span className="size-1 shrink-0 rounded-full bg-white/90" />
-                  {feature}
+                  <span className="mt-[6px] max-[375px]:mt-[5px] size-1 shrink-0 rounded-full bg-white/90 sm:mt-[7px]" />
+                  <span className="min-w-0 break-words">{feature}</span>
                 </li>
               ))}
             </ul>
 
-            {/* TRANSPARENT WHITE CTA BUTTON */}
+            {/* CTA BUTTON */}
 
             <button
               type="button"
               onClick={() => onCta(service)}
-              className="group mt-2 inline-flex w-full max-w-[428px] shrink-0 cursor-pointer items-center justify-center gap-2 border border-white/70 bg-white/10 px-4 py-2.5 text-xs font-medium font-body leading-[26px] tracking-[-1px] text-[#FFFFFF] backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 active:scale-[0.98] sm:mt-7 sm:px-5 sm:py-3 sm:text-[16px]"
+              className="group mt-4 max-[375px]:mt-3 sm:mt-2 flex min-h-[36px] w-full max-w-[428px] shrink-0 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap border border-white/70 bg-white/10 px-3 py-1.5 text-[11px] font-medium font-body leading-5 tracking-[-0.3px] text-[#FFFFFF] backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 active:scale-[0.98] sm:mt-7 sm:min-h-0 sm:gap-2 sm:px-5 sm:py-2 sm:text-[16px] sm:leading-[26px] sm:tracking-[-1px]"
             >
               {service.button}
 
@@ -384,22 +386,22 @@ export default function ServicesSection() {
       <div className={`${frame4} `}>
         {/* HEADER */}
 
-        <div className={`${extBottom} px-6 pb-10 pt-14 sm:px-10 md:pb-12 md:pt-[100px] lg:px-[44px]`}>
-          <span className="inline-block bg-white/15 px-1.5 py-0.5 text-[14px] font-['Inter'] font-normal uppercase tracking-wide text-white">
+        <div
+          className={`${extBottom} px-5 pb-10 pt-14 sm:px-10 md:pb-12 md:pt-[100px] lg:px-[44px]`}
+        >
+          <span className="inline-block bg-white/15 px-1.5 py-0.5 text-[11px] md:text-[14px] font-['Inter'] font-normal uppercase tracking-wide text-white">
             What We Do
           </span>
 
-          <h2 className="mt-8 max-w-[760px] font-['Merriweather'] font-normal text-4xl leading-14 tracking-[-1px] sm:text-5xl lg:text-[48px] text-[#FFFFFF]">
+          <h2 className="mt-8 max-w-[760px] font-['Merriweather'] font-normal text-[24px] leading-[1.2] tracking-[-1px] text-[#FFFFFF] sm:text-5xl lg:text-[48px]">
             Everything You Need to Build Digital That Performs
           </h2>
 
-          <p className="mt-6 max-w-[601px] font-body font-medium leading-[22px] traking-[-0.5px] text-base leading-7 md:text-[16px] text-[#CACACA]">
+          <p className="mt-6 max-w-[601px] font-body text-base font-medium leading-7 text-[#CACACA] md:text-[16px]">
             From a complete redesign to deep technical optimization, we solve
             digital challenges across strategy, experience, and engineering.
           </p>
         </div>
-
-        
 
         {/* STACKED SERVICES */}
 
